@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>浏览师傅</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>    
+    <style type="text/css">
+     body{background: rgb(233,236,241);}
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:10px;
+     }
+     .subhead{
+     	position: absolute;
+     	height: 80px;
+     	width:100%;
+     	background: #FFFFFF;
+     	top:50px;
+     	border-bottom: 1px solid #F0F0F0;
+
+     }
+      .subhead ul{height: 100%;padding: 0;}
+
+      .subhead li{
+      	padding: auto 0;
+        position: relative;
+        width:23.5%;
+        height: 100%;
+        display: inline-block;  
+
+      }
+
+      #mall{background: url(App_Themes/images/m-all.png) no-repeat center center/80% ;}
+      #mzl{background: url(App_Themes/images/m-z.png) no-repeat center center/80%;}
+	  #mll{background: url(App_Themes/images/m-l.png) no-repeat center center/80%;}
+	  #mjh{background: url(App_Themes/images/m-jh.png) no-repeat center center/80%;}
+
+       
+       .master-list{position: absolute;top: 140px;overflow: hidden;}
+       .master{overflow: hidden;background: #FFFFFF;padding-top:10px;padding-bottom: 10px;border-bottom: 1px solid #F0F0F0;}
+       .master-left img{width: 80px;height: 80px;padding-left: 10px;}
+       .item_desc{}
+       .item_desc p{padding-top:5px;padding-left:10px;}
+       .master-right span{position: relative;top:-5px;left:5px; }
+       .master-right img{width:12px;height: 20px;}
+        .h10 {height: 10px;background: #f0f0f0;}
+
+	  #pos{position: absolute;bottom: 50px;height: 30px;width: 100%;background: #E9ECF1;font-size: 1.5em;color: #6d6d72;/*padding-top:5px;*/padding-bottom: 5px;z-index: 1; }
+      #pos .pos{float: left; /*margin-top: 10px;*/padding-left: 10px;padding-top:8px;}
+      #pos .arrow{float:right;width:30px;height:30px;background: url(App_Themes/images/y_next.png) no-repeat right center/16px 22px;margin-right: 10px;margin-top: 5px;}
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
+		</div>
+		<div class="head_center">浏览师傅</div>
+		<div class="head_right"  onclick="search()">
+			<img src="App_Themes/images/search.png"/>
+			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
+		</div>
+	     <div class="subhead">
+	     	<ul>
+	     		<li id="mall"></li>
+	     		<li id="mzl"></li>
+	     		<li id="mll"></li>
+	     		<li id="mjh"></li>
+	     	</ul>
+	     </div>
+	</header>
+	<!--section-->
+	<!-- <div class="h10"></div> -->
+	<section class="master-list">
+	<script type="text/template" charset="utf-8" id='template_1'>
+	
+     {{for(var i=0; i<it.length; i++){ }}
+       <li class="master">
+	   			// <div class="master-left" style="float:left;">
+	   			// 	<img src="App_Themes/images/master.png">
+	   		
+	   			// </div>
+	   			// <span class="item_desc" style="float:left;">
+	   			// 		<p style="font-size:18px">{{=it[i].nickName}}</p>
+	   			// 		<p style="font-size:16px">接单量：{{=it[i].orderCount}}</p>
+	   			// 		<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   			// 	</span>
+	   			// <div class="master-right" style="float:right;margin-right:15px;">
+	   			// <img src="App_Themes/images/gps1.png"><span>8.9km</span>
+       //          </div>
+              <p>1111</p>
+	   		</li>
+	   		
+      {{ } }}
+	</script>
+	   	<ul>
+	   		<!-- <li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   			   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   				<img src="App_Themes/images/master.png">
+	   		
+	   			</div>
+	   			<span class="item_desc" style="float:left;">
+	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:16px">接单量：500</p>
+	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
+	   				</span>
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			<img src="App_Themes/images/gps1.png"><span>8.9km</span>
+                </div>
+	   		</li>
+ -->
+	   	</ul>
+	</section>   
+
+	<!--footer-->
+	
+	<footer>
+	<div id="pos">
+	 <span class="pos">当前地理位置:海淀金马大厦B座</span><span class="arrow"></span>
+	</div>	
+      <ul>
+          <li onclick="home()" >
+              <span class="footer01"></span>
+              <p>首页</p>
+          </li>
+          <li class="light">
+              <span class="footer02"></span>
+              <p>师傅</p>
+          </li>
+          <li>
+              <span  class="footer03" id="dingdan"></span>
+              <p>订单</p>
+          </li>
+          <li>
+              <span  class="footer04"></span>
+              <p>我</p>
+          </li>
+      </ul>
+   </footer>
+  
+ <script src="App_Themes/Script/doT.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+	$("#mall").click(function(){   //比如说：
+	    loaddata();
+	});
+
+	$("#mzl").click(function(){   //比如说：
+	    loaddata(1);
+	});
+	$("#mll").click(function(){   //比如说：
+	    loaddata(2);
+	});
+	$("#mjh").click(function(){   //比如说：
+	    loaddata(3);
+	});
+});
+
+
+var cur_city_code = '60abe656675a44dfb160cd159938e0b1';
+loaddata();
+function loaddata(index){
+		server = "";
+		if (index){
+			params = {
+				url: "worker/watchWorker",
+				cityId: cur_city_code,//测试北京
+				latitude: 40.001804,
+				longitude: 116.353758,
+			    projectType:index-1,			
+				ranktype:0
+			};
+		}
+		else{
+
+           params = {
+				url: "worker/watchWorker",
+				cityId: cur_city_code,//测试北京
+				latitude: 40.001804,
+				longitude: 116.353758,	
+				ranktype:0
+			};
+
+
+		}
+		getAjax.getAction(server,params,function(res){
+			console.log('加载师傅列表',res);
+			// alert(JSON.stringify(res));
+			if(res['code']==0){
+				var masterList = res['info'];
+				console.log(masterList);
+
+				var html = "";
+				for(var i=0;i<masterList.length;i++){
+			       html = html + '<li class="master" onclick="test(this)" data-id='+masterList[i]['id']+'> <div class="master-left" style="float:left;"> <img src="App_Themes/images/master.png"></div>';
+
+                     // html = html + '<li class="master"> <div class="master-left" style="float:left;"> <img src="'+masterList[i]['headPhoto']+'"></div>';
+
+                    html = html+ '<span class="item_desc" style="float:left;"><p style="font-size:18px">'+masterList[i]['nickName']+'</p><p style="font-size:16px">接单量：'+masterList[i]['orderCount']+'</p>   					<p style="font-size:14px">擅长：脾胃调理清火</p></span>';
+	   				html = html + '<div class="master-right" style="float:right;margin-right:15px;"><img src="App_Themes/images/gps1.png"><span>'+(masterList[i]['distance']/1000).toFixed(2)+'km</span></div> ';  
+
+
+				}
+				$('.master-list ul').empty().append(html);
+
+
+			}
+			
+		},function(error){});
+	}
+
+	function test(item){
+      var cur_master_id = $(item).attr('data-id');    
+      window.location.href = "MasterWorker_details.html?id="+cur_master_id;     
+
+	}
+
+	    function home(){
+
+    	window.location.href = "index.html";
+    }
+  function shifu(){
+
+
+  	window.location.href = "MasterWoker_list.html";
+  }
+
+  function search(){
+
+	   	  window.location.href = "MasterWorker_search.html";
+	   }
+
+</script>
+</body>
+</html>

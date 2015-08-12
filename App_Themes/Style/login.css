@@ -1,0 +1,152 @@
+/*==header==*/
+header{
+	width:100%;
+	height:50px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 1300;
+}
+
+.head_left{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 999;
+}
+.head_left > img{
+	display:block;
+	float:left;
+	padding: 16px 4px 0 13px;
+  	width: 13px;
+}
+
+.head_center{
+	width:100%;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	position:absolute;
+	top:0;
+	font-size:1.7em;
+	/*font-weight:bold;*/
+}
+
+.head_right{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	font-size:1.4em;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index: 999;
+}
+
+section{
+	width:100%;
+	/*height:100%;*/
+	background:#e9ecf1;
+
+	position:absolute;
+	top:51px;
+	left:0px;
+	bottom:0px;
+}
+
+section ul{
+	width: 90%;
+	/*height: 100%;*/
+
+	position:absolute;
+	top:15px;
+	left:5%;
+	/*bottom:0px;*/
+}
+
+.phonebg{
+	width: 68%;
+	height: 50px;
+	margin: 10px auto;
+	background-color: white;
+	border:1px solid #ccc;
+	float: left;
+	border-radius: 5px;
+}
+
+.pwdbg{
+	width: 100%;
+	height: 50px;
+	margin: 10px auto;
+	background-color: white;
+	border:1px solid #ccc;
+	margin-top: 80px;
+	border-radius: 5px;
+}
+
+.div_right{
+	width: 30%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #18CB6D;
+	border-radius: 5px;
+	font-size: 1.4em;
+	color: white;
+	float: right;
+	margin-top: 11px;
+}
+
+input{
+	padding-left: 5px;
+	height: 50px;
+	width: 50%;
+	font-size: 2em;
+	color: #808080;
+	border: 0px;
+	box-sizing: border-box;
+	outline:none;
+	position: absolute;
+}
+
+.pwdbg img{
+	height: 23px;
+	padding-top: 13px;
+}
+
+.div_login{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #18CB6D;
+	border-radius: 5px;
+	font-size: 1.4em;
+	color: white;
+}
+
+p{
+	margin-top: 20px;
+	font-size: 1.4em;
+	color: #666;
+}
+
+a{
+	color: #18CB6D;
+}
+
+section img{
+	height: 34px;
+	padding: 8px;
+}

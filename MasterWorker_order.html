@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>我要预约</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/appointment.css" rel="stylesheet"/> 
+
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/appointment.js"></script>
+     <style type="text/css">
+       .head_center{
+       	background:#18cb6d;
+       	color: #FFFFFF !important;
+       }
+      .a_01,.a_name{height: 80px;padding-top: 5px;position: relative;}
+      .a_name p{margin-top: 35px;right: 0px;position: absolute;}
+      .a_name span{
+      	margin-top: -15px;
+      	padding-left: 10px;
+      }
+      
+      .a_name img{float: left;}
+      .a_name .frr{float: right;}
+      .a_name .frr:after{clear:both;}
+      .a_03{
+      	height: 120px;
+      }
+     </style>
+</head>
+
+<body style="background:#efefef">
+	<!--header-->
+	<header>
+		<div class="head_left"><img src="App_Themes/images/back01.png"/></div>
+		<div class="head_center">我要预约</div>
+		<div class="head_right"></div>
+	</header>
+	<!--section-->
+	<section class="appointment">
+		<div class="a_01">
+			<div class="a_name">
+			<img src="App_Themes/images/shif.png">
+				<span class="name">
+				
+				马克
+				</span>
+				<span class="frr">
+				
+				上品足浴
+				</span>
+				<p>
+					<i><img src="App_Themes/images/y_jian.png" onclick="minus(this)"/></i>
+					<i><input type="text" id="num" placeholder="2" value="1" /></i>
+					<i><img src="App_Themes/images/y_jia.png" onclick="plus(this)" /></i>
+				</p>
+			</div>
+		</div>
+		
+		<div class="a_03">
+			<ul>
+			    <li id="user">
+					<p><img src="App_Themes/images/user.png"/>王小明 18552225554</p>
+					<span><img src="App_Themes/images/y_next.png"/></span>
+				</li>
+				<li id="add">
+					<p><img src="App_Themes/images/address.png"/>北京市海淀区金马大厦B702</p>
+					<span><img src="App_Themes/images/y_next.png" onclick="seladdr()" /></span>
+				</li>
+				<li id="time" style="border:0">
+					<p><img src="App_Themes/images/time01.png"/>2015 06-18 17:00:00</p>
+					<span><img src="App_Themes/images/y_next.png" onclick="seltime()"/></span>
+				</li>
+			</ul>
+		</div>
+		<div class="a_04">
+			<p>项目总计：<span>59元</span></p>
+		</div>
+	</section>
+	<!--footer-->
+	<footer>
+		<p onclick="order()">确认下单</p>
+	</footer>
+	<script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+	<script src="App_Themes/Script/getAjax.js"></script>
+	<script type="text/javascript">
+    function order(){
+
+    	 var user = JSON.parse(getAjax.getLocalStorage('user'));
+    	 var Master = JSON.parse(getAjax.getSessionStorage('Master'));
+    	 var project = JSON.parse(getAjax.getSessionStorage('project'));
+    	 var address = JSON.parse(getAjax.getSessionStorage('address'));
+         var datetime = getAjax.getSessionStorage('datetime');
+
+       server = "";    
+       params = {
+         url: "order/makeOrderNew",
+         orderPrice:59,
+         userId:user.id,
+         workerId:Master.id,
+         projectId:project.id,
+         stime:datetime,
+         orderAddress:address.placeName,
+         orderLongitude:address.addressLongitude,
+         orderLatitude:address.addressLatitude,
+         contact:user.nickName,
+         contactPhone:user.phonenum,
+         count:parseInt($('#num').val())
+      };
+
+      console.log(params);
+       
+	    getAjax.getAction(server,params,function(res){
+	      console.log('生成订单信息',res);
+	     
+	      if(res['code']==0){
+	          var ordinfo = res['info'];
+	          console.log(ordinfo);
+
+	          getAjax.setSessionStorage('order',JSON.stringify(ordinfo));
+
+
+	            window.location.href = "payment.html";
+	      }
+	      
+	    },function(error){});
+	
+   }
+
+	function seladdr(){
+		// body...
+				window.location.href = "Address_list.html";
+	}
+	function seltime(){
+		// body...
+		window.location.href = "Time-list.html";
+	}
+
+	function plus(item){
+       $('#num').val(parseInt($('#num').val()) + 1);   
+
+	}
+	function minus(item){
+		if(parseInt($('#num').val())>1){
+           $('#num').val(parseInt($('#num').val()) - 1); 
+		}
+ 	}
+ 	initpage();
+ 	function initpage(){
+ 		 var user = JSON.parse(getAjax.getLocalStorage('user'));
+    	 var Master = JSON.parse(getAjax.getSessionStorage('Master'));
+    	 var project = JSON.parse(getAjax.getSessionStorage('project'));
+    	 var address = JSON.parse(getAjax.getSessionStorage('address'));
+         
+         var datetime = getAjax.getSessionStorage('datetime');
+
+         var name = user.nickName;
+         var phonenum = user.phonenum;
+         var addr = address.placeName;
+
+         var mastername = Master.workerName;
+         var projectName = project.projectName;
+         var price = project.price;
+
+         $('.a_01 .a_name span.name').text(mastername);
+          $('.a_01 .a_name span.frr').text(projectName);
+
+          $('#user p').html('<img src="App_Themes/images/user.png"/>'+name+'&nbsp;'+phonenum);
+
+           $('#add p').html('<img src="App_Themes/images/address.png"/>'+addr);
+
+           $('#time p').html('<img src="App_Themes/images/time01.png"/>'+datetime);
+
+           $('.a_04 p span').text(price);
+
+ 	}
+	</script>
+</body>
+</html>

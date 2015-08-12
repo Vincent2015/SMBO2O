@@ -1,0 +1,270 @@
+﻿/*==header==*/
+header{
+	width:100%;
+	height:49px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 1300;
+}
+
+.head_left{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 999;
+}
+.head_left > img{
+	display:block;
+	float:left;
+	padding: 11px 4px 0 13px;
+  	width: 13px;
+}
+
+.head_center{
+	width:100%;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	position:absolute;
+	top:0;
+	font-size:1.7em;
+	/*font-weight:bold;*/
+}
+
+.head_right{
+	height:50px;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index: 999;
+}
+.head_right > img{
+	display:block;
+	padding: 14px 13px 0 13px;
+  	width: 22px;
+}
+
+/*==section==*/
+.appointment{
+	width:100%;
+	position:absolute;
+	top:50px;
+}
+.a_01{
+	width:100%;
+	height:44px;
+	background:#fff;
+	border-bottom:1px solid #ddd;
+}
+.a_name{
+	width:94%;
+	height:44px;
+	margin:0 auto;
+}
+.a_01 span{
+	display:block;
+	line-height:44px;
+	float:left;
+	font-size:16px;
+	color:#666666;
+}
+.a_01 p{
+	display:block;
+	float:right;
+	width:90px;
+	height:25px;
+	border:1px solid #ddd;
+	border-radius: 3px;
+	margin-top:8px;
+}
+.a_01 p i{
+	display:block;
+	float:left;
+	width:30px;
+}
+.a_01 p i > img{
+	display:block;
+	width:25px;
+	padding-left:3px;
+}
+
+.a_01 p i > input{
+	display:block;
+	width:30px;
+	height:25px;
+	text-align:center;
+	line-height:25px;
+	border:1px solid #ddd;
+	border-top:0;
+	border-bottom:0;
+	color:#666;
+}
+
+.a_02{
+	width:100%;
+	height:105px;
+	background:#fff;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	margin-top:10px;
+}
+.a_02 p{
+	width:100%;
+	height:40px;
+	border-bottom:1px solid #ddd;
+	line-height:40px;
+}
+.a_02 p span{
+	display:block;
+	padding-left:3%;
+	font-size:14px;
+	color:#8b8a8a;
+}
+.dengji{
+	width:100%;
+}
+.dengji ul{
+	width:320px;
+	margin:0 auto;
+}
+.dengji ul li{
+	float:left;
+	width:60px;
+	height:60px;
+	background:#ccc;
+	margin:3px 0 7px 16px;
+}
+.dengji ul li span{
+	display:block;
+	text-align: center;
+	font-weight: bold;
+	font-size:16px;
+	padding-top:8px;
+}
+
+.dengji ul li i{
+	display:block;
+	text-align: center;
+	font-style: normal;
+}
+.dengji ul li.dj_bg01{
+	background:url(../images/y_01.png) no-repeat;
+	background-size:100% 100%;
+	color:#fd9b44;
+}
+.dengji ul li.dj_bg01.light{
+	background:url(../images/y_light01.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+}
+.dengji ul li.dj_bg02{
+	background:url(../images/y_02.png) no-repeat;
+	background-size:100% 100%;
+	color:#ff4967;
+}
+.dengji ul li.dj_bg02.light{
+	background:url(../images/y_light02.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+}
+.dengji ul li.dj_bg03{
+	background:url(../images/y_03.png) no-repeat;
+	background-size:100% 100%;
+	color:#ff5534;
+}
+.dengji ul li.dj_bg03.light{
+	background:url(../images/y_light03.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+}
+.dengji ul li.dj_bg04{
+	background:url(../images/y_04.png) no-repeat;
+	background-size:100% 100%;
+	color:#18cb6d;
+}
+.dengji ul li.dj_bg04.light{
+	background:url(../images/y_light04.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+}
+.a_03{
+	clear:both;
+	width:100%;
+	height:80px;
+	background:#fff;
+	border-bottom:1px solid #ddd;
+	border-top:1px solid #ddd;
+	margin-top:10px;
+}
+.a_03 ul{
+	width:100%;
+}
+.a_03 ul li{
+	width:100%;
+	height:40px;
+	border-bottom:1px solid #ddd;
+}
+.a_03 ul li p{
+	display:block;
+	float:left;
+	line-height:40px;
+	color:#8b8a8a;
+}
+.a_03 ul li p img{
+	display:block;
+	float:left;
+	width:27px;
+	padding:5px 0 0 9px;
+}
+.a_03 ul li span{
+	display:block;
+	float:right;
+}
+.a_03 ul li span > img{
+	display:block;
+	width:12px;
+	padding:11px 11px 0 0;
+}
+.a_04{
+	width:100%;
+}
+.a_04 p{
+	float:right;
+	padding-right:11px;
+	line-height:30px;
+	font-size:16px;
+	color:#a5a5a5;
+	margin-top:10px;
+}
+.a_04 p span{
+	display:block;
+	float:right;
+	color:#f0722d;
+}
+
+
+/*==footer==*/
+footer{
+	width:100%;
+	height:50px;
+	background:#18cb6d;
+	border-top:1px solid #dcdcdc;
+
+	position:fixed;
+	bottom:0;
+	left:0;
+}
+footer p{
+	text-align: center;
+	line-height:50px;
+	color:#fff;
+	font-size:1.5em;
+}

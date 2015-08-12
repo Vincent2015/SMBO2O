@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>二维码</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>    
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script src="App_Themes/Script/qrcode.js"></script>
+    
+    
+    <style type="text/css">
+    body{/*background:url(App_Themes/images/ucenter.png) no-repeat;background-size:100%;*/}
+    #aload{width: 100%;height: 100%;background: rgba(110,111,113,0.7);position: absolute;z-index: 2;}    
+    
+    #aload .aloads{width: 130px;margin: 0 auto;position: relative;margin-top: 60%; border:15px solid #FFFFFF;border-radius: 10px;}
+
+   #aload .aloads span{position: absolute;top:50px;left:38%;}
+   #aload .aloads span img{border: 2px solid #FFFFFF;border-radius: 5px;}
+
+     
+
+    </style>
+  
+</head>
+
+<body>
+<!-- <div id="aload">
+     <div class="aloads">
+       <img src="App_Themes/images/qcode.png" width="160px">
+        <span><img src="App_Themes/images/xjy.png"  width="32px" height="32px"></span>
+     </div>
+     
+
+</div> -->
+
+<script type="text/javascript">
+	 $(document).ready(function(){
+    loadqcode();
+	});
+function loadqcode() {
+
+    if ($("#aload").attr("id") == undefined) {
+      var ht = '<div id="aload">'; 
+      ht += '<div class="aloads" id=qrcode><span><img src="App_Themes/images/xjy.png"  width="32px" height="32px"></span></div>';
+      ht += '</div>';    
+
+      $("body").append(ht);
+
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 130,//设置宽高
+            height : 130
+        });
+
+         qrcode.makeCode("http://www.shangmb.com/");
+    }
+
+  }
+
+
+
+</script>  
+
+</body>
+</html>

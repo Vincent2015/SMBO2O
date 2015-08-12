@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+	<link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <link href="App_Themes/Style/orderlist.css" rel="stylesheet"/> 
+    
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/doT.min.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/iscroll.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/iscrollHelper.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/orderlist.js"></script>
+</head>
+
+<body>
+	<!--header-->
+	<!-- <header>
+		<div class="head_left">
+			<img src="App_Themes/images/gps.png"/>
+			<p><em>北京</em><img src="App_Themes/images/down.png"/></p>
+		</div>
+		<div class="head_center">上门帮</div>
+	</header> -->
+	<!--section-->
+	<section>
+		<nav>
+			<ul>
+				<li id="unfinished">进行中</li>
+				<li id="finished">已完成</li>
+				<i></i>
+			</ul>
+		</nav>
+		<!--列表-->
+		<div class="aside_list">
+			<aside style="display:block" id="aside1">
+				<div class="list">
+					<!-- <div class="up_div">
+						<img class="headphoto" src="App_Themes/images/shif.png">
+						<div class="left_div">
+							<div class="name">玉堂</div>
+							<div class="projectNameGrade">上品足浴(初级)</div>
+							<div class="projectNameGrade">2015-06-18 15:00-16:00</div>
+						</div>
+						<div class="right_div">
+							<div class="orderPrice">￥129</div>
+							<div class="projectNameGrade">已支付</div>
+						</div>
+					</div>
+					<div class="bottom_div">
+						<div class="bottom_left_div">订单只保留30分钟</div>
+						<div class="bottom_right_div">加钟</div>
+						<div class="bottom_right_div">催单</div>
+					</div>
+					<div class="orderBr"></div>
+					<div class="up_div">
+						<img class="headphoto" src="App_Themes/images/shif.png">
+						<div class="left_div">
+							<div class="name">玉堂</div>
+							<div class="projectNameGrade">上品足浴(初级)</div>
+							<div class="projectNameGrade">2015-06-18 15:00-16:00</div>
+						</div>
+						<div class="right_div">
+							<div class="orderPrice">￥129</div>
+							<div class="projectNameGrade">已支付</div>
+						</div>
+					</div>
+					<div class="bottom_div">
+						<div class="bottom_left_div">订单只保留30分钟</div>
+						<div class="bottom_right_div">加钟</div>
+						<div class="bottom_right_div">催单</div>
+					</div>
+					<div class="orderBr"></div>
+					<div class="up_div">
+						<img class="headphoto" src="App_Themes/images/shif.png">
+						<div class="left_div">
+							<div class="name">玉堂</div>
+							<div class="projectNameGrade">上品足浴(初级)</div>
+							<div class="projectNameGrade">2015-06-18 15:00-16:00</div>
+						</div>
+						<div class="right_div">
+							<div class="orderPrice">￥129</div>
+							<div class="projectNameGrade">已支付</div>
+						</div>
+					</div>
+					<div class="bottom_div">
+						<div class="bottom_left_div">订单只保留30分钟</div>
+						<div class="bottom_right_div">加钟</div>
+						<div class="bottom_right_div">催单</div>
+					</div> -->
+				</div>
+			</aside>
+			<aside style="display:none" id="aside2">
+				<div id="wrapper">
+				<div id="scroller">
+				<div class="list" style="margin-top:0px;">
+					
+				</div>
+			</aside>
+		</div>
+	</section>
+	<!--footer-->
+	<!-- <footer>
+      <ul>
+          <li class="light">
+              <span class="footer01"></span>
+              <p>首页</p>
+          </li>
+          <li>
+              <span class="footer02"></span>
+              <p>师傅</p>
+          </li>
+          <li>
+              <span  class="footer03" id="dingdan"></span>
+              <p>订单</p>
+          </li>
+          <li>
+              <span  class="footer04"></span>
+              <p>我</p>
+          </li>
+      </ul>
+   </footer> -->
+    <!--选择城市-->
+	<div class="city" style="display:none">
+		<div class="p"><div id="_no">取消</div><div>请选择取消原因</div><div id="_yes">确定</div></div>
+		<div class="city_list">
+			<ul>
+				<li class="lis">临时有事，不做了</li>
+				<li class="lis">师傅规定时间无法到达</li>
+				<li class="lis">更换别的项目</li>
+				<li class="lis">不同意更换别的师傅</li>
+				<li class="lis">价格太高了</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>会员卡</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    
+    
+    <style type="text/css">
+     body{background: rgb(233,236,241);}
+   /*  body{overflow-y: hidden;}*/
+     section{background: rgb(240,240,240);height: auto;}
+
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:15px;
+      font-size: 1.5em;
+      color: #FFFFFF;
+     }
+     .head_right img{width: 32px;height: 32px;}
+
+
+     nav{height: 160px;position: absolute;top:50px;background:rgb(24,203,109); padding-top: 5px;}
+
+     nav .info{display:inline-block;width:18px;height:18px;/*border: 2px solid #FFFFFF;border-radius:10px;*/color:#FFFFFF;text-align: center;font-size: 1.3em;}
+     nav .info img{display: block;margin-top: 3px;}
+     nav .desc{display:inline-block;width:5em;height:18px;color:#FFFFFF;text-align: center;margin-left:-3px;font-size: 1.3em;}
+     nav .ubg{display: block;width: 120px;position: relative;margin: 0 auto;}
+    nav .ubg p{color: rgb(35,135,82);font-size: 1.5em;margin-left: -10px;position: relative;margin: 0 auto;width: 80px;color: #FFFFFF;padding-top: 10px;}
+     nav .ubg span{position: absolute;top:65px;left: 48%;color: #FFFFFF;font-size: 1.5em;padding-top: 10px;}
+
+     #addrlist{margin-top:170px;width: 100%;position: relative;}
+     #addrlist ul{position: relative;width: 75%;margin:0 auto;overflow: hidden;}
+     #addrlist li{display: inline-block;width: 50%;float: left;padding-top: 20px;padding-bottom: 20px;position: relative;color: #FFFFFF;}
+    #addrlist li span{position: absolute;width: 3em;top:55px;left:35px;font-size: 1.2em;}
+
+     #addrlist li span.plus{width: 5em;left:20px;top:65px;}
+     #addrlist li p{position: absolute;width: 3em;top:70px;left:38px;font-size: 1.5em;padding-top: 5px;}
+     #nodata{position: absolute;width: 100%;bottom:10px;}
+     #nodata p{width: 12em;margin: 0 auto;font-size: 1.3em;color: #666666;}
+     
+      .none{display: none;}
+
+
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			
+		</div>
+		<div class="head_center">个人中心</div>
+		<div class="head_right" onclick="newaddr()">
+			<!-- 账单 -->
+		</div>
+
+    <nav>
+      <span class="ubg">
+          <img src="App_Themes/images/m-l.png" style="width:120px;height:120px;">
+          <p>18501327586</p>
+          <!-- <span>¥0</span> -->
+       </span>
+
+      <!-- <div style="margin-top:-30px;margin-left:5px;">
+         <span class="info">
+           <img src="App_Themes/images/info.png" width="18px" height="18px"/>
+         </span>
+          <span class="desc">
+           会员卡说明
+         </span>
+       </div> -->
+       
+    </nav>
+	     
+	</header>
+	<section>
+		 <div id="addrlist" class="">
+		 	
+         <ul>
+         	<li>
+         	   <img src="App_Themes/images/y_light01.png">
+             <span>会员卡</span>
+             <p>0元</p>
+         	
+         	</li>
+
+	       
+          <li class="" >
+            <img src="App_Themes/images/y_light02.png">
+             <span>优惠券</span>
+             <p>5张</p>
+          </li>
+          
+          <li>
+            <img src="App_Themes/images/y_light03.png">
+             <span class="plus">专属二维码</span>
+             <!-- <p>0元</p> -->
+          
+          </li>
+          
+          <li class="" >
+           
+          <img src="App_Themes/images/y_light04.png">
+           <span class="plus">分享给好友</span>
+            <!--  <p>0元</p> -->
+          </li>
+          
+         </ul>
+
+		 </div>
+  
+
+	</section>
+     <div id="nodata" >
+         <p>联系电话：400-619-1717</p>
+     </div>
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function(){
+
+	});
+ 
+</script>  
+
+</body>
+</html>

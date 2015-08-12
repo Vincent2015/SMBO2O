@@ -1,0 +1,8 @@
+﻿html,body,div,span,ul,li,img{border:none;padding:0;margin:0}
+ul{list-style:none}
+/*-------插件已包含关键性样式以下只用于设置焦点按钮的样式可自定义------*/
+.slider{display:none}/*用于获取更加体验*/
+/*.focus span{width:6px;height:6px;margin-right:5px;border-radius:50%;background:#fff;font-size:0;border:1px solid #858585;}
+.focus span.current{background:#fff;border:1px solid #fe3114;}*/
+.focus span{width:6px;height:6px;margin-right:5px;border-radius:50%;background:rgba(255,255,255,0);font-size:0;border:1px solid #999;}
+.focus span.current{background:#999;border:1px solid #999;}

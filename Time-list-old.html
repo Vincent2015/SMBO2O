@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+    <style type="text/css">
+
+    .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:12px;
+     	color: #FFFFFF;
+     	font-size:1.8em;
+     }
+	nav{
+	     	position: absolute;
+	     	height: 45px;
+	     	width:100%;
+	     	background: #FFFFFF;
+	     	top:50px;
+	     border-bottom: 1px solid #F0F0F0;
+	     	border-top: 1px solid #F0F0F0;
+	     	font-size: 1.4em;
+
+	     }
+	 nav ul{height: 100%;width: 100%;}
+	 nav ul li{height: 100%;  border-bottom: 1px solid #F0F0F0;line-height: 20px;float: left;}
+	 nav ul li,nav ul i{
+	 	width: 16%;
+	 }
+	 section{width: 100%;position: absolute;}
+	 section #timeslot{width: 90%;position: relative;margin: 0 auto;margin-top: 50px;}
+     section ul{}
+	 section ul li{
+     /*  float: left; */
+	  width: 50px;
+	  height:33px;
+	  padding: 5px;
+
+	  margin: 5px;
+	  text-align: center;
+	  line-height: 35px;
+	  display: inline-block;
+	  font-size: 1.5em;
+	  background-color: #F0F2F5;
+	  border-radius: 5px;
+
+
+	 }
+	 section ul li .close{
+	 	background-color: #808080;
+        color: #666;
+	 }
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
+		</div>
+		<div class="head_center">时间表</div>
+		<div class="head_right"  onclick="search()">
+			<!-- 确定 -->
+		</div>
+
+		<nav>
+			<ul>
+				<li id="all">今天<br>08-06</li>
+				<li id="zuliao">明天<br>08-07</li>
+				<li id="liliao">周六<br>08-08</li>
+				<li id="other">周日<br>08-09</li>
+				<li id="liliao">周一<br>08-10</li>
+				<li id="other">周二<br>08-11</li>
+				<!-- <li id="other">周三<br>08-12</li> -->
+				<i></i>
+			</ul>
+		</nav>
+	</header>
+	<!--section-->
+	<section>
+      
+      	<div id="timeslot">
+      		
+	         <ul>
+	        	
+	           
+
+	        </ul>
+
+      	</div>
+       
+
+      
+		
+	</section>
+
+	<div id="main"></div>
+	<!--footer-->
+	
+   <!--选择城市-->
+  
+   <script type="text/javascript">
+    
+    $(document).ready(function() {
+     $("nav ul li:first-child").css("color","#18cb6d");
+     loaddata();
+
+	})
+    function home(){
+
+    	window.location.href = "index.html";
+    }
+	  function shifu(){
+
+
+	  	window.location.href = "MasterWoker_list.html";
+	  }
+  $("nav ul li").live("click",function(){
+  // $("nav ul li").click(function(){
+  	    $("nav ul li").css("color","#666666");
+  	    $(this).css("color","#18cb6d");
+		var index = $(this).index();
+		var aside = $(".aside_list aside");
+		$("nav ul i").animate({"left":index * 8 + "%"});
+		
+		aside.eq(index).fadeIn().siblings("aside").fadeOut();
+	});
+
+
+
+  function loaddata(){
+
+	   var cmid = getAjax.getLocalStorage('cmid');
+	   var cmpid = getAjax.getLocalStorage('cmpid');
+	   console.log('cmid'+cmid);
+		server = "";
+		
+		params = {
+			url: "worker/getAvailableTimeslots0",
+			workerId:cmid,//测试北京
+			projectid: cmpid,
+			number:1		
+		    
+	       };
+	    console.log(params);
+
+		getAjax.getAction(server,params,function(res){
+			console.log('加载师傅可用时间',res);
+			if(res['code']==0){
+				
+               var daylist = res['info']['timeList'];
+
+                
+               for(var i=0;i<daylist.length;i++){
+                  
+               
+                  dateArray[i] = daylist[i]['date'];
+
+                  var dayclocklist = daylist[i]['timeslot'];
+                  // console.log('dayclocklist'+i+dayclocklist);
+
+                  // for (var j=0;j<dayclocklist.length;j++){
+                  	var k =0;
+                  	for (var j=0;j<25;j++){
+                  	
+                       if (dayclocklist[j]){
+
+							clockArray[i][k] = clockMap.get(j); 
+							
+							// console.log('clockMap[j]'+j+dateArray[i][k]);
+
+							console.log(i+'--clockMap--'+j+'--'+clockArray[i][k]);
+							k = k + 1;
+
+                       }
+                  		
+
+                  }
+
+               }
+               console.log(dateArray);
+               console.log(clockArray);		
+
+                var htm =  '';
+               for (m=0;m<dateArray.length-1;m++){
+                 
+                 htm = htm +'<li onclick=seltimeslot(this) data-date='+dateArray[m]+' data-id='+m+'>'+dateArray[m].substring(6)+'<br>星期'+getDateWeek(dateArray[m])+'</li>'
+                 htm = htm + '<i></i>'
+
+               }		
+
+               $('nav ul').empty().append(htm);
+
+                daytimeslot(0);
+
+			}
+			
+		},function(error){});
+	}
+
+   function seltimeslot(item){
+     var dayindex = $(item).attr('data-id');
+     // alert('dayindex'+dayindex);
+
+      var date = $(item).attr('data-date');
+       getAjax.setLocalStorage('cmdate',date);
+       daytimeslot(dayindex);
+
+   }
+	function daytimeslot(dayindex){
+           var htm =  '';
+          for(var i=0;i<clockArray[dayindex].length;i++){
+             
+              htm = htm +'<li onclick=settime(this) data-id='+clockArray[dayindex][i]+'>'+clockArray[dayindex][i]+'</li>';
+          }
+
+            $('section #timeslot ul').empty().append(htm);
+            var date = $('nav ul li:first-child').attr('data-id');
+            getAjax.setLocalStorage('cmdate',date);
+   
+	}
+
+	function settime(item){
+
+      $(item).css('background','rgb(24,203,109)');
+      $(item).css('color','rgb(255,255,255)');
+      
+       var time = $(item).attr('data-id');
+       getAjax.setLocalStorage('cmtime',time);
+
+	}
+	var dateArray = null;
+	var clockArray = null;
+	var clockMap = null;
+	function initclock(){
+         dateArray = new Array(7);       
+         clockArray = new Array(7);
+
+         for(k=0;k<7;k++){
+
+			clockArray[k] = new Array();
+
+         }         
+         clockMap = new Map(); 
+         clockMap.put(0,'10:30');
+         clockMap.put(1,'11:00');
+         clockMap.put(2,'11:30');
+         clockMap.put(3,'12:00');
+         clockMap.put(4,'12:30');
+         clockMap.put(5,'13:00');
+         clockMap.put(6,'13:30');
+         clockMap.put(7,'14:00');
+         clockMap.put(8,'14:30');
+         clockMap.put(9,'15:00');
+         clockMap.put(10,'15:30');
+         clockMap.put(11,'16:00');
+         clockMap.put(12,'16:30');
+         clockMap.put(13,'17:00');
+         clockMap.put(14,'17:30');
+         clockMap.put(15,'18:00');
+         clockMap.put(16,'18:30');
+         clockMap.put(17,'19:00');
+         clockMap.put(18,'19:30');
+         clockMap.put(19,'20:00');
+         clockMap.put(20,'20:30');
+         clockMap.put(21,'21:00');
+         clockMap.put(22,'21:30');
+         clockMap.put(23,'22:00');
+         clockMap.put(24,'22:30');
+	}
+	initclock();
+
+
+	function Map() {  
+ var struct = function(key, value) {  
+  this.key = key;  
+  this.value = value;  
+ }  
+   
+ var put = function(key, value){  
+  for (var i = 0; i < this.arr.length; i++) {  
+   if ( this.arr[i].key === key ) {  
+    this.arr[i].value = value;  
+    return;  
+   }  
+  }  
+   this.arr[this.arr.length] = new struct(key, value);  
+ }  
+   
+ var get = function(key) {  
+  for (var i = 0; i < this.arr.length; i++) {  
+   if ( this.arr[i].key === key ) {  
+     return this.arr[i].value;  
+   }  
+  }  
+  return null;  
+ }  
+   
+ var remove = function(key) {  
+  var v;  
+  for (var i = 0; i < this.arr.length; i++) {  
+   v = this.arr.pop();  
+   if ( v.key === key ) {  
+    continue;  
+   }  
+   this.arr.unshift(v);  
+  }  
+ }  
+   
+ var size = function() {  
+  return this.arr.length;  
+ }  
+   
+ var isEmpty = function() {  
+  return this.arr.length <= 0;  
+ }   
+ this.arr = new Array();  
+ this.get = get;  
+ this.put = put;  
+ this.remove = remove;  
+ this.size = size;  
+ this.isEmpty = isEmpty;  
+} 
+//var strTime="2015-08-06"; 字符串日期格式
+function getDateWeek(strdate)
+{
+	var date= new Date(Date.parse(strdate.replace(/-/g,   "/"))); //转换成Data();
+	var month=date.getMonth()+1; //获取当前月份
+
+	date.getYear();        //获取当前年份(2位)
+	date.getFullYear();    //获取完整的年份(4位,1970-????)
+	date.getMonth();       //获取当前月份(0-11,0代表1月)
+	date.getDate();        //获取当前日(1-31)
+	date.getDay();         //获取当前星期X(0-6,0代表星期天)  
+
+
+     switch(date.getDay())
+     {
+        case 0:
+            week="日";
+            break;
+        case 1:
+            week="一";
+            break;
+        case 2:
+            week="二";
+            break;
+        case 3:
+            week="三";
+            break;
+        case 4:
+            week="四";
+            break;
+        case 5:
+            week="五";
+            break;
+        case 6:
+            week="六";
+            break;
+     }
+     return week;
+
+}
+
+
+   </script>
+</body>
+</html>

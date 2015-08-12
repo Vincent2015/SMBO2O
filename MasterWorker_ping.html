@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>全部评价</title>
+  <link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+  <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+
+  <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+  <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+  <script src="App_Themes/Script/getAjax.js"></script>
+ 
+  <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+  <style type="text/css">
+   .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+
+   header{height: 90px;}
+  nav{
+        position: absolute;
+        height: 40px;
+        width:100%;
+        background: #FFFFFF;
+        top:50px;
+        border-bottom: 1px solid #F0F0F0;
+        border-top: 1px solid #F0F0F0;
+        padding-top: 5px;
+       }
+    nav ul li{
+      line-height: 16px;font-size: 1.4em;
+    }
+       #ping-list{overflow: hidden;background: #FFFFFF;top: 110px;position: absolute;}
+       
+        #ping-list li{padding-top: 10px; padding-bottom: 5px; border-bottom: 1px solid #F0F0F0;}
+        #ping-list .title{overflow: hidden;font-size: 1.3em;color: #666666;}
+        #ping-list .title .title-l{position: absolute;left: 10px;}
+        #ping-list .title .title-r{position: absolute;right: 10px;}
+        #ping-list .content {position: relative;padding-top:20px;color: #666666;}
+        #ping-list .content h2{ font-style: normal;font-weight: normal;font-size: 1.4em;padding-left: 10px;line-height: 1.5em;color: #333333;}
+         #ping-list .content p{font-size: 1.3em;line-height: 1.5em;position: relative;width: 95%;margin: 0 auto;padding-top: 10px;}
+    </style>
+</head>
+
+<body style="background:rgb(239,239,239)">
+  <!--header-->
+  <header>
+    <div class="head_left">
+      <img src="App_Themes/images/back01.png"/>
+      
+    </div>
+    <div class="head_center">全部评价</div>
+
+    <nav>
+      <ul>
+        <li id="all" onclick="loaddata()">全部</li>
+        <li id="well" onclick="loaddata(0)">好评</li>
+        <li id="good" onclick="loaddata(1)">中疗</li>
+        <li id="bad" onclick="loaddata(2)">差评</li>
+        
+        <i></i>
+      </ul>
+    </nav>
+  </header>
+  <!--section-->
+  <section id="ping-list">
+       <ul>
+           <!--   <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li>
+               <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li>
+             <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li>
+               <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li>
+             <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li>
+               <li>
+               <div class="title">
+                <span class="title-l">*******554</span>
+                <span class="title-r">2015 09 10:00</span>
+               </div>
+               <div class="content">
+                <h2>上品足浴</h2>
+                <p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+               </div>
+
+             </li> -->
+         </ul>
+   
+  </section>
+
+  
+ 
+   
+   <script type="text/javascript">
+
+
+   //项目类别切换
+  $("nav ul li").click(function(){
+    var index = $(this).index();
+    $("nav ul li").css('color','#777777')
+    $(this).css('color','#18cb6d');
+    var aside = $(".aside_list aside");
+    $("nav ul i").animate({"left":index * 25 + "%"});
+    aside.eq(index).fadeIn().siblings("aside").fadeOut();
+  });
+
+    $(document).ready(function() {
+    $("nav ul li:first-child").css('color','#18cb6d');
+
+
+    })
+    function home(){
+
+      window.location.href = "index.html";
+    }
+  function shifu(){
+
+
+    window.location.href = "MasterWoker_list.html";
+  }
+
+var curpage = 0;
+var pagenum = 10;
+var  totcount=goodcount=wellcount=badcount=0;
+var first = true;
+  loaddata();
+function loaddata(index){
+  // alert(index);
+     var cmid = getAjax.getLocalStorage('cmid');
+    server = "";
+    if (index){
+       params = {
+        url: "evaluate/getEvaluateListsNew",
+         workerId:'b3b630a763b349699ccac094818804b1',
+         evaluateGrade:index,
+         page:curpage,
+         rows:pagenum
+      };
+    }
+    else{
+
+           params = {
+            url: "evaluate/getEvaluateListsNew",
+            workerId:'b3b630a763b349699ccac094818804b1',
+            page:curpage,
+            rows:pagenum
+      };
+
+
+    }
+    getAjax.getAction(server,params,function(res){
+      console.log('加载师傅全部评价',res);
+     
+      if(res['code']==0){
+         
+          if(first){
+            first=false;
+           var temp=  res['info']['workerExtend'];
+          wellcount = temp['goodNum'];
+          goodcount= temp['centreNum'];
+          badcount = temp['badNum'];
+          totcount = wellcount + goodcount + badcount; 
+
+          $('#all').html($('#all').text() +'<br>'+totcount);
+          $('#well').html($('#well').text() +'<br>'+ wellcount);
+          $('#good').html($('#good').text()+'<br>'+ goodcount);
+          $('#bad').html($('#bad').text()  +'<br>'+ badcount);
+
+          }
+
+          var pjList = res['info']['evaluateData']['rows'];
+          console.log(pjList);
+
+          // curpage = curpage + 1;
+      
+          var html = "";
+      
+          for(var i=0;i<pjList.length;i++){
+           
+            var con,phonenum = pjList[i]['phonenum']; 
+           
+             phonenum ='*******'+phonenum.substr(8)
+
+             if(pjList[i]['evaluateDetail']){
+                var con = pjList[i]['evaluateDetail'];
+             }
+             
+
+             html = html + '<li><div class="title"><span class="title-l">'+phonenum+'</span><span class="title-r">'+getAjax.getTime(pjList[i]['evaluateTime'])+'</div><div class="content"><h2>'+pjList[i]['projectName']+'</h2><p>'+con+'</p></div></li>';
+          }
+          $('#ping-list ul').empty().append(html);
+
+
+      }
+      
+    },function(error){});
+  }
+   </script>
+</body>
+</html>

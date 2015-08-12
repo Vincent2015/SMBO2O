@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/index.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+    <style type="text/css">
+	nav{
+	     	position: absolute;
+	     	height: 35px;
+	     	width:100%;
+	     	background: #FFFFFF;
+	     	top:50px;
+	     	border-bottom: 1px solid #F0F0F0;
+	     	border-top: 1px solid #F0F0F0;
+	     }
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/gps.png"/>
+			<p><em>北京</em><img src="App_Themes/images/down.png"/></p>
+		</div>
+		<div class="head_center">上门帮</div>
+
+		<nav>
+			<ul>
+				<li id="all">全部</li>
+				<li id="zuliao">足疗</li>
+				<li id="liliao">理疗</li>
+				<li id="other">舒缓</li>
+				
+				<i></i>
+			</ul>
+		</nav>
+	</header>
+	<!--section-->
+	<section>
+      <div class="slider">
+        <ul>
+        </ul>
+      </div>
+		<!--nav-->
+		
+		<!--列表-->
+		<div class="aside_list">
+			<aside style="display:block" id="aside1">
+			</aside>
+			<aside style="display:none">
+			</aside>
+			<aside style="display:none">
+			</aside>
+			<aside style="display:none">
+			</aside>
+		</div>
+	</section>
+
+	<div id="main"></div>
+	<!--footer-->
+	<footer>
+      <ul>
+          <li class="light" onclick="home()">
+              <span class="footer01"></span>
+              <p>首页</p>
+          </li>
+          <li onclick="shifu()">
+              <span class="footer02"></span>
+              <p>师傅</p>
+          </li>
+          <li>
+              <span  class="footer03" id="dingdan"></span>
+              <p>订单</p>
+          </li>
+          <li>
+              <span  class="footer04"></span>
+              <p>我</p>
+          </li>
+      </ul>
+   </footer>
+   <!--选择城市-->
+   <div class="city" style="display:none">
+   	<div class="p"><p>已开通服务城市</p></div>
+   	<div class="city_list">
+	   	<ul>
+	   		<!-- <li>北京</li>
+	   		<li>上海</li>
+	   		<li>深圳</li>
+	   		<li>广东</li>
+	   		<li>大连</li>
+	   		<li>成都</li>
+	   		<li>昆明</li>
+	   		<li>呼和浩特</li>
+	   		<li>天津</li>
+	   		<li>重庆</li> -->
+	   	</ul>
+   	</div>
+   </div>
+   <script type="text/javascript">
+     function loadmaster () {
+        // body...
+        $("#main").load( "MaseterWoker_list.html", function( response, status, xhr ) {
+          alert(response);
+          alert(status);
+        });
+    }
+    $(document).ready(function() {
+
+ // loadmaster();
+
+})
+    function home(){
+
+    	window.location.href = "index.html";
+    }
+  function shifu(){
+
+
+  	window.location.href = "MasterWorker_list.html";
+  }
+   </script>
+</body>
+</html>

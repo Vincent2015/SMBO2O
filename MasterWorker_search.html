@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>搜索</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/appointment.css" rel="stylesheet"/> 
+
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    
+     <style type="text/css">
+       .head_center{
+       	background:#18cb6d;
+       	color: #FFFFFF !important;
+       }
+       .a_01{background: #F0F0F0;color: #777777;font-size: 1.3em;}
+      .a_01,.a_name{height: 45px;padding-top: 5px;position: relative;}
+      .a_name p{margin-top: 35px;right: 0px;position: absolute;}
+      .a_name span{
+         width: 100%;
+         position: absolute;
+      }
+
+       .a_name span input{display: block; position: relative;width: 99%;margin: 0 auto;line-height: 2.5em;border: none;}
+       .a_name span img{position: absolute;right:10px;top:1px;}      
+      .a_name img{float: left;}
+      .a_name .frr{float: right;}
+      .a_name .frr:after{clear:both;}
+      .a_03{
+      	height: 120px;color: #666666;font-size: 1.5em;
+      }
+       .a_03 ul li p img{padding-right: 5px;}
+        #blank{position: absolute;top: 150px;width: 100%;}
+    
+      #blank p{position: relative;width:80%;margin: 0 auto;text-align: center;font-size: 1.5em;color:#777777;}
+      .none{display: none;}
+
+     </style>
+</head>
+
+<body style="background:#efefef">
+	<!--header-->
+	<header>
+		<div class="head_left"><img src="App_Themes/images/back01.png"/></div>
+		<div class="head_center">搜索师傅</div>
+		<div class="head_right"></div>
+	</header>
+	<!--section-->
+	<section class="appointment">
+		<div class="a_01">
+			<div class="a_name">
+				<span>
+					<input type="text" id="keyword" placeholder="1013245">
+						<img src="App_Themes/images/search-g.png" onclick="searchmaster()">
+					</input>
+					
+				</span>
+			</div>
+		</div>
+		
+		<div class="a_03">
+			<ul>
+			    <li>
+					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
+					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
+				</li>
+				<li>
+					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
+					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
+				</li>
+				<li>
+					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
+					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
+				</li>
+			</ul>
+		</div>
+		
+		<div id="blank"  class="none">
+			<p>未能找到该师傅</p>
+
+		</div>
+	</section>
+	<!--footer-->
+	<!-- <footer>
+		<p>确认下单</p>
+	</footer> -->
+	<script type="text/javascript">
+      
+    function searchmaster(){ 
+
+     var keyword = document.getElementById('keyword').value;
+
+     console.log('keyword',keyword);
+      server = "";    
+       params = {
+         url: "worker/searchWorker",
+         condition:keyword
+      };
+    
+    getAjax.getAction(server,params,function(res){
+      console.log('搜索师傅',res);
+     
+      if(res['code']==0){
+      
+
+          var mList = res['info'];
+          console.log(mList);
+
+       
+      
+          var html = "";
+      
+          for(var i=0;i<mList.length;i++){
+           
+
+             html = html + '<li><p><img src='+mList[i].headPhoto+'/>'+mList[i].nickName+mList[i].jobNum+'</p></li>';
+          }
+          $('.a_03 ul').empty().append(html);
+
+
+      }
+      
+    },function(error){});
+  }
+
+
+	</script>
+</body>
+</html>

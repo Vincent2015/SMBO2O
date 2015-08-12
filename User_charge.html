@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>会员卡</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    
+    
+    <style type="text/css">
+     body{background: rgb(233,236,241);}
+     section{background: rgb(240,240,240);}
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:15px;
+      font-size: 1.5em;
+      color: #FFFFFF;
+     }
+     .head_right img{width: 32px;height: 32px;}
+
+
+     nav{height: 160px;position: absolute;top:50px;background:rgb(24,203,109); }
+
+     nav .info{display:inline-block;width:18px;height:18px;/*border: 2px solid #FFFFFF;border-radius:10px;*/color:#FFFFFF;text-align: center;font-size: 1.3em;}
+     nav .info img{display: block;margin-top: 3px;}
+     nav .desc{display:inline-block;width:5em;height:18px;color:#FFFFFF;text-align: center;margin-left:-3px;font-size: 1.3em;}
+     nav .ubg{display: block;width: 150px;position: relative;margin: 0 auto;}
+    nav .ubg p{position: absolute;top:50px;left: 40%;color: rgb(35,135,82);font-size: 1.5em;margin-left: -10px;}
+     nav .ubg span{position: absolute;top:65px;left: 48%;color: #FFFFFF;font-size: 1.5em;padding-top: 10px;}
+
+     #addrlist{margin-top:170px;}
+
+      #addrlist li{background:url(App_Themes/images/member.png) no-repeat left center/100% 100%; ;color: #FFFFFF;height:65px;padding-left: 10px;margin-top: 10px;}
+
+
+      #addrlist  .slide{margin-left: -75px;}
+      
+      #addrlist .info h2{font-style: normal;font-weight: normal;font-size: 1.5em;padding-top:25px;padding-bottom: 20px;padding-left: 30px;}
+      #addrlist .info h3{font-style: normal;font-weight: normal;font-size: 1.4em;padding-top:5px;padding-bottom: 5px;}
+    
+      #addrlist .edit{float: right;margin-top:-40px;margin-right:40px;font-size: 1.5em; border: 1px solid #FFFFFF;padding:5px 20px;border-radius: 5px;}
+      #addrlist .del{float: right;width: 60px; height: 60px;z-index:1;position: relative;margin-top: -65px;}
+      #addrlist .del button{background: rgb(255,102,51);height: 68px;border: none;width: 100%;color: #FFFFFF;font-size: 1.4em;}
+      
+      #nodata{position: relative;width: 200px;margin:20% auto;}
+       #nodata img{position: relative;width:90%;height: 80%;}
+       #nodata p{color: #666666;font-size: 1.2em;}
+
+      .none{display: none;}
+
+
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			
+		</div>
+		<div class="head_center">会员卡</div>
+		<div class="head_right" onclick="newaddr()">
+			<!-- 账单 -->
+		</div>
+
+    <nav>
+      <span class="ubg">
+          <img src="App_Themes/images/userbg.png" style="width:150px;height:150px;">
+          <p>余额(元)</p>
+          <span>¥0</span>
+       </span>
+
+      <div style="margin-top:-30px;margin-left:5px;">
+         <span class="info">
+           <img src="App_Themes/images/info.png" width="18px" height="18px"/>
+         </span>
+          <span class="desc">
+           会员卡说明
+         </span>
+       </div>
+       
+    </nav>
+	     
+	</header>
+	<section>
+		 <div id="addrlist" class="">
+		 	
+         <ul>
+         	<li>
+         		<span class="info">
+         			<h2>充5000元&nbsp;送100</h2>
+         			
+         		</span>
+         		<span class="edit">
+         			充值
+         		</span>
+         	
+         	</li>
+	        <li>
+         		<span class="info">
+         			<h2>充5000元&nbsp;送100</h2>
+         		
+         		</span>
+         		<span class="edit">
+         			充值
+         		</span>
+         	
+         	</li>
+            <li class="" >
+            <span class="info">
+              <h2>充5000元&nbsp;送100</h2>
+              
+            </span>
+            <span class="edit">
+              充值
+            </span>
+          
+          </li>
+          <li>
+            <span class="info">
+              <h2>充5000元&nbsp;送100</h2>
+            
+            </span>
+            <span class="edit">
+              充值
+            </span>
+          
+          </li>
+            <li class="" >
+            <span class="info">
+              <h2>充5000元&nbsp;送100</h2>
+              
+            </span>
+            <span class="edit">
+              充值
+            </span>
+          
+          </li>
+          <li>
+            <span class="info">
+              <h2>充5000元&nbsp;送100</h2>
+            
+            </span>
+            <span class="edit">
+              充值
+            </span>
+          
+          </li>
+
+         </ul>
+
+		 </div>
+         <div id="nodata" class="none">
+           <img src="App_Themes/images/footer.png">
+           <p>亲~、你还没填地址、赶快添加吧！</p>
+         </div>
+
+	</section>
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function(){
+
+	});
+	
+  getcardlist();
+  /*id为空代表添加；不为空则为修改*/
+   function getcardlist(){ 
+     var user = getAjax.getLocalStorage('user');
+     var uid = (JSON.parse(user).id);
+
+      server = "";    
+       params = {
+         url: "card/getMemoryCards"
+      };
+    
+    getAjax.getAction(server,params,function(res){
+      console.log('加载地址列表',res);
+     
+      if(res['code']==0){
+      
+
+          var cardList = res['info'];
+          console.log(cardList);
+
+       
+      
+          var html = "";
+      
+          for(var i=0;i<cardList.length;i++){
+           
+            var cardMoney =  cardList[i].cardMoney;
+
+
+            cardMoney = cardMoney.toString()+"元";
+
+            if (strlen(cardMoney)<6){
+             
+                cardMoney = cardMoney +" ";
+
+            }
+
+           
+           
+
+             html= html + '<li class="" data-id='+cardList[i].id+' ><span class="info"><h2>充'+ cardMoney+'&nbsp;送'+cardList[i].cardExtendMoney+'</h2></span><span class="edit" onclick="">充值</span></li>';   
+         
+          }
+          $('#addrlist ul').empty().append(html);
+
+
+      }
+      
+    },function(error){});
+  }
+
+  function strlen(str) { 
+    var len; 
+    var i; 
+    len = 0; 
+    for (i=0;i<str.length;i++) { 
+        if (str.charCodeAt(i)>255) len+=2; 
+        else len++; 
+    } 
+    return len; 
+}
+</script>  
+
+</body>
+</html>

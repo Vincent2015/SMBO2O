@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>师傅介绍</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/>   
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>    
+    
+    <style type="text/css">
+     body{background: rgb(233,236,241);color: #333333 !important;}
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:10px;
+     }
+     
+      
+       
+     .master-list{position: absolute;top: 50px;overflow: hidden;}
+
+     .master-list .subhead{
+     	position: relative;
+     	height: 65px;
+     	width:100%;
+     	background: #FFFFFF;
+     	/*top:50px;*/
+     	border-bottom: 1px solid #F0F0F0;
+     }
+
+     .master-list .subhead ul{height: 100%;padding: 0;}
+     .master-list .subhead li{
+      	padding: auto 0;
+        position: relative;
+        width:23.5%;
+        height: 100%;
+        display: inline-block;
+        background: url(App_Themes/images/footer.png) no-repeat center/80% 80%;
+        
+
+      }
+        #master-desc:after{clear: both;}
+         #master-desc{overflow: hidden;background: #FFFFFF;}
+       #master-desc .desc-left{position: absolute;left: 10px;}
+        #master-desc .desc-left h2,#master-desc .desc-left h3{font-weight: normal;font-style: normal;font-size: 1.5em;padding-top: 5px;padding-bottom: 5px;}
+         #master-desc .desc-right h2,#master-desc .desc-right h3{font-weight: normal;font-style: normal;font-size: 1.4em;padding-top: 5px;padding-bottom: 5px;}
+
+
+
+        #master-desc .desc-right{position: absolute;right: 10px;}
+        #master-desc .desc-right img{width: 14px;height: 12px;}
+        #master-desc p{position: relative;width: 95%;margin: 0 auto;margin-top:60px;padding-top:10px;background: url(App_Themes/images/dw.png) no-repeat bottom center/16px 12px;font-size: 1.3em;white-space: nowrap; /*word-wrap: normal;*/ text-overflow: ellipsis; overflow: hidden;padding-bottom: 10px;border-top: 1px solid #F0F0F0;height: 30px;margin-bottom: 5px;
+        }
+
+
+     .servicedesc{
+       	background: #FFFFFF;
+       	margin-top: 10px;
+       }
+         .master-list .servicedesc {width: 100%;height: 24px;padding-bottom: 5px;padding-top: 10px;padding-left: 10px;color: #F0722d;font-size: 1.2em;}
+           .master-list .servicedesc span{position: relative;top: 0px;font-size: 1.3em;}
+               .master-list .servicedesc  .ping{position: relative;float: right;right:30px;top:-5px;color: rgb(240,114,45);}
+          .master-list .servicedesc span i{color: #333333; font-style: normal;font-weight: normal;font-size: 0.8em;}
+        #master-service-list{
+        		border-bottom: 2px solid #F0F0F0;
+       	border-top: 1px solid #F0F0F0;
+        }
+       .master-list .master-service-list{
+       	position: relative;
+       	margin-top: 30px;
+       	overflow: hidden;
+       
+       }
+       .master{overflow: hidden;background: #FFFFFF;/*padding-top:10px;padding-bottom: 10px*//*;border-bottom: 1px solid #F0F0F0;*/}
+        .master-left span{font-size: 14px;/*margin-top: 10px;*/position: relative;top:10px;padding-left: 10px;}
+       /*.master-left img{width: 80px;height: 80px;}*/
+       .master-left img{width: 24px;height: 24px;padding-bottom: 5px;padding-top: 10px;padding-left: 10px;}
+       .item_desc p{padding-top:5px;padding-left:10px;}
+       .master-right span{position: relative;top:-10px;left:5px; font-size: 14px;}
+       .master-right img{width:30px;height: 30px;padding-top: 5px;}
+        .h10 {height: 10px;background: #f0f0f0;}
+
+        
+       /* #ping-list{overflow: hidden;background: #FFFFFF;}
+        #ping-list li{padding-top: 5px; padding-bottom: 5px;}
+        #ping-list .title{overflow: hidden;font-size: 1.3em;}
+        #ping-list .title .title-l{position: absolute;left: 10px;}
+        #ping-list .title .title-r{position: absolute;right: 10px;}
+        #ping-list .content {position: relative;padding-top:20px;}
+        #ping-list .content h2{ font-style: normal;font-weight: normal;font-size: 1.4em;padding-left: 10px;}
+         #ping-list .content p{font-size: 1.2em;line-height: 1.2em;position: relative;width: 95%;margin: 0 auto;}*/
+	    footer{
+			width:100%;
+			height:50px;
+			background:#18cb6d;
+			border-top:1px solid #dcdcdc;
+
+			position:fixed;
+			bottom:0;
+			left:0;
+		}
+		footer p{
+			text-align: center;
+			line-height:50px;
+			color:#fff;
+			font-size:1.5em;
+		}
+			
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
+		</div>
+		<div class="head_center">马克</div>
+		<div class="head_right" onclick="search()">
+			<img src="App_Themes/images/search.png"  />
+			
+		</div>
+	     
+	</header>
+	<!--section-->
+	<!-- <div class="h10"></div> -->
+	<section class="master-list">
+	    <div class="subhead">
+	     	<ul>
+	     		<li></li>
+	     		<li></li>
+	     		<li></li>
+	     		<li></li>
+	     	</ul>
+             
+
+	     </div>
+	     <div id="master-desc">
+	           	<div class="desc-left">
+	           		<h2>马克</h2>
+	           		<h3>接单量：500</h3>
+
+	           	</div>
+	           	<div class="desc-right">
+	           		<h2>工号：BJ10023</h2>
+	           		<h3>等级：<!--  <img src="App_Themes/images/star.png">
+	           		<img src="App_Themes/images/star.png">
+	           		<img src="App_Themes/images/star.png">
+	           		<img src="App_Themes/images/star.png"> -->
+	           		
+	           		</h3>
+
+	           	</div>
+	           <p onclick="expand(this)">师傅介绍：37岁，10年工作经验，毕业于中国科学院足疗专业123</p>
+	       </div>
+
+         <div class="servicedesc">
+	     	<!-- <img src="App_Themes/images/pingjia.png"> -->
+	   			   <span style="width:100px"> 全部评价<i>(16条评论)</i></span>
+	   	     <span class="ping"><img src="App_Themes/images/y_next.png"></span>
+	     </div>
+
+	     <div class="servicedesc">
+	     	<!-- <img src="App_Themes/images/service.png"> -->
+	   			   <span> 服务项目</span>
+	     </div>
+
+	   	<ul id="master-service-list">
+
+	   		<!-- <li class="master">
+	   			<div class="master-left" style="float:left;">
+	   			   <span>上品足浴&nbsp;&nbsp;&nbsp;59元60分钟</span>
+	   		
+	   			</div>
+	   			
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			  <img src="App_Themes/images/s_xuanz.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   			   <span>上品足浴&nbsp;&nbsp;&nbsp;59元60分钟</span>
+	   		
+	   			</div>
+	   			
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			  <img src="App_Themes/images/s_wxuan.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   			   <span>上品足浴&nbsp;&nbsp;&nbsp;59元60分钟</span>
+	   		
+	   			</div>
+	   			
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			  <img src="App_Themes/images/s_wxuan.png"><span>8.9km</span>
+                </div>
+	   		</li>
+	   		<li class="master">
+	   			<div class="master-left" style="float:left;">
+	   			   <span>上品足浴&nbsp;&nbsp;&nbsp;59元60分钟</span>
+	   		
+	   			</div>
+	   			
+	   			<div class="master-right" style="float:right;margin-right:15px;">
+	   			  <img src="App_Themes/images/s_wxuan.png"><span>8.9km</span>
+                </div>
+	   		</li> -->
+             
+	   	
+
+	   	</ul>
+
+	   <!-- 	<div class="servicedesc">
+	     	<img src="App_Themes/images/pingjia.png">
+	   			   <span> 全部评价</span>
+	   	     <span class="ping">好评 100%</span>
+	     </div> -->
+
+        <!--  <ul id="ping-list">
+             <li>
+             	 <div class="title">
+             	 	<span class="title-l">*******554</span>
+             	 	<span class="title-r">2015 09 10:00</span>
+             	 </div>
+             	 <div class="content">
+             	 	<h2>上品足浴</h2>
+             	 	<p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+             	 </div>
+
+             </li>
+               <li>
+             	 <div class="title">
+             	 	<span class="title-l">*******554</span>
+             	 	<span class="title-r">2015 09 10:00</span>
+             	 </div>
+             	 <div class="content">
+             	 	<h2>上品足浴</h2>
+             	 	<p>上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴上品足浴</p>
+             	 </div>
+
+             </li>
+         </ul> -->
+
+
+	</section>   
+
+	<!--footer-->
+	
+	<footer>
+		<p onclick="doorder()">我要预约</p>
+   </footer>
+  
+<script type="text/javascript">
+	$(window).load(function() {
+		 var id = getAjax.getQueryString('id');	
+		 // alert(id);	
+		 loaddata(id);
+	});
+	
+function loaddata(id){
+		server = "";
+		
+		params = {
+			url: "worker/watchWorkerDetail",
+			workerId:id,//测试北京
+			latitude: 40.001804,
+			longitude: 116.353758
+		    
+	       };
+
+		getAjax.getAction(server,params,function(res){
+			console.log('加载师傅详情',res);
+			if(res['code']==0){
+				var masterdetail = res['info'];
+
+                getAjax.setSessionStorage('Master',JSON.stringify(masterdetail));
+
+				// console.log('Master'+masterdetail);
+
+				var name = masterdetail['nickName'];
+
+			    $('.master-list #master-desc .desc-left h2').text(name);
+				var ordercount =  masterdetail['orderCount'];
+
+				 $('.master-list #master-desc .desc-left h3').text('接单量:'+ordercount);
+				var jobNum =  masterdetail['jobNum'];
+				
+				$('.master-list #master-desc .desc-right h2').text('工号:'+jobNum);
+				var grade =  masterdetail['workerProfessionGrade'];
+                
+                var orderGrade = "";
+				if(grade==1000000021){
+					orderGrade="星级";
+				} else if(grade==1000000022){
+					orderGrade="高级";
+				} else if(grade==1000000023){
+					orderGrade="特级";
+				} else if(grade==1000000024){
+					orderGrade="明星级";
+				}
+                 $('.master-list #master-desc .desc-right h3').text('等级:'+orderGrade);
+                  
+				var desc =  masterdetail['selfSummary'];
+
+                $('#master-desc p').text(desc);
+
+                var evaluatecount =  masterdetail['evaluateCount'];
+
+                $('.master-list .servicedesc span i').text('('+evaluatecount+'条评论)')
+
+
+				var plist =  masterdetail['pList'];
+
+				var htm = ""; 
+				for(var i=0;i<plist.length;i++){
+
+					var projectName = plist[i]['projectName'];
+					if(strlen(projectName)<5){
+
+							projectName = projectName + "&nbsp;&nbsp;";
+
+					}
+
+                 htm = htm + '<li class="master" onclick="test(this)" data-id='+plist[i]['id']+'><div class="master-left" style="float:left;"> 	   <span>'+projectName+'&nbsp;&nbsp;&nbsp;'+plist[i]['price']+'元'+plist[i]['projectTime']+'分钟'+'</span></div>';
+
+	        	 htm = htm + '<div class="master-right" style="float:right;margin-right:15px;">				<img src="App_Themes/images/s_wxuan.png" data-check="" onclick="swit(this)"></div></li>';
+                    
+
+				}
+
+				$('#master-service-list').empty().append(htm);
+
+			}
+			
+		},function(error){});
+	}
+	function doorder(){
+
+	   	  window.location.href = "MasterWorker_order.html";
+	   }
+	function search(){
+
+	   	  window.location.href = "MasterWorker_search.html";
+	   }
+
+    function test(item){
+      var cur_id = $(item).attr('data-id');     
+
+	}
+
+	function swit(item){
+
+     var check = $(item).attr('data-check');
+     if(!check) {
+
+         $(item).attr('data-check','1');
+         $('#master-service-list li .master-right img').attr("src","App_Themes/images/s_wxuan.png");
+         $(item).attr("src","App_Themes/images/s_xuanz.png");
+
+         server = "";
+
+         var id = $(item).parent().parent().attr('data-id');
+		
+		 params = {
+			url: "project/getProjectDetailToNew",
+			projectId:id
+		    
+	       };
+	       getAjax.getAction(server,params,function(res){
+			console.log('加载师傅详情',res);
+			if(res['code']==0){
+				var projectdetail = res['info'];
+
+				console.log('project'+projectdetail);
+
+				 getAjax.setSessionStorage('project',JSON.stringify(projectdetail));
+			  }
+			})
+
+
+     }else{
+
+     	 $(item).attr('data-check','');
+         $(item).attr("src","App_Themes/images/s_wxuan.png")
+
+     };
+
+	}
+   function strlen(str) { 
+    var len; 
+    var i; 
+    len = 0; 
+    for (i=0;i<str.length;i++) { 
+        if (str.charCodeAt(i)>255) len+=2; 
+        else len++; 
+    } 
+    return len; 
+}
+
+function expand(item){
+
+  var stat = $(item).attr('data-stat')
+  if(!stat){
+  	$(item).attr('data-stat','1');
+    $(item).height("50px");
+    $(item).css("background-image","url(App_Themes/images/up.png)");
+   }else{
+   	$(item).attr('data-stat','');
+    $(item).height("30px");
+      $(item).css("background-image","url(App_Themes/images/dw.png)");
+
+
+   }
+
+
+}
+</script>
+</body>
+</html>

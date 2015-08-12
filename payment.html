@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/payment.css" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/payment.js"></script>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back.png"/>
+		</div>
+		<div class="head_center">支付订单</div>
+	</header>
+	<!--section-->
+	<section>
+		<ul>
+			<li class="text_box">
+				<ul>
+					<li class="text_box_li_user">
+						<span id="contact"></span>
+						<span id="contactPhone"></span>
+					</li>
+					<li class="text_box_li_user">
+						<span id="orderAddress"></span>
+					</li>
+					<li class="text_box_li_user">
+						<span id="startOrderTime"></span>
+					</li>
+				</ul>
+			</li>
+			<li class="text_box">
+				<ul>
+					<li class="text_box_project">
+						<img src="" id="headPhoto">
+						<span class="name" id="nickName"></span>
+						<!-- <span class="sex" id="startOrderTime">男</span> -->
+						<span class="ordernum" id="count"></span>
+						<span class="projectname" id="projectName"></span>
+					</li>
+					<li class="text_box_li">
+						<span id="projectNameGrade"></span>
+						<span class="project_price" id="projectPrice"></span>
+					</li>
+					<li class="text_box_li">
+						<span>交通费</span>
+						<span class="transport_price" id="carMoney"></span>
+					</li>
+					<li class="text_box_coupon">
+						<span>优惠券</span>&nbsp;&nbsp;
+						<span class="smaller"></span>
+						<img class="y_next" src="App_Themes/images/y_next.png"/>
+					</li>
+				</ul>
+			</li>
+			<li class="paytype">支付方式</li>
+			<li class="text_box">
+				<ul>
+					<li class="text_box_li" onclick="window.payment.checkPay('wx')">
+						<img class="pay_channel" src="App_Themes/images/pay_wx.png">
+						<span class="pay_text">微信</span>
+						<img id="wxPay" class="pay_check" src="App_Themes/images/s_wxuan.png">
+					</li>
+					<li class="text_box_li" onclick="window.payment.checkPay('ali')">
+						<img class="pay_channel" src="App_Themes/images/pay_ali.png">
+						<span class="pay_text">支付宝</span>
+						<img id="aliPay" class="pay_check" src="App_Themes/images/s_wxuan.png">
+					</li>
+					<li class="text_box_li" onclick="window.payment.checkPay('card')">
+						<img class="pay_channel" src="App_Themes/images/pay_card.png">
+						<span class="pay_text">会员卡<span id="cardMoney">(余额:25元)</span></span>
+						<img id="cardPay" class="pay_check" src="App_Themes/images/s_wxuan.png">
+					</li>
+					<li class="text_box_coupon" onclick="window.payment.checkPay('cash')">
+						<img class="pay_channel" src="App_Themes/images/pay_cash.png">
+						<span class="pay_text">现金(不可使用优惠券)</span>
+						<img id="cashPay" class="pay_check" src="App_Themes/images/s_wxuan.png">
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<!--footer-->
+	<footer>
+		<div id="goPay">
+			确认支付
+		</div>
+		<div id="final_pay">
+			
+		</div>
+   </footer>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+	<title>地址定位</title>
+ 	<style type="text/css">
+		body{
+			margin:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+		}
+
+        .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:10px;
+     }
+
+       .a_01{background: #F0F0F0;color: #333333;font-size: 1.3em;position: absolute;top:40px;}
+      .a_01,.a_name{height: 40px;padding-top: 5px;position: relative;}
+      .a_name p{margin-top: 35px;right: 0px;position: absolute;}
+      .a_name span{
+         width: 100%;
+         position: absolute;
+      }
+
+       .a_name span input{display: block; position: relative;width: 99%;margin: 0 auto;line-height: 2.5em;border: none;}
+       .a_name span img{position: absolute;right:10px;top:1px;}      
+      .a_name img{float: left;}
+      .a_name .frr{float: right;}
+      .a_name .frr:after{clear:both;}
+
+		#mapContainer{
+			position: absolute;
+			top:80px;
+			left: 0;
+			right:0;
+			/*bottom:0;*/
+			height:40%;
+
+		}
+
+		#bg{background: rgba(135,135,135,.8);position: absolute;top:0px;height: 100%;width: 100%;}
+		.none{display: none;}
+		#result{background-color: #FFFFFF !important;position: absolute;bottom: 0;width: 100%;}
+	</style>
+<body>
+    <header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			
+		</div>
+		<div class="head_center">地址定位</div>
+		<div class="head_right">
+			<!-- <img src="App_Themes/images/add.png"/> -->
+			
+		</div>
+	     
+	</header>
+
+     <div class="a_01">
+			<div class="a_name">
+				<span>
+					<input type="text" id="keyword" placeholder="金码大厦" style="background:#DEF0F0;">
+						<img src="App_Themes/images/search-g.png" onclick="keywordSearch()">
+					</input>
+					
+				</span>
+			</div>
+			  
+	   			
+		</div>
+    <div id="result1" name="result1" style="z-index:500;margin-top:32px;"></div>
+	<div id='mapContainer' style="z-index:-2"></div>
+
+  <div id="result" style="z-index:100"></div>
+
+  <div id="bg" class="none" style="z-index:-1"></div>
+    
+
+	<script src='http://webapi.amap.com/maps?v=1.3&key=08c30909373482753295297a642bec46'></script>
+	<script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+	<script src="App_Themes/Script/getAjax.js"></script>
+	<script type="text/javascript">
+		var map, geolocation;
+		var isKeyword = true;
+		//加载地图，调用浏览器定位服务
+		map = new AMap.Map('mapContainer', {
+			resizeEnable: true
+		});
+		map.plugin('AMap.Geolocation', function () {
+			geolocation = new AMap.Geolocation({
+				enableHighAccuracy: true,//是否使用高精度定位，默认:true
+				timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+				maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+				convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+				showButton: true,        //显示定位按钮，默认：true
+				buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+				buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+				showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+				showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+				panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+				zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+			});
+	        map.addControl(geolocation);
+			AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+			AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+
+			geolocation.getCurrentPosition();
+		});
+		//获取当前位置信息
+		function getCurrentPosition () {
+			geolocation.getCurrentPosition();
+		};
+		//监控当前位置并获取当前位置信息
+		function watchPosition () {
+			geolocation.watchPosition();
+		};
+		//解析定位结果
+		function onComplete (data) {
+			// var str = '<div>定位成功</div>';
+			// str += '<div>经度：' + data.position.getLng() + '</div>';
+			// str += '<div>纬度：' + data.position.getLat() + '</div>'; 
+			// str += '<div>精度：' + data.accuracy + ' 米</div>';
+			// str += '<div>是否经过偏移：' + (data.isConverted ? '是' : '否') + '</div>';
+			// result.innerHTML = str;
+            var lng = data.position.getLng();
+            var lat = data.position.getLat();
+			getAjax.setLocalStorage('curLng',lng);
+			getAjax.setLocalStorage('curLat',lat);
+
+			lnglatXY = new AMap.LngLat(lng,lat);
+            var MGeocoder;
+			    //加载地理编码插件
+			    AMap.service(["AMap.Geocoder"], function() {        
+			        MGeocoder = new AMap.Geocoder({ 
+			            radius: 1000,
+			            extensions: "all"
+			        });
+			        //逆地理编码
+			        MGeocoder.getAddress(lnglatXY, function(status, result){
+			        	if(status === 'complete' && result.info === 'OK'){
+			        		geocoder_CallBack(result);
+			        	}
+			        });
+			    });
+
+
+		};
+		//解析定位错误信息
+		function onError (data) {
+			var str = '<p>定位失败</p>';
+			str += '<p>错误信息：'
+			switch(data.info) {
+				case 'PERMISSION_DENIED':
+					str += '浏览器阻止了定位操作';
+					break;
+				case 'POSITION_UNAVAILBLE':
+					str += '无法获得当前位置';
+					break;
+				case 'TIMEOUT':
+					str += '定位超时';
+					break;
+				default:
+					str += '未知错误';
+					break;
+			}
+			str += '</p>';
+			result.innerHTML = str;
+		};
+     
+        
+        //回调函数
+			function geocoder_CallBack(data) {
+				//返回地址描述
+				address = data.regeocode.formattedAddress;
+				getAjax.setLocalStorage('curaddr',address);
+					
+			
+				watchPosition();
+			}
+
+     document.getElementById("keyword").onkeyup = keydown;
+
+
+    function keywordSearch() {
+	    var keywords = document.getElementById("keyword").value;
+	    
+	    if ( keywords.length > 0) {
+
+	    	  placeSearch(keywords)
+	    
+	        }
+	        else {
+	    
+	        }
+	    
+	}
+
+ 	function autoSearch() {
+	    var keywords = document.getElementById("keyword").value;
+	    var auto;
+	    //加载输入提示插件
+	        map.plugin(["AMap.Autocomplete"], function() {
+	        var autoOptions = {
+	            city: "010" //城市，默认全国
+	        };
+	        auto = new AMap.Autocomplete(autoOptions);
+	        //查询成功时返回查询结果
+	        if ( keywords.length > 0) {
+	            AMap.event.addListener(auto,"complete",autocomplete_CallBack);
+	            auto.search(keywords);
+	        }
+	        else {
+	            document.getElementById("result1").style.display = "none";
+	        }
+	    });
+	}
+
+	function autocomplete_CallBack(data) {
+		    var resultStr = "";
+		    var tipArr = data.tips;
+		    //var len=tipArr.length;
+		    if (tipArr&&tipArr.length>0) {
+		     console.log(tipArr);                 
+		        for (var i = 0; i < tipArr.length; i++) {
+		            resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)
+		                        + ",this)' onclick='selectResult(" + i + ")' onmouseout='onmouseout_MarkerStyle(" + (i + 1)
+		                        + ",this)' style=\"font-size: 13px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\">" + tipArr[i].name + "<span style='color:#000000;'>"+ tipArr[i].district + "</span></div>";
+		        }
+		    }
+		    else  {
+		        // resultStr = "亲,没有找到结果!";
+		    }
+		
+		    document.getElementById("result1").curSelect = -1;
+		    document.getElementById("result1").tipArr = tipArr;
+		    document.getElementById("result1").innerHTML = resultStr;
+		    document.getElementById("result1").style.display = "block";
+		   
+		    document.getElementById("result1").style.background = "#FFFFFF";
+		    	$('#bg').removeClass('none');
+
+		   //  if ($('#bg').hasClass('none')){
+
+		   //  	$('#bg').removeClass('none');
+		   //  }else{
+
+ 				// $('#bg').addClass('none')
+
+		   //  }
+            
+
+
+		}
+
+				//选择输入提示关键字
+		function selectResult(index,srctype) {
+		    if (navigator.userAgent.indexOf("MSIE") > 0) {
+		        document.getElementById("keyword").onpropertychange = null;
+		        document.getElementById("keyword").onfocus = focus_callback;
+		    }
+
+		    document.getElementById("divid" + (index + 1)).style.background = "#000000";
+		    //截取输入提示的关键字部分
+		 var text = document.getElementById("divid" + (index + 1)).innerHTML.replace(/<[^>].*?>.*<\/[^>].*?>/g,"");
+		
+		    
+		    document.getElementById("keyword").value = text;
+
+		    document.getElementById("result1").style.display = "none";
+
+		    // alert('selectResult'+text);
+		    placeSearch(text);
+		    
+		   
+		}
+
+
+				//选择提示进行搜素
+		function selectResultFin(index,srctype) {
+		    if (navigator.userAgent.indexOf("MSIE") > 0) {
+		        document.getElementById("keyword").onpropertychange = null;
+		        document.getElementById("keyword").onfocus = focus_callback;
+		    }
+
+		    document.getElementById("divid" + (index + 1)).style.background = "#777777";
+		    //截取输入提示的关键字部分
+		    var text = document.getElementById("divid" + (index + 1)).innerHTML.replace(/<[^>].*?>.*<\/[^>].*?>/g,"");
+		    
+
+		    document.getElementById("result1").style.display = "none";
+
+		    // alert('selectResultFin'+text);
+		   	   
+            getAjax.setLocalStorage('yhaddr',text);
+           
+		   
+		}
+		  
+		function focus_callback() {
+		        if (navigator.userAgent.indexOf("MSIE") > 0) {
+		        document.getElementById("keyword").onpropertychange = autoSearch;
+		    }
+		}
+		function keydown(event){
+		    var key = (event || window.event).keyCode;
+		    var result = document.getElementById("result1");
+		    var cur = result.curSelect;
+           
+            if (!$.trim($('#keyword').value)){
+
+             $('#bg').addClass('none');
+             $('#result1').addClass('none');
+             $('#result').addClass('none');
+           
+
+            }else{
+              $('#result').removeClass('none');
+
+            }
+
+		    if(key===40){//down key
+		    if(cur + 1 < result.childNodes.length){
+		            if(result.childNodes[cur]){
+		                result.childNodes[cur].style.background='';
+		            }
+		            result.curSelect=cur+1;
+		            result.childNodes[cur+1].style.background='#CAE1FF';
+		            document.getElementById("keyword").value = result.tipArr[cur+1].name;
+		        }
+		    }else if(key===38){//up key
+		        if(cur-1>=0){
+		            if(result.childNodes[cur]){
+		                result.childNodes[cur].style.background='';
+		            }
+		            result.curSelect=cur-1;
+		            result.childNodes[cur-1].style.background='#CAE1FF';
+		            document.getElementById("keyword").value = result.tipArr[cur-1].name;
+		        }
+		    }else if(key === 13){
+				var res = document.getElementById("result1");
+				if(res && res['curSelect'] !== -1){
+					selectResult(document.getElementById("result1").curSelect);
+				}
+		       
+		    }else{
+		        autoSearch();
+		    }
+		}
+
+		//鼠标移入时样式
+		function openMarkerTipById(pointid, thiss) {  
+		    thiss.style.background = '#CAE1FF';
+		}
+		//鼠标移开后样式恢复
+		function onmouseout_MarkerStyle(pointid, thiss) {  
+		    thiss.style.background = "";
+		}
+
+
+		function placeSearch(keyword){
+		    var MSearch;
+		     document.getElementById("result1").style.display = "none";
+		     $('#result').removeClass('none');
+		    AMap.service(["AMap.PlaceSearch"], function() {       
+		        MSearch = new AMap.PlaceSearch({ //构造地点查询类
+		            pageSize:10,
+		            pageIndex:1,
+		            city:"010" //城市
+		        });
+		        //关键字查询
+		        MSearch.search(keyword, function(status, result){
+		        	if(status === 'complete' && result.info === 'OK'){
+		        		keywordSearch_CallBack(result);
+		        	}
+		        }); 
+		    });
+		}
+		function keywordSearch_CallBack(data) {
+		    var resultStr = "";
+		    var poiArr = data.poiList.pois;
+		    var resultCount = poiArr.length;
+		    console.log(poiArr);
+		      if (poiArr&&poiArr.length>0) {
+
+				  for (var i = 0; i < resultCount; i++) {
+				              resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)
+				                    + ",this)' onclick='selectResultFin(" + i + ")'  onmouseout='onmouseout_MarkerStyle(" + (i + 1)
+				                    + ",this)' style=\"border-bottom:1px solid #F0F0F0;font-size: 16px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\">" + poiArr[i].name + "<span style='color:#000000;font-size: 13px'>"+ poiArr[i].address + "</span></div>";
+						   
+						    }
+
+
+
+		      }
+		  
+
+		    document.getElementById("result").innerHTML = resultStr;
+		   
+		}
+	</script>
+</body>
+</html>

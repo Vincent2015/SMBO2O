@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>优惠券</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    
+    
+    <style type="text/css">
+     body{background: rgb(233,236,241);overflow: hidden;}
+     section{background: rgb(255,255,255);overflow: hidden;top:95px;position: absolute;}
+     header{height: 100px;}
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:15px;
+      font-size: 1.5em;
+      color: #FFFFFF;
+     }
+     .head_right img{width: 32px;height: 32px;}
+
+     .in{height: 30px;position: absolute;top:40px;width: 100%;margin-top: 5px;background: rgb(239,239,239);height: auto;padding-top:5px;padding-bottom:5px;}
+
+     .in input {display: block;width: 70%;position: relative;line-height: 2.5em;outline: none;border: 1px solid #FFFFFF;border-radius: 5px;background:#FFFFFF;padding-top: 5px;padding-left:5px;padding-bottom: 5px;margin-left: 10px;margin-top: 5px;margin-bottom: 5px;font-size: 1.3em;}
+     .in button{position: absolute;right: 10px;width: 64px;line-height: 1.5em;font-size: 1.5em;background: transparent; border:1px solid rgb(24,203,109);border-radius: 5px;color:rgb(24,203,109); top:5px;height:45px; }
+
+     #addrlist{}
+
+      #addrlist li{/*background:url(App_Themes/images/voucher01.png) no-repeat left center/100% 100%;*/ color: #FFFFFF;height:110px;padding-left: 10px;text-align: left;padding-top: 10px;position: relative;width: 90%;margin: 0 auto;margin-top: 10px;}
+      .nouse{background:url(App_Themes/images/voucher01.png) no-repeat left center/100% 100%;}
+      .use{background:url(App_Themes/images/voucher02.png) no-repeat left center/100% 100%;}
+
+      #addrlist  .slide{margin-left: -75px;}
+      
+      #addrlist .info h2{font-style: normal;font-weight: normal;font-size: 1.5em;padding-top:10px;padding-bottom: 10px;padding-left: 5px;margin-left: 10px;}
+      #addrlist .info h2 .rmb{position: relative;top:-20px;}
+      #addrlist .info h2 .sym{position: relative;top:-20px;right:-5px;font-size: 0.8em;}
+       #addrlist .info h2 .text{position: relative;margin-left: -20px;font-size: 1.5em;}
+      #addrlist .info h3{font-size: 1.2em;padding-top:5px;padding-bottom: 5px;padding-left:5px;padding-right: 5px;background:#FFFFFF;width:16.5em;color: rgb(251,42,82);margin-left: 10px;text-align: left;margin-top: -5px;}
+      #addrlist .info h3.h3use{color: #999999;}
+    
+      #addrlist .edit{float: right;margin-top:-60px;margin-right:8px;font-size: 1.5em; padding:0px 5px;height: 45px;width: 1em;}
+      #addrlist .del{float: right;width: 60px; height: 60px;z-index:1;position: relative;margin-top: -65px;}
+      #addrlist .del button{background: rgb(255,102,51);height: 68px;border: none;width: 100%;color: #FFFFFF;font-size: 1.4em;}
+      
+      #nodata{position: relative;width: 200px;margin:20% auto;}
+       #nodata img{position: relative;width:90%;height: 80%;}
+       #nodata p{color: #666666;font-size: 1.2em;}
+
+
+      .none{display: none;}
+      i{font-style: normal;font-weight: normal;}
+      .num{font-size: 2.5em;}
+     
+
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			
+		</div>
+		<div class="head_center">优惠券</div>
+		<div class="head_right" onclick="newaddr()">
+			兑换
+		</div>
+    <div class="in">
+     <input type="text" id="kwd" placeholder="请输入优惠码"/>      
+       <button>确认</button>
+    </div>
+	</header>
+	<section>
+		 <div id="addrlist" class="">
+		 	
+         <ul>
+         	<li class="nouse">
+         		<span class="info">
+         			<h2><i class="rmb">¥</i><i class="num">10</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限北京使用)</i></h2>
+         			<h3>满30元使用 有效期至2015年8月12日</h3>
+         		</span>
+         		<span class="edit">
+         			可使用
+         		</span>
+         	
+         	</li>
+
+            <li class="nouse">
+            <span class="info">
+              <h2><i class="rmb">¥</i><i class="num">10</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限北京使用)</i></h2>
+              <h3>满30元使用 有效期至2015年8月12日</h3>
+            </span>
+            <span class="edit">
+              可使用
+            </span>
+          
+          </li>
+
+            <li class="use">
+            <span class="info">
+              <h2><i class="rmb">¥</i><i class="num">10</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限北京使用)</i></h2>
+              <h3 class="h3use">满30元使用 有效期至2015年8月12日</h3>
+            </span>
+            <span class="edit">
+              已使用
+            </span>
+          
+          </li>
+
+          <li class="use">
+            <span class="info">
+              <h2><i class="rmb">¥</i><i class="num">10</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限北京使用)</i></h2>
+              <h3 class="h3use">满30元使用 有效期至2015年8月12日</h3>
+            </span>
+            <span class="edit">
+              已使用
+            </span>
+          
+          </li>
+	       
+         </ul>
+
+		 </div>
+         <div id="nodata" class="none">
+           <img src="App_Themes/images/footer.png">
+           <p>亲~、你还没填地址、赶快添加吧！</p>
+         </div>
+
+	</section>
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function(){
+
+	});
+	
+  getvoucherlist();
+  /*id为空代表添加；不为空则为修改*/
+   function getvoucherlist(){ 
+     var user = getAjax.getLocalStorage('user');
+     var uid = (JSON.parse(user).id);
+
+      server = "";    
+       params = {
+         url: "coupon/findUseDiscountCoupon1",
+         userId:uid,
+         money:'169',
+         cityId:"60abe656675a44dfb160cd159938e0b1",
+         startOrderTime:'2015-08-11 15:00'
+
+      };
+    
+    getAjax.getAction(server,params,function(res){
+      console.log('加载地址列表',res);
+     
+      // if(res['code']==0){
+      
+
+      //     var cardList = res['info'];
+      //     console.log(cardList);
+
+       
+      
+      //     var html = "";
+      
+      //     for(var i=0;i<cardList.length;i++){
+           
+      //       var cardMoney =  cardList[i].cardMoney;
+
+
+      //       cardMoney = cardMoney.toString()+"元";
+
+      //       if (strlen(cardMoney)<6){
+             
+      //           cardMoney = cardMoney +" ";
+
+      //       }
+
+           
+           
+
+      //        html= html + '<li class="" data-id='+cardList[i].id+' ><span class="info"><h2>充'+ cardMoney+'&nbsp;送'+cardList[i].cardExtendMoney+'</h2></span><span class="edit" onclick="">充值</span></li>';   
+         
+      //     }
+      //     $('#addrlist ul').empty().append(html);
+
+
+      // }
+      
+    },function(error){});
+  }
+
+  function strlen(str) { 
+    var len; 
+    var i; 
+    len = 0; 
+    for (i=0;i<str.length;i++) { 
+        if (str.charCodeAt(i)>255) len+=2; 
+        else len++; 
+    } 
+    return len; 
+}
+</script>  
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>设置地址</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script src="App_Themes/Script/touch.js"></script>
+    
+    
+    <style type="text/css">
+     body{background: rgb(233,236,241);}
+     section{background: rgb(240,240,240);}
+     .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+     .head_right{
+     	position: absolute;
+     	right: 15px;
+     	top:10px;
+     }
+     .head_right img{width: 32px;height: 32px;}
+
+      #addrlist li{overflow: hidden;background: #FFFFFF;color: #666666;padding-left: 10px;padding-top: 5px;padding-bottom: 5px;line-height: 1.8em;margin-bottom: 10px;position: relative;height: 60px;width: 120%;}
+
+      #addrlist  .slide{margin-left: -75px;}
+      
+      #addrlist .info h2{font-style: normal;font-weight: normal;font-size: 1.5em;padding-top:5px;padding-bottom: 5px;}
+      #addrlist .info h3{font-style: normal;font-weight: normal;font-size: 1.4em;padding-top:5px;padding-bottom: 5px;}
+    
+      #addrlist .edit{float: right;margin-top: -50px;margin-right: 80px;}
+      #addrlist .del{float: right;/*right:-60px;*/width: 60px; height: 60px;z-index:1;position: relative;margin-top: -65px;}
+      #addrlist .del button{background: rgb(255,102,51);height: 68px;border: none;width: 100%;color: #FFFFFF;font-size: 1.4em;}
+      
+      #nodata{position: relative;width: 200px;margin:20% auto;}
+       #nodata img{position: relative;width:90%;height: 80%;}
+       #nodata p{color: #666666;font-size: 1.2em;}
+
+      .none{display: none;}
+
+
+    </style>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back01.png"/>
+			
+		</div>
+		<div class="head_center">设置地址</div>
+		<div class="head_right" onclick="newaddr()">
+			<img src="App_Themes/images/add.png"/>
+			
+		</div>
+	     
+	</header>
+	<section>
+		 <div id="addrlist" class="">
+		 	
+         <ul>
+         	<!-- <li class="" >
+         		<span class="info">
+         			<h2>王小明 18552225554</h2>
+         			<h3>北京市海淀区金马大厦B座702</h3>
+         		</span>
+         		<span class="edit">
+         			<img src="App_Themes/images/edit.png">
+         		</span>
+         		<span class="del">
+         			<button>删除</button>
+         		</span>
+         	</li>
+	        <li>
+         		<span class="info swipe">
+         			<h2>王小明 18552225554</h2>
+         			<h3>北京市海淀区金马大厦B座702</h3>
+         		</span>
+         		<span class="edit">
+         			<img src="App_Themes/images/edit.png">
+         		</span>
+         		<span class="del">
+         			<button>删除</button>
+         		</span>
+         	</li> -->
+
+         </ul>
+
+		 </div>
+         <div id="nodata" class="none">
+           <img src="App_Themes/images/footer.png">
+           <p>亲~、你还没填地址、赶快添加吧！</p>
+         </div>
+
+	</section>
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function(){
+		 
+
+	});
+	function newaddr(){
+
+    window.location.href = "Address_new.html";
+
+  }
+ getaddresslist();
+  /*id为空代表添加；不为空则为修改*/
+   function getaddresslist(){ 
+     var user = getAjax.getLocalStorage('user');
+     var uid = (JSON.parse(user).id);
+
+      server = "";    
+       params = {
+         url: "address/getMyAddressList",
+         userId:uid
+      };
+    
+    getAjax.getAction(server,params,function(res){
+      console.log('加载地址列表',res);
+     
+      if(res['code']==0){
+      
+
+          var addrList = res['info'];
+          console.log(addrList);
+
+       
+      
+          var html = "";
+      
+          for(var i=0;i<addrList.length;i++){
+           
+
+             html= html + '<li class="" onclick="getself(this)" data-id='+addrList[i].id+' ><span class="info"><h2>'+ addrList[i].userName+'&nbsp;&nbsp;'+addrList[i].userPhone+'</h2><h3>'+ addrList[i].placeName+'</h3></span><span class="edit" onclick="modaddr(this)"><img src="App_Themes/images/edit.png"></span><span class="del"><button onclick="deladdr(this)"">删除</button></span></li>';   
+          }
+          $('#addrlist ul').empty().append(html);
+
+          var lis =document.querySelectorAll('#addrlist ul li');
+          Array.prototype.forEach.apply(lis,[function(ele){
+              touch.on(ele, 'touchstart', function(ev){
+                ev.preventDefault();
+              });
+
+              // var target = document.getElementById("target");
+              // target.style.webkitTransition = 'all ease 0.2s';
+
+              touch.on(ele, 'swiperight', function(ev){
+                // this.style.webkitTransform = "translate3d(" + rt + "px,0,0)";
+                console.log("向右滑动.");
+                $(ele).removeClass("slide");
+                $(ele).find('.edit').removeClass("none");
+              });
+
+              touch.on(ele, 'swipeleft', function(ev){
+                console.log("向左滑动.");
+                // this.style.webkitTransform = "translate3d(-" +  + "px,0,0)";
+
+                   $(ele).addClass("slide");
+                   $(ele).find('.edit').addClass("none");
+              });
+
+              touch.on(ele, 'hold tap doubletap', function(ev){
+                    //console.log(ev.type);
+                    var id = $(ele).attr('data-id');
+
+                      setAddressstorage(id);
+                      
+
+                    
+                });
+
+          }])
+
+
+      }
+      
+    },function(error){});
+  }
+
+  function deladdr(item){ 
+
+    var  id = ($(item).parent().parent().attr('data-id'));
+     server = "";    
+      
+      if(id){
+      params = {
+               url: "address/deleteMyAddress",
+               id:id               
+            };
+       }else{
+
+        console.log(params);
+
+       }  
+       
+    
+      getAjax.getAction(server,params,function(res){
+        console.log('删除地址',res);       
+        if(res['code']==0){
+        
+
+           window.location.href = "Address_list.html";
+
+
+        }
+        
+      },function(error){});
+  }
+
+
+  function modaddr(item){
+     var id = $(item).parent().attr('data-id');
+      window.location.href = "Address_modify.html?addrid="+id;
+  }
+
+  function getself(item){
+  
+
+  }
+
+
+
+  function setAddressstorage(id){ 
+     
+      server = "";    
+       params = {
+         url: "address/getAddressById",
+         id:id
+      };
+    
+    getAjax.getAction(server,params,function(res){
+      console.log('加载地址信息',res);
+     
+      if(res['code']==0){
+          var addrinfo = res['info'];
+          console.log(addrinfo);
+
+          getAjax.setSessionStorage('address',JSON.stringify(addrinfo));
+         
+          history.go(-1);
+
+
+
+      }
+      
+    },function(error){});
+  }
+</script>  
+
+</body>
+</html>

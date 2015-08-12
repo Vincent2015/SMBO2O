@@ -1,0 +1,521 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>上门帮</title>
+  <link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+  <link href="App_Themes/Style/index.css" rel="stylesheet"/> 
+
+  <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+  <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+  <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+  <script src="App_Themes/Script/getAjax.js"></script>
+  <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+  <script type="text/javascript" src="App_Themes/Script/iscroll.js"></script>
+
+<script type="text/javascript">
+
+var myScroll;
+
+function loaded () {
+  myScroll = new IScroll('#wrapper', { scrollX: true, scrollY: false, mouseWheel: true ,click:true});
+}
+
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+</script>
+
+<style type="text/css">
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  -ms-touch-action: none;
+}
+
+body,ul,li {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+ /*font-size: 12px;*/
+/*  font-family: ubuntu, helvetica, arial;*/
+/* this is important to prevent the whole page to bounce */
+body {
+ 
+  overflow: hidden; 
+}
+
+.head_left img{top:60px;}
+ .head_center{color: #FFFFFF;background:rgb(24,203,109);}
+ .head_right{
+  position: absolute;
+  left: 15px;
+  top:15px;
+  color: #FFFFFF;
+  font-size:1.8em;
+ }
+ .head_right img{width: 13px;}
+
+
+#wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  bottom: 48px;
+  left: 0;
+  width: 100%;
+ /* background: #ccc;*/
+  overflow: hidden;
+  font-size: 1.4em;
+  height: 45px;
+   border-bottom: 1px solid #F0F0F0;
+        border-top: 1px solid #F0F0F0;
+        background-color: #ffffff;
+}
+
+#scroller {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 5000px;
+  height:100%;
+ /* background-color: #a00;*/
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+#scroller ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#scroller li {
+  display: block;
+  float: left;
+  width: 50px;
+  height: 100%;
+  margin-left: 3px;
+  padding-left: 2px;
+  padding-right: 2px;
+  text-align: center;
+  
+  background-color: #ffffff;
+  font-size: 0.95em;
+  border-bottom: 1px solid #F0F0F0;line-height: 20px;
+}
+
+#scroller i{
+  width:45px;
+ /* margin-left: 3px;*/
+/*  margin-left: 10px;*/
+  /*padding-right: 5px;*/
+/*width:25%;*/
+  border-bottom:2px solid #18cb6d;
+  position:absolute;
+  bottom:0;
+  left:5px;
+  z-index: 1001;}
+
+
+  section{width: 100%;position: absolute;}
+   section #timeslot{width: 95%;position: relative;margin: 0 auto;margin-top: 50px;}
+     section ul{}
+   section ul li{
+     /*  float: left; */
+    width: 65px;
+    height:35px;
+    /*padding: 5px;*/
+
+    margin: 5px;
+    text-align: center;
+    line-height: 35px;
+    display: inline-block;
+    font-size: 1.5em;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #F0F2F5;
+
+   }
+   section ul li .close{
+    background-color: #808080;
+        color: #666;
+   }
+
+</style>
+</head>
+<body onload="loaded()">
+<!-- <div id="header">iScroll</div> -->
+
+<header>
+    <div class="head_left">
+     
+    
+    </div>
+    <div class="head_center">时间表</div>
+    <div class="head_right">
+      <img src="App_Themes/images/back01.png" style="z-index:2"/>
+    </div>
+
+    <div id="wrapper">
+      <div id="scroller">
+        <ul>
+          <li>08-07<br>星期一</li>
+          <li>08-08<br>星期二</li>
+          <li>08-09<br>星期三</li>
+          <li>08-10<br>星期四</li>
+          <li>08-11<br>星期五</li>
+          <li>08-12<br>星期六</li>
+          <li>08-13<br>星期七</li>         
+           <i></i>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section>
+      
+        <div id="timeslot">
+          
+           <ul>
+            
+             
+
+          </ul>
+
+        </div>
+       
+
+      
+    
+  </section>
+<script type="text/javascript">
+var days = 7;
+$("#wrapper #scroller").css("width", days * 55+10);
+
+var snow = getNowFormatDate();   
+// getAjax.setLocalStorage('cmdate',snow);
+$(document).ready(function() {
+     
+     $("#scroller ul i").animate({"left":"20px"});
+
+     loaddata();
+
+  })
+    function home(){
+
+      window.location.href = "index.html";
+    }
+    function shifu(){
+
+
+      window.location.href = "MasterWoker_list.html";
+    }
+  $("#scroller ul li").live("click",function(){
+  // $("nav ul li").click(function(){
+        $("#scroller ul li").css("color","#666666");
+         // $("#scroller ul *").css("border","none");
+        $(this).css("color","#18cb6d");
+         // $(this).css("border-color","#18cb6d");
+          // $(this).css("border-bottom","2px solid #18cb6d");
+
+
+    var index = $(this).index();
+    
+    var aside = $(".aside_list aside");
+
+    $("#scroller ul i").animate({"left":index * 53/2+2+ "px"});
+    
+    aside.eq(index).fadeIn().siblings("aside").fadeOut();
+  });
+
+
+
+  function loaddata(){
+
+
+
+     var Master = JSON.parse(getAjax.getSessionStorage('Master'));  
+     var project = JSON.parse(getAjax.getSessionStorage('project'));  
+    
+    server = "";
+    
+    params = {
+      url: "worker/getAvailableTimeslots0",
+      workerId:Master.id,//测试北京
+      projectid: project.id,
+      number:1    
+        
+         };
+      console.log(params);
+
+    getAjax.getAction(server,params,function(res){
+      console.log('加载师傅可用时间',res);
+      if(res['code']==0){
+        
+               var daylist = res['info']['timeList'];
+
+                
+               for(var i=0;i<daylist.length;i++){
+                  
+               
+                  dateArray[i] = daylist[i]['date'];
+
+                  var dayclocklist = daylist[i]['timeslot'];
+                  // console.log('dayclocklist'+i+dayclocklist);
+
+                  // for (var j=0;j<dayclocklist.length;j++){
+                    var k =0;
+                    for (var j=0;j<25;j++){
+                    
+                       if (dayclocklist[j]){
+
+                          clockArray[i][k] = clockMap.get(j); 
+                          
+                          // console.log('clockMap[j]'+j+dateArray[i][k]);
+
+                          console.log(i+'--clockMap--'+j+'--'+clockArray[i][k]);
+                          k = k + 1;
+
+                       }
+                      
+
+                  }
+
+               }
+               console.log(dateArray);
+               console.log(clockArray);   
+
+                var htm =  '';
+               for (m=0;m<dateArray.length;m++){
+                 
+                 htm = htm +'<li onclick=seltimeslot(this) data-date='+dateArray[m]+' data-id='+m+'>'+dateArray[m].substring(6)+'<br>星期'+getDateWeek(dateArray[m])+'</li>'
+                 htm = htm + '<i></i>'
+
+               }    
+
+               $('#scroller ul').empty().append(htm);
+
+                daytimeslot(0);
+
+      }
+      
+    },function(error){});
+  }
+
+   function seltimeslot(item){
+     
+      var date = $(item).attr('data-date');
+      
+      if (date){snow = date;}
+      
+     var dayindex = $(item).attr('data-id');
+    
+       daytimeslot(dayindex);  
+      
+      
+
+   }
+  function daytimeslot(dayindex){
+          var htm =  '';
+          for(var i=0;i<clockArray[dayindex].length;i++){
+             
+              htm = htm +'<li onclick=settime(this) data-id='+clockArray[dayindex][i]+'>'+clockArray[dayindex][i]+'</li>';
+          }
+           
+            console.log(htm);
+            $('section #timeslot ul').empty().append(htm);
+           
+   
+  }
+
+  function settime(item){
+
+      $(item).css('background','rgb(24,203,109)');
+      $(item).css('color','rgb(255,255,255)');
+      
+       var time = $(item).attr('data-id');
+
+       var currentdate = snow  + ' '+time+':00';
+
+       getAjax.setSessionStorage('datetime',currentdate);
+
+  }
+  var dateArray = null;
+  var clockArray = null;
+  var clockMap = null;
+  function initclock(){
+         dateArray = new Array(7);       
+         clockArray = new Array(7);
+
+         for(k=0;k<7;k++){
+
+      clockArray[k] = new Array();
+
+         }         
+         clockMap = new Map(); 
+         clockMap.put(0,'10:30');
+         clockMap.put(1,'11:00');
+         clockMap.put(2,'11:30');
+         clockMap.put(3,'12:00');
+         clockMap.put(4,'12:30');
+         clockMap.put(5,'13:00');
+         clockMap.put(6,'13:30');
+         clockMap.put(7,'14:00');
+         clockMap.put(8,'14:30');
+         clockMap.put(9,'15:00');
+         clockMap.put(10,'15:30');
+         clockMap.put(11,'16:00');
+         clockMap.put(12,'16:30');
+         clockMap.put(13,'17:00');
+         clockMap.put(14,'17:30');
+         clockMap.put(15,'18:00');
+         clockMap.put(16,'18:30');
+         clockMap.put(17,'19:00');
+         clockMap.put(18,'19:30');
+         clockMap.put(19,'20:00');
+         clockMap.put(20,'20:30');
+         clockMap.put(21,'21:00');
+         clockMap.put(22,'21:30');
+         clockMap.put(23,'22:00');
+         clockMap.put(24,'22:30');
+  }
+  initclock();
+
+
+  function Map() {  
+ var struct = function(key, value) {  
+  this.key = key;  
+  this.value = value;  
+ }  
+   
+ var put = function(key, value){  
+  for (var i = 0; i < this.arr.length; i++) {  
+   if ( this.arr[i].key === key ) {  
+    this.arr[i].value = value;  
+    return;  
+   }  
+  }  
+   this.arr[this.arr.length] = new struct(key, value);  
+ }  
+   
+ var get = function(key) {  
+  for (var i = 0; i < this.arr.length; i++) {  
+   if ( this.arr[i].key === key ) {  
+     return this.arr[i].value;  
+   }  
+  }  
+  return null;  
+ }  
+   
+ var remove = function(key) {  
+  var v;  
+  for (var i = 0; i < this.arr.length; i++) {  
+   v = this.arr.pop();  
+   if ( v.key === key ) {  
+    continue;  
+   }  
+   this.arr.unshift(v);  
+  }  
+ }  
+   
+ var size = function() {  
+  return this.arr.length;  
+ }  
+   
+ var isEmpty = function() {  
+  return this.arr.length <= 0;  
+ }   
+ this.arr = new Array();  
+ this.get = get;  
+ this.put = put;  
+ this.remove = remove;  
+ this.size = size;  
+ this.isEmpty = isEmpty;  
+} 
+//var strTime="2015-08-06"; 字符串日期格式
+function getDateWeek(strdate)
+{
+  var date= new Date(Date.parse(strdate.replace(/-/g,   "/"))); //转换成Data();
+  var month=date.getMonth()+1; //获取当前月份
+
+  date.getYear();        //获取当前年份(2位)
+  date.getFullYear();    //获取完整的年份(4位,1970-????)
+  date.getMonth();       //获取当前月份(0-11,0代表1月)
+  date.getDate();        //获取当前日(1-31)
+  date.getDay();         //获取当前星期X(0-6,0代表星期天)  
+
+
+     switch(date.getDay())
+     {
+        case 0:
+            week="日";
+            break;
+        case 1:
+            week="一";
+            break;
+        case 2:
+            week="二";
+            break;
+        case 3:
+            week="三";
+            break;
+        case 4:
+            week="四";
+            break;
+        case 5:
+            week="五";
+            break;
+        case 6:
+            week="六";
+            break;
+     }
+     return week;
+
+}
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+
+    return currentdate;
+}
+
+</script>
+
+</body>
+</html>

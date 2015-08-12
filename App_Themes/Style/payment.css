@@ -1,0 +1,204 @@
+/*==header==*/
+header{
+	width:100%;
+	height:50px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 1300;
+}
+
+.head_left{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 999;
+}
+.head_left > img{
+	display:block;
+	float:left;
+	padding: 16px 4px 0 13px;
+  	width: 13px;
+}
+
+.head_center{
+	width:100%;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	position:absolute;
+	top:0;
+	font-size:1.7em;
+	/*font-weight:bold;*/
+}
+
+.head_right{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	font-size:1.4em;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index: 999;
+}
+
+section{
+	width:100%;
+	height:100%;
+	background:#e9ecf1;
+
+	position:absolute;
+	top:51px;
+	left:0px;
+	bottom:0px;
+}
+
+.text_box{
+	width: 100%;
+	background-color: white;
+	/*line-height: 30px;*/
+	margin-bottom: 20px;
+	box-shadow: ;
+}
+
+.text_box ul{
+	width: 90%;
+	margin-left: 5%;
+}
+.text_box_li{
+	height: 50px;
+	font-size: 1.4em;
+	line-height: 50px;
+	border-bottom: 1px solid #dcdcdc;
+	color: #333333;
+}
+.text_box_project{
+	height: 100px;
+	font-size: 1.4em;
+	line-height: 100px;
+	border-bottom: 1px solid #dcdcdc;
+}
+.text_box_project img{
+	margin-top: 15px;
+}
+.name{
+	position: absolute;
+	top: 88px;
+	left: 100px;
+	font-size: large;
+}
+.sex{
+	position: absolute;
+	left: 146px;
+	top: 88px;
+	font-size: smaller;
+	color: #666666;
+}
+.ordernum{
+	position: absolute;
+	right: 20px;
+	top: 88px;
+	color: #666666;
+}
+.projectname{
+	position: absolute;
+	margin-top: 10px;
+	left: 100px;
+	color: #666666;
+}
+.transport_price{
+	float: right;
+	color: #18CB6D;
+}
+.project_price{
+	float: right;
+}
+.y_next{
+	float: right;
+	margin-top: 10px;
+}
+.smaller{
+	font-size: 0.9em;
+	color: #666666;
+}
+.text_box_li_user{
+	height: 30px;
+	font-size: 1.3em;
+	line-height: 30px;
+	color: #333333;
+}
+.text_box_coupon{
+	height: 50px;
+	font-size: 1.4em;
+	line-height: 50px;
+}
+.paytype{
+	margin-top: -20px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.5em;
+	margin-left: 5%;
+	color: #808080;
+}
+.pay_channel{
+	width: 40px;
+	margin-top: 5px;
+}
+.pay_text{
+	position: absolute;
+	left: 70px;
+}
+.pay_check{
+	float: right;
+	margin-top: 10px;
+	height: 30px;
+}
+#cardMoney{
+	color: #666666;
+}
+
+/*==footer==*/
+footer{
+	width:100%;
+	height:50px;
+	background:#ffffff;
+	border-top:1px solid #dcdcdc;
+
+	position:fixed;
+	bottom:0;
+	left:0;
+}
+footer div:first-child{
+	float: right;
+	height: 30px;
+	background-color: #F0722D;
+	margin-top: 10px;
+	line-height: 30px;
+	margin-right: 5%;
+	width: 83px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.5em;
+	color: white;
+}
+footer div:last-child{
+	float: right;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 1.5em;
+	color: #18CB6D;
+}

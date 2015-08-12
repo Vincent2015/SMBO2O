@@ -1,0 +1,321 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"f",
+				"FAFAFA"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"p",
+				"padding-top"
+			],
+			[
+				"tet",
+				"text-align"
+			],
+			[
+				"MA",
+				"margin-left"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"PA",
+				"padding-left"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"font-s",
+				"font-style"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"te",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/D/SVN_View/html5/WebApp/index-1.html",
+		"/D/tomcat/conf/web.xml",
+		"/D/tomcat/conf/server.xml",
+		"/D/tomcat/conf/tomcat-users.xml",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/api.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/index.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/getAjax.js",
+		"/C/Users/Administrator.USER-20150720SG/Desktop/home.html",
+		"/D/SVN_View/html5/WebApp/MasterWorker_details.html",
+		"/D/SVN_View/html5/WebApp/MasterWorker_order.html",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/appointment.css",
+		"/D/SVN_View/html5/WebApp/MaseterWoker_list.html",
+		"/D/SVN_View/html5/WebApp/index.html",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/index.css",
+		"/D/用户目录/下载/e6d38dac864aeb32b99caff2009afa95/assets/widget/index.html",
+		"/D/SVN_View/html5/WebApp/appointment.html",
+		"/D/WX/backup/ayibang-master/html/setting-win.html",
+		"/D/WX/backup/ayibang-master/html/me.html",
+		"/D/SVN_View/html5/WebApp/Goods_details.html",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/public/styles.css",
+		"/D/WebApp/life.html",
+		"/D/SVN_View/html5/wx/js/getAjax.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/Goods_details.css",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/Goods_details.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/public/public.css",
+		"/D/SVN_View/html5/WebApp/index111.html",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/MasterWorker_details.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Style/MasterWorker_details.css",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/yxMobileSlider.js",
+		"/F/重要资料/三食六季/三食六季/三食六季项目/3s6jweixin/index.html",
+		"/F/重要资料/三食六季/三食六季/三食六季项目/3s6jweb_111/index.html",
+		"/F/重要资料/三食六季/三食六季/三食六季项目/3s6jweixin/css/index.css",
+		"/C/Users/Administrator.USER-20150720SG/Desktop/index.html",
+		"/D/SVN_View/html5/wx/js/placeorder.js",
+		"/D/SVN_View/html5/wx/login.html"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"bottom_btn",
+			"Style",
+			"./image",
+			"item_arrow_text",
+			"28",
+			"32",
+			"bb",
+			"br",
+			"presshover",
+			"Fix",
+			"matrix",
+			"shopname",
+			"home-tuan-list",
+			"section03",
+			"section02",
+			"section01",
+			"distance",
+			"<span class=\"level-5\"></span>",
+			"shif.png",
+			"../image/master-static.png",
+			"start"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"images",
+			"App_Themes/Style",
+			"App_Themes/Style/",
+			"24",
+			"28",
+			"mastername",
+			"master-list",
+			"<img src=\"App_Themes/images/h-level.png\">",
+			"master.png",
+			"App_Themes/images/shif.png"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "wx2.0.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 350.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
