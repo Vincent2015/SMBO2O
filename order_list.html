@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>iScroll demo: simple</title>
+ <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+<script type="text/javascript" src="App_Themes/Script/iscroll.js"></script>
+<script src="App_Themes/Script/getAjax.js"></script>
+<script src="App_Themes/Script/toast.js"></script> 
+<script type="text/javascript">
+
+var myScroll,
+	pullDownEl, pullDownOffset,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+function pullDownAction () {
+	// setTimeout(function () {	
+	// 	var el, li, i;
+	// 	el = document.getElementById('thelist');
+
+	// 	for (i=0; i<3; i++) {
+	// 		li = document.createElement('li');
+	// 	    li.innerHTML = '<li><div class="up_div">'
+	// 					+'<img class="headphoto" src="App_Themes/images/shif.png">'
+	// 					+'<div class="left_div">'
+	// 						+'<div class="name">玉堂</div>'
+	// 						+'<div class="projectNameGrade">上品足浴(初级)</div>'
+	// 						+'<div class="projectNameGrade">2015-06-18 15:00-16:00</div>'
+	// 					+'</div>'
+	// 					+'<div class="right_div">'
+	// 						+'<div class="orderPrice">￥129</div>'
+	// 						+'<div class="projectNameGrade">已支付</div>'
+	// 					+'</div>'
+	// 				+'</div>'
+	// 				+'<div class="bottom_div">'
+	// 					+'<div class="bottom_left_div">订单只保留30分钟</div>'
+	// 					+'<div class="bottom_right_div">加钟</div>'
+	// 					+'<div class="bottom_right_div">催单</div>'
+	// 				+'</div>'
+	// 				+'<div class="orderBr"></div>'
+
+	// 		+'</li>';
+
+	// 		el.appendChild(li, el.childNodes[0]);
+	// 	}
+		
+	// 	myScroll.refresh();		
+	// 	pullDownEl = document.getElementById('pullDown');
+	// 	pullDownEl.style.display = "none";
+	// }, 1000);	
+	   setTimeout(function (){
+                initUnfinished();
+				myScroll.refresh();	
+			   	pullDownEl = document.getElementById('pullDown');
+       			pullDownEl.style.display = "none";
+
+		}, 1000);
+}
+
+function pullUpAction () {
+	// setTimeout(function () {	
+	// 	var el, li, i;
+	// 	el = document.getElementById('thelist');
+
+	// 	for (i=0; i<3; i++) {
+	// 		li = document.createElement('li');
+	// 		  li.innerHTML = '<li><div class="up_div">'
+	// 					+'<img class="headphoto" src="App_Themes/images/shif.png">'
+	// 					+'<div class="left_div">'
+	// 						+'<div class="name">玉堂</div>'
+	// 						+'<div class="projectNameGrade">上品足浴(初级)</div>'
+	// 						+'<div class="projectNameGrade">2015-06-18 15:00-16:00</div>'
+	// 					+'</div>'
+	// 					+'<div class="right_div">'
+	// 						+'<div class="orderPrice">￥129</div>'
+	// 						+'<div class="projectNameGrade">已支付</div>'
+	// 					+'</div>'
+	// 				+'</div>'
+	// 				+'<div class="bottom_div">'
+	// 					+'<div class="bottom_left_div">订单只保留30分钟</div>'
+	// 					+'<div class="bottom_right_div">加钟</div>'
+	// 					+'<div class="bottom_right_div">催单</div>'
+	// 				+'</div>'
+	// 				+'<div class="orderBr"></div>'
+
+	// 		+'</li>';
+
+	// 		el.appendChild(li, el.childNodes[0]);
+	// 	}
+		
+	// 	myScroll.refresh();		
+	// 	pullUpEl = document.getElementById('pullUp');
+	// 	pullUpEl.style.display = "none";
+	// }, 1000);	
+		setTimeout(function (){
+                initUnfinished();
+				myScroll.refresh();	
+			    pullUpEl = document.getElementById('pullUp');
+	         	pullUpEl.style.display = "none";
+
+		}, 1000);
+}
+
+function loaded() {
+	pullDownEl = document.getElementById('pullDown');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+	
+	myScroll = new iScroll('wrapper', {
+		useTransition: true,
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+			if (pullDownEl.className.match('loading')) {
+				pullDownEl.className = '';
+				// pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+			} else if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				// pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y > 5 && !pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'flip';
+				// pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh...';
+				this.minScrollY = 0;
+			} else if (this.y < 5 && pullDownEl.className.match('flip')) {
+				pullDownEl.className = '';
+				// pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+				this.minScrollY = -pullDownOffset;
+			} else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				// pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Release to refresh...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				// pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+				this.maxScrollY = pullUpOffset;
+			}
+		},
+		onScrollEnd: function () {
+			if (pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'loading';
+				// pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';				
+				pullDownAction();	// Execute custom function (ajax call?)
+			} else if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				// pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';				
+				pullUpAction();	// Execute custom function (ajax call?)
+			}
+		}
+	});
+	
+	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+</script>
+
+<style type="text/css" media="all">
+body,ul,li {
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+}
+
+/*#header {
+	position:absolute; z-index:2;
+	top:0; left:0;
+	width:100%;
+	height:45px;
+	line-height:45px;
+	background-color:#d51875;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fe96c9), color-stop(0.05, #d51875), color-stop(1, #7b0a2e));
+	background-image:-moz-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	background-image:-o-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	padding:0;
+	color:#eee;
+	font-size:20px;
+	text-align:center;
+}
+
+#header a {
+	color:#f3f3f3;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#footer {
+	position:absolute; z-index:2;
+	bottom:0; left:0;
+	width:100%;
+	height:48px;
+	background-color:#222;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+}*/
+header{
+	width:100%;
+	height:49px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 1300;
+}
+
+.head_left{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 999;
+}
+.head_left > img{
+	display:block;
+	float:left;
+	padding: 11px 4px 0 13px;
+  	width: 13px;
+}
+
+.head_center{
+	width:100%;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	position:absolute;
+	top:0;
+	font-size:1.7em;
+	/*font-weight:bold;*/
+}
+
+.head_right{
+	height:50px;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index: 999;
+}
+.head_right > img{
+	display:block;
+	padding: 14px 13px 0 13px;
+  	width: 22px;
+}
+ .head_center{
+       	background:#18cb6d;
+       	color: #FFFFFF !important;
+       }
+
+nav{
+	width:100%;
+	height:36px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position: absolute;
+	top:50px;
+
+}
+
+nav ul{
+	width:100%;
+	height:36px;
+	margin:0 auto;
+
+	position:relative;
+}
+
+nav ul li{
+	float:left;
+	line-height:34px;
+	width:50%;
+	text-align:center;
+	border-bottom:2px solid #fff;
+	color:#333333;
+	list-style: none;
+}
+nav ul i{
+	width:50%;
+	border-bottom:2px solid #18cb6d;
+	position:absolute;
+	bottom:0;
+	left:0;
+	z-index: 1001;
+}
+
+#wrapper {
+	position:absolute; z-index:1;
+	top:85px; bottom:50px; left:-9999px;
+	width:100%;
+	background:rgb(233,236,241);
+	overflow:auto;
+	margin-top: 0px;
+}
+
+#scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	background-color: #e9ecf1;
+	width:100%;
+	padding:0;
+}
+
+#scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+	background-color: #e9ecf1;
+}
+
+#scroller li {
+	padding:0px;
+	height:auto;
+	line-height:40px;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#fafafa;
+	font-size:14px;
+}
+
+#myFrame {
+	position:absolute;
+	top:0; left:0;
+}
+/**
+ *
+ * Pull down styles
+ *
+ */
+#pullDown, #pullUp {
+	background:#fff;
+	height:40px;
+	line-height:40px;
+	padding:0px 10px;
+	border-bottom:1px solid #ccc;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+	z-index: 1499;
+}
+
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; /*float:left;*/
+	position: relative;
+    margin:0 auto;
+	width:40px; height:40px;
+	background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
+.pullDownLabel,.pullUpLabel{
+	position: relative;
+    margin:0 auto;
+	width:60px; height:30px;
+}
+.left_div{
+	float: left;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+.right_div{
+	float: right;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-right: 5%;
+}
+
+.up_div{
+	height: 100px;
+	border-bottom: 1px solid #dcdcdc;
+	width: 100%;
+}
+.bottom_div{
+	clear: both;
+	height: 50px;
+}
+
+.headphoto{
+	float: left;
+	margin-top: 15px;
+	margin-left: 5px;
+}
+
+.bottom_right_div{
+	float: right;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-right: 10px;
+	height: 30px;
+	width: 83px;
+	border: 1px solid #18CB6D;
+	border-radius: 5px;
+	text-align: center;
+	color: #18CB6D;
+	font-size: 1.5em;
+}
+.bottom_right_evaluate_div{
+	float: right;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-right: 5%;
+	height: 30px;
+	width: 83px;
+	border: 1px solid #F0722D;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #F0722D;
+	color: white;
+	font-size: 1.5em;
+}
+.bottom_left_div{
+	float: left;
+	margin-top: 5px;
+	margin-left: 3%;
+	color: #666666;
+	font-size: 1em;
+}
+.name{
+	font-size: 1.3em;
+	color: #333333;
+}
+.projectNameGrade{
+	font-size: 1em;
+	color: #666666;
+
+}
+.orderPrice{
+	font-size: 1.6em;
+	color: #18CB6D;
+}
+.orderBr{
+	height: 10px;
+	background-color: #e9ecf1;
+}
+
+
+
+#scroller{
+	width:100%;
+	/*padding-bottom:50px;*/
+
+	/*position:absolute;
+	left:0;*/
+}
+#scroller .thelist{
+	width:100%;
+	/*min-height:150px;*/
+	height:auto;
+	background:#fff;
+	border-top:1px solid #dcdcdc;
+	border-bottom:1px solid #dcdcdc;
+	margin-top:0px;
+}
+#scroller .thelist > img{
+	display:block;
+	width:100%;
+	height:auto;
+}
+.none{display: none;}
+
+/*==footer==*/
+footer{
+	width:100%;
+	height:50px;
+	background:#ffffff;
+	border-top:1px solid #dcdcdc;
+
+	position:fixed;
+	bottom:0;
+	left:0;
+}
+footer ul{
+	width:100%;
+}
+footer ul li{
+	width:25%;
+	height:50px;
+	float:left;
+	text-align:center;
+	list-style-type: none;
+}
+footer ul li span{
+	display:block;
+	width:31px;
+	height:29px;
+	background:#fff;
+	margin:4px auto 0;
+}
+footer ul li p{
+	color:#6f6a6a;
+	margin-top: 1px;
+	/*padding-bottom: 5px;*/
+}
+footer ul li.light p{
+	color:#18cb6d;
+}
+footer ul li span.footer01{
+	background:url(App_Themes/images/footer_01.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li.light span.footer01{
+	background:url(App_Themes/images/footer_light01.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li span.footer02{
+	background:url(App_Themes/images/footer_02.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li.light span.footer02{
+	background:url(App_Themes/images/footer_light02.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li span.footer03{
+	background:url(App_Themes/images/footer_03.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li.light span.footer03{
+	background:url(App_Themes/images/footer_light03.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li span.footer04{
+	background:url(App_Themes/images/footer_04.png) no-repeat;
+	background-size:100% 100%;
+}
+footer ul li.light span.footer04{
+	background:url(App_Themes/images/footer_light04.png) no-repeat;
+	background-size:100% 100%;
+}
+/*==选择城市==*/
+.city{
+	position:fixed;
+	left:0;
+	z-index: 1500;
+	background:rgba(000,000,000,0.5);
+
+	width:100%;
+	height:100%;
+}
+.city div.p{
+	width:100%;
+	height:50px;
+	background:#fff;
+	line-height:30px;
+	bottom: 200px;
+ 	position: fixed;
+ 	font-size: 1.2em;
+ 	color: #999;
+}
+
+.city div.p div:first-child{
+	width: 20%;
+	float: left;
+	text-align: center;
+	height: 50px;
+	padding-top: 10px;
+	color: #F0722D;
+	font-size: 1.6em;
+}
+
+.city div.p div{
+	width: 60%;
+	float: left;
+	text-align: center;
+	height: 50px;
+	padding-top: 10px;
+	color: #82898d;
+}
+
+.city div.p div:last-child{
+	width: 20%;
+	float: left;
+	text-align: center;
+	height: 50px;
+	padding-top: 10px;
+	color: #F0722D;
+	font-size: 1.6em;
+}
+
+.city_list{
+	width:100%;
+	min-height:200px;
+	max-height:328px;
+	height:auto;
+	background:#fff;
+	margin:0 auto;
+	bottom: 0px;
+ 	position: fixed;
+ 	font-size: 1.4em;
+ 	color: #333;
+}
+
+.city_list ul{
+	clear:both;
+	width:100%;
+	min-height:200px;
+	height: 200px;
+	margin:0 auto;
+}
+/*.city ul li{
+	float:left;
+	padding:5px 18px;
+	background:#f6f6f6;
+	margin:10px 5px 6px 5px;
+	border-radius: 5px;
+	border:1px solid #d7d7d7;
+	color:#82898d;
+}*/
+.city_list ul li{
+	float: left;
+	width: 100%;
+	height: 38px;
+	text-align: center;
+	line-height: 38px;
+	background: #fff;
+	margin: 0px;
+	border-radius: 3px;
+	border-top: 1px solid #d7d7d7;
+}
+.city_list ul li:hover{
+	background:#F0722D;
+	color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- <div id="header"><a href="http://cubiq.org/iscroll">iScroll</a></div> -->
+<header>
+		<div class="head_left" onclick="goback()">
+			<!-- <img src="App_Themes/images/back01.png"/> -->
+			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
+		</div>
+		<div class="head_center">浏览订单</div>
+		<nav>
+			<ul>
+				<li id="unfinished">进行中</li>
+				<li id="finished">已完成</li>
+				<i></i>
+			</ul>
+		</nav>
+</header>
+<div id="wrapper">
+	<div id="scroller">
+		<div id="pullDown" class="none">
+			<p class="pullDownIcon"></p><p class="pullDownLabel"></p>
+		</div>
+
+		<ul id="thelist" class="thelist">
+
+			<li>
+				 <div class="up_div">
+						<img class="headphoto" src="App_Themes/images/shif.png">
+						<div class="left_div">
+							<div class="name">玉堂</div>
+							<div class="projectNameGrade">上品足浴(初级)</div>
+							<div class="projectNameGrade">2015-06-18 15:00-16:00</div>
+						</div>
+						<div class="right_div">
+							<div class="orderPrice">￥129</div>
+							<div class="projectNameGrade">已支付</div>
+						</div>
+					</div>
+					<div class="bottom_div">
+						<div class="bottom_left_div">订单只保留30分钟</div>
+						<div class="bottom_right_div">加钟</div>
+						<div class="bottom_right_div">催单</div>
+					</div>
+					<div class="orderBr"></div>
+			</li>
+			<li>
+				 <div class="up_div">
+						<img class="headphoto" src="App_Themes/images/shif.png">
+						<div class="left_div">
+							<div class="name">玉堂</div>
+							<div class="projectNameGrade">上品足浴(初级)</div>
+							<div class="projectNameGrade">2015-06-18 15:00-16:00</div>
+						</div>
+						<div class="right_div">
+							<div class="orderPrice">￥129</div>
+							<div class="projectNameGrade">已支付</div>
+						</div>
+					</div>
+					<div class="bottom_div">
+						<div class="bottom_left_div">订单只保留30分钟</div>
+						<div class="bottom_right_div">加钟</div>
+						<div class="bottom_right_div">催单</div>
+					</div>
+					<div class="orderBr"></div>
+			</li>
+		</ul>
+		<ul id="thelist1" class="thelist" style="display:none">
+		</ul>
+		<div id="pullUp" class="none">
+			<p class="pullUpIcon"></p><p class="pullUpLabel"></p>
+		</div>
+	</div>
+</div>
+<footer>
+      <ul>
+          <li onclick="home()">
+              <span class="footer01"></span>
+              <p>首页</p>
+          </li>
+          <li onclick="shifu()">
+              <span class="footer02"></span>
+              <p>师傅</p>
+          </li>
+          <li  class="light" onclick="">
+              <span  class="footer03" id="dingdan"></span>
+              <p>订单</p>
+          </li>
+          <li onclick="user()">
+              <span  class="footer04"></span>
+              <p>我</p>
+          </li>
+      </ul>
+   </footer>
+   <div class="city" style="display:none">
+		<div class="p"><div id="_no">取消</div><div>请选择取消原因</div><div id="_yes">确定</div></div>
+		<div class="city_list">
+			<ul>
+				<li class="lis">临时有事，不做了</li>
+				<li class="lis">师傅规定时间无法到达</li>
+				<li class="lis">更换别的项目</li>
+				<li class="lis">不同意更换别的师傅</li>
+				<li class="lis">价格太高了</li>
+			</ul>
+		</div>
+	</div>
+<script type="text/javascript">
+   var cur_page = 0;
+   var cur_page1 = 0;
+	$("nav ul li").click(function(){
+		var index = $(this).index();
+		
+		var aside = $(".aside_list aside");
+		$("nav ul i").animate({"left":index * 50 + "%"});
+		aside.eq(index).fadeIn().siblings("aside").fadeOut();
+
+		if(index==0){
+			
+			$("#thelist").css('display','block');
+			$("#thelist1").css('display','none');
+			if (cur_page==0){
+				initUnfinished();
+
+			}
+
+
+		}else if(index==1){
+
+			$("#thelist1").css('display','block');
+			$("#thelist").css('display','none');
+			if (cur_page1==0){
+				initFinished();
+
+			}
+
+		}
+		
+	});
+    
+     initpage();
+     function initpage() {
+		initUnfinished();
+		// initFinished();		
+	}
+    
+   //未完成订单列表 全部加载
+	function initUnfinished(){
+		server = "";
+		params = {
+			url: "order/getMyOrdersToUserToNew",
+			userid: JSON.parse(getAjax.getLocalStorage("user"))['id'],
+			type: 1,
+			page: cur_page,
+			rows: 10
+		};
+		getAjax.getAction(server,params,function(res){
+			console.log('加载未完成订单',res);
+			if(res['code']==0){
+			
+				var unfinishedOrderList = res['info']['rows'];
+
+				// var template=$('#template_1').innerHTML;
+				// var obj=[{name:'d1'},{name:'d2'},{name:'d3'}];
+				// //传递一个有数据的数组进去
+				// $('.list').innerHTML=doT.template( template )( unfinishedOrderList );
+				// //传入的数据为空
+				// // document.getElementById('showInfo2').innerHTML=doT.template( template )( [] );
+
+				if(unfinishedOrderList.length==0){
+					new Toast({context:$('body'),message:'已经没有更多了'}).show(); 
+					return;
+
+				}
+				var htm = '';
+				for(var i=0;i<unfinishedOrderList.length;i++){
+					htm =  htm + '<li><div class="up_div" onclick="window.location.href=\'order_detail.html?orderId='+unfinishedOrderList[i]['id']+'\'">'+
+										'<img class="headphoto" src="'+getAjax.workimg+unfinishedOrderList[i]['headPhoto']+'">'+
+										'<div class="left_div">'+
+											'<div class="name">'+unfinishedOrderList[i]['workerName']+'</div>'+
+											'<div class="projectNameGrade">'+unfinishedOrderList[i]['projectName']+'('+unfinishedOrderList[i]['gradeName']+')</div>'+
+											'<div class="projectNameGrade">'+unfinishedOrderList[i]['startOrderTime']+'</div>'+
+										'</div>'+
+										'<div class="right_div">'+
+											'<div class="orderPrice">￥'+unfinishedOrderList[i]['orderPrice']+'</div>';
+											if(unfinishedOrderList[i]['orderPayStatus']==0){
+												htm = htm + '<div class="projectNameGrade">未支付</div>';
+											} else {
+												htm = htm + '<div class="projectNameGrade">已支付</div>';
+											}
+							htm =  htm + '</div>'+
+									'</div>'+
+									'<div class="bottom_div">';
+										if(unfinishedOrderList[i]['orderPayStatus']==0){
+											htm = htm +	'<div class="bottom_left_div">订单只保留30分钟</div>'+ 
+														'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">删除</div>'+
+														'<div class="bottom_right_div"  onclick="window.location.href=\'payment.html?orderId='+unfinishedOrderList[i]['id']+'\'">支付</div>';
+										} else {
+											htm = htm + '<div class="bottom_right_div" onclick="window.location.href=\'add_clock.html?orderId='+unfinishedOrderList[i]['id']+'\'">加钟</div>'+
+														'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">取消</div>';
+										}
+							htm =  htm +'</div>'+
+								'<div class="orderBr"></div></li>';
+				}
+
+				  if (cur_page==0){
+
+					   $('#scroller #thelist').empty().append(htm);
+
+					}else{
+
+						$('#scroller #thelist').append(htm);
+					}
+					
+				   cur_page = cur_page + 1;
+
+			}else{
+				alert(res['message']);
+			}
+			
+			
+		},function(error){
+			alert("与服务器连接断开");
+		});
+	}
+
+
+    function initFinished(){
+		server = "";
+		params = {
+			url: "order/getMyOrdersToUserToNew",
+			userid: JSON.parse(getAjax.getLocalStorage("user"))['id'],
+			type: 2,
+			page: cur_page,
+			rows: 10
+		};
+		getAjax.getAction(server,params,function(res){
+			console.log('加载已完成订单',res);
+			cur_page++;
+			if(res['code']==0){
+				var unfinishedOrderList = res['info']['rows'];
+
+				// var template=$('#template_1').innerHTML;
+				// var obj=[{name:'d1'},{name:'d2'},{name:'d3'}];
+				// //传递一个有数据的数组进去
+				// $('.list').innerHTML=doT.template( template )( unfinishedOrderList );
+				// //传入的数据为空
+				// // document.getElementById('showInfo2').innerHTML=doT.template( template )( [] );
+				if(unfinishedOrderList.length==0){
+					new Toast({context:$('body'),message:'已经没有更多了'}).show(); 
+					return;
+
+				}
+
+				var htm = '';
+				for(var i=0;i<unfinishedOrderList.length;i++){
+					htm =  htm + '<div class="up_div" onclick="window.location.href=\'order_detail.html?orderId='+unfinishedOrderList[i]['id']+'\'">'+
+										'<img class="headphoto" src="'+getAjax.workimg+unfinishedOrderList[i]['headPhoto']+'">'+
+										'<div class="left_div">'+
+											'<div class="name">'+unfinishedOrderList[i]['workerName']+'</div>'+
+											'<div class="projectNameGrade">'+unfinishedOrderList[i]['projectName']+'('+unfinishedOrderList[i]['gradeName']+')</div>'+
+											'<div class="projectNameGrade">'+unfinishedOrderList[i]['startOrderTime']+'</div>'+
+										'</div>'+
+										'<div class="right_div">'+
+											'<div class="orderPrice">￥'+unfinishedOrderList[i]['orderPrice']+'</div>'+
+											'<div class="projectNameGrade">已完成</div>'+
+										'</div>'+
+									'</div>'+
+									'<div class="bottom_div">';
+									if(unfinishedOrderList[i]['userEvaluateStatus']==0){
+							htm =  htm + '<div class="bottom_right_evaluate_div" onclick="window.location.href=\'order_evaluate.html?orderId='+unfinishedOrderList[i]['id']+'\'">评价</div>';
+									}
+							htm =  htm + '<div class="bottom_right_div" onclick="window.location.href=\'index.html?orderId='+unfinishedOrderList[i]['id']+'\'">再次预约</div>'+
+										'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">删除</div>'+
+									'</div>'+
+								'<div class="orderBr"></div>';
+				}
+
+
+					 if (cur_page1==0){
+
+						   $('#scroller #thelist1').empty().append(htm);
+
+						}else{
+
+							$('#scroller #thelist1').append(htm);
+						}
+						
+					   cur_page1 = cur_page1 + 1;
+			}else{
+				alert(res['message']);
+			}
+			// $('.list:last').append(htm);
+			// loaded(initFinished);
+		},function(error){
+			alert("与服务器连接断开");
+		});
+	}
+	
+
+	function popCancelOrder(orderid){
+		$(".city").css("display","block");
+		$("#_yes").unbind("click");
+
+		$("#_yes").bind("click",function(){
+			cancelOrder(orderid);
+		});
+	}
+	function cancelOrder(orderid){
+		server = "";
+		params = {
+			url: "order/userCancelOrder",
+			userid: '31a4a60eea5149c3ad4aeb35f967dd02',//测试北京
+			orderid: orderid,
+			exceptionOrderReason: cancel_reason
+		};
+		getAjax.getAction(server,params,function(res){
+			console.log('取消订单',res);
+			if(res['code']==0){
+				alert("取消成功");
+				$(".city").css("display","none");
+				initUnfinished();
+			}else{
+				alert(res['message']);
+			}
+		},function(error){
+			alert("与服务器连接断开");
+		});
+	}
+	function delOrder(){
+		alert("adsf");
+		// if(confirm("确认删除该订单吗?")){
+		// 	server = "";
+		// 	params = {
+		// 		url: "order/deleteOrderByOrderId",
+		// 		orderid: orderid
+		// 	};
+		// 	getAjax.getAction(server,params,function(res){
+		// 		console.log('删除订单',res);
+		// 		if(res['code']==0){
+		// 			alert("删除成功");
+		// 			initFinished();
+		// 		}else{
+		// 			alert(res['message']);
+		// 		}
+		// 	},function(error){
+		// 		alert("与服务器连接断开");
+		// 	});
+		// }
+	}
+
+	 function home(){
+    	window.location.href = "index.html";
+    }
+  function shifu(){
+  	window.location.href = "MasterWorker_list.html";
+  }
+
+  function order(){
+   var user =getAjax.getLocalStorage('user'); 
+
+     if (!user){
+
+        window.location.href = "login.html?backUrl=orderlist";
+         return;
+
+     }  
+    // window.location.href = "orderlist.html";
+  }
+
+   function user(){
+    var user =getAjax.getLocalStorage('user'); 
+
+     if (!user){
+
+        window.location.href = "login.html?backUrl=User_index";
+        return;
+
+     }  
+    window.location.href = "User_index.html";
+  }
+
+  $("#_no").bind("click",function(){
+		$(".city").css("display","none");
+	});
+	$(".lis").bind("click",function(){
+		cancel_reason = $(this).html();
+	});
+
+</script>
+
+</body>
+</html>

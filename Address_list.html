@@ -51,7 +51,7 @@
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			
 		</div>
@@ -115,6 +115,12 @@
   /*id为空代表添加；不为空则为修改*/
    function getaddresslist(){ 
      var user = getAjax.getLocalStorage('user');
+     if (!user){
+
+        window.location.href = "login.html?backUrl=Address_list";
+         return;
+
+     }
      var uid = (JSON.parse(user).id);
 
       server = "";    
@@ -139,7 +145,7 @@
           for(var i=0;i<addrList.length;i++){
            
 
-             html= html + '<li class="" onclick="getself(this)" data-id='+addrList[i].id+' ><span class="info"><h2>'+ addrList[i].userName+'&nbsp;&nbsp;'+addrList[i].userPhone+'</h2><h3>'+ addrList[i].placeName+'</h3></span><span class="edit" onclick="modaddr(this)"><img src="App_Themes/images/edit.png"></span><span class="del"><button onclick="deladdr(this)"">删除</button></span></li>';   
+             html= html + '<li class="" onclick="getself(this)" data-id='+addrList[i].id+' ><span class="info"><h2>'+ addrList[i].userName+'&nbsp;&nbsp;'+addrList[i].userPhone+'</h2><h3>'+ addrList[i].placeName+addrList[i].detailAddress+'</h3></span><span class="edit" onclick="modaddr(this)"><img src="App_Themes/images/edit.png"></span><span class="del"><button onclick="deladdr(this)"">删除</button></span></li>';   
           }
           $('#addrlist ul').empty().append(html);
 

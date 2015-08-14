@@ -118,7 +118,7 @@ window.index = (function() {
 			console.log('登录', res);
 			if (res['code'] == 0) {
 				getAjax.setLocalStorage("user",JSON.stringify(res['info']));
-				// window.location.href = backUrl + ".html";
+				window.location.href = backUrl + ".html";
 			}else{
 				alert(res['message']);
 				// getAjax.MyAlert(res['message'],function(){

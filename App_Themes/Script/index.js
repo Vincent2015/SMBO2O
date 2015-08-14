@@ -27,14 +27,16 @@ window.index = (function() {
 			var bannerList = res['info'];
 			var htm = '';
 			for(var i=0;i<bannerList.length;i++){
+				var s = 'App_Themes/images/i_img0'+(i+1)+'.png';
 				htm =  htm + '<li><a';
 				if(bannerList[i]['url']!=""&&bannerList[i]['url']!=null){
 					htm = htm + ' href="'+ bannerList[i]['url'] +'"';
 				}
-				htm = htm + '><img src="'+getAjax.activityimg+bannerList[i]['advertisingPhoto']+'"></a></li>';
+				// htm = htm + '><img src="'+getAjax.activityimg+bannerList[i]['advertisingPhoto']+'"></a></li>';
+				htm = htm + '><img src='+s+'></a></li>';
 			}
 		$('.slider ul').empty().append(htm);
-		$(".slider").yxMobileSlider({width:640,height:300,during:2000})
+		// $(".slider").yxMobileSlider({width:640,height:300,during:2000})
 		},function(error){});
 	});
 	//切换城市

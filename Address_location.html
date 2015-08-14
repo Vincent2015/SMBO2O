@@ -54,7 +54,7 @@
 	</style>
 <body>
     <header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			
 		</div>
@@ -134,24 +134,26 @@
 			// result.innerHTML = str;
             var lng = data.position.getLng();
             var lat = data.position.getLat();
-			getAjax.setLocalStorage('curLng',lng);
-			getAjax.setLocalStorage('curLat',lat);
+			// getAjax.setLocalStorage('curLng',lng);
+			// getAjax.setLocalStorage('curLat',lat);
 
 			lnglatXY = new AMap.LngLat(lng,lat);
+
+			watchPosition();
             var MGeocoder;
-			    //加载地理编码插件
-			    AMap.service(["AMap.Geocoder"], function() {        
-			        MGeocoder = new AMap.Geocoder({ 
-			            radius: 1000,
-			            extensions: "all"
-			        });
-			        //逆地理编码
-			        MGeocoder.getAddress(lnglatXY, function(status, result){
-			        	if(status === 'complete' && result.info === 'OK'){
-			        		geocoder_CallBack(result);
-			        	}
-			        });
-			    });
+			    // //加载地理编码插件
+			    // AMap.service(["AMap.Geocoder"], function() {        
+			    //     MGeocoder = new AMap.Geocoder({ 
+			    //         radius: 1000,
+			    //         extensions: "all"
+			    //     });
+			    //     //逆地理编码
+			    //     MGeocoder.getAddress(lnglatXY, function(status, result){
+			    //     	if(status === 'complete' && result.info === 'OK'){
+			    //     		geocoder_CallBack(result);
+			    //     	}
+			    //     });
+			    // });
 
 
 		};
@@ -182,10 +184,10 @@
 			function geocoder_CallBack(data) {
 				//返回地址描述
 				address = data.regeocode.formattedAddress;
-				getAjax.setLocalStorage('curaddr',address);
+				// getAjax.setLocalStorage('curaddr',address);
 					
 			
-				watchPosition();
+				
 			}
 
      document.getElementById("keyword").onkeyup = keydown;
@@ -230,11 +232,11 @@
 		    var tipArr = data.tips;
 		    //var len=tipArr.length;
 		    if (tipArr&&tipArr.length>0) {
-		     console.log(tipArr);                 
+		     // console.log(tipArr);                 
 		        for (var i = 0; i < tipArr.length; i++) {
 		            resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)
-		                        + ",this)' onclick='selectResult(" + i + ")' onmouseout='onmouseout_MarkerStyle(" + (i + 1)
-		                        + ",this)' style=\"font-size: 13px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\">" + tipArr[i].name + "<span style='color:#000000;'>"+ tipArr[i].district + "</span></div>";
+		                        + ",this)' onclick='selectResult(" + i + ",this)' onmouseout='onmouseout_MarkerStyle(" + (i + 1)
+		                        + ",this)' style=\"font-size: 13px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\" data-district='"+ tipArr[i].district+"'>" + tipArr[i].name + "<span style='color:#000000;'>"+ tipArr[i].district + "</span></div>";
 		        }
 		    }
 		    else  {
@@ -263,7 +265,7 @@
 		}
 
 				//选择输入提示关键字
-		function selectResult(index,srctype) {
+		function selectResult(index,item) {
 		    if (navigator.userAgent.indexOf("MSIE") > 0) {
 		        document.getElementById("keyword").onpropertychange = null;
 		        document.getElementById("keyword").onfocus = focus_callback;
@@ -278,6 +280,24 @@
 
 		    document.getElementById("result1").style.display = "none";
 
+		    var location = getAjax.getLocalStorage('location');
+
+		    if(!location){
+
+                location ={};
+
+		    }else{
+                 
+                 location= JSON.parse(location);
+
+		    }
+		    
+		    location.district =  $(item).attr('data-district');	
+		  
+		   	   
+            getAjax.setLocalStorage('location',JSON.stringify(location));
+		    
+
 		    // alert('selectResult'+text);
 		    placeSearch(text);
 		    
@@ -285,8 +305,8 @@
 		}
 
 
-				//选择提示进行搜素
-		function selectResultFin(index,srctype) {
+				//选择提示 进行搜素
+		function selectResultFin(index,item) {
 		    if (navigator.userAgent.indexOf("MSIE") > 0) {
 		        document.getElementById("keyword").onpropertychange = null;
 		        document.getElementById("keyword").onfocus = focus_callback;
@@ -300,8 +320,22 @@
 		    document.getElementById("result1").style.display = "none";
 
 		    // alert('selectResultFin'+text);
+		    var location =  JSON.parse(getAjax.getLocalStorage('location'));
+
+		    location.address = text;		
+
+		    location.lng = $(item).attr('data-lng');
+		    location.lat = $(item).attr('data-lat'); 
+		    
 		   	   
-            getAjax.setLocalStorage('yhaddr',text);
+            getAjax.setLocalStorage('location',JSON.stringify(location));
+            if(backUrl){
+				window.location.href = backUrl+".html";
+            }
+            else{
+
+
+            }            
            
 		   
 		}
@@ -389,13 +423,13 @@
 		    var resultStr = "";
 		    var poiArr = data.poiList.pois;
 		    var resultCount = poiArr.length;
-		    console.log(poiArr);
+		    // console.log(poiArr);
 		      if (poiArr&&poiArr.length>0) {
 
 				  for (var i = 0; i < resultCount; i++) {
-				              resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)
-				                    + ",this)' onclick='selectResultFin(" + i + ")'  onmouseout='onmouseout_MarkerStyle(" + (i + 1)
-				                    + ",this)' style=\"border-bottom:1px solid #F0F0F0;font-size: 16px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\">" + poiArr[i].name + "<span style='color:#000000;font-size: 13px'>"+ poiArr[i].address + "</span></div>";
+				              resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)+ ",this)' onclick='selectResultFin(" + i + ",this)'  onmouseout='onmouseout_MarkerStyle(" + (i + 1) + ",this)' style=\"border-bottom:1px solid #F0F0F0;font-size: 16px;cursor:pointer;padding:5px 5px 5px 5px;z-index:10;background-color: #FFFFFF !important;\" data-lng='"+ poiArr[i]['location'].lng +"' data-lat='"+ poiArr[i]['location'].lat +"'>" + poiArr[i].name + "<span style='color:#000000;font-size: 13px'>"+ poiArr[i].address + "</span></div>";
+
+						
 						   
 						    }
 
@@ -407,6 +441,12 @@
 		    document.getElementById("result").innerHTML = resultStr;
 		   
 		}
+var backUrl="";
+
+$(document).ready(function(){
+
+	backUrl = getAjax.getQueryString("backUrl");
+})
 	</script>
 </body>
 </html>

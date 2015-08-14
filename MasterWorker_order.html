@@ -36,7 +36,7 @@
 <body style="background:#efefef">
 	<!--header-->
 	<header>
-		<div class="head_left"><img src="App_Themes/images/back01.png"/></div>
+		<div class="head_left" onclick="goback()" ><img src="App_Themes/images/back01.png"/></div>
 		<div class="head_center">我要预约</div>
 		<div class="head_right"></div>
 	</header>
@@ -91,6 +91,13 @@
     function order(){
 
     	 var user = JSON.parse(getAjax.getLocalStorage('user'));
+
+    	   if (!user){
+
+       			 window.location.href = "login.html?backUrl=MasterWorker_order";
+       			 return;
+
+          }  
     	 var Master = JSON.parse(getAjax.getSessionStorage('Master'));
     	 var project = JSON.parse(getAjax.getSessionStorage('project'));
     	 var address = JSON.parse(getAjax.getSessionStorage('address'));
@@ -152,6 +159,11 @@
  	initpage();
  	function initpage(){
  		 var user = JSON.parse(getAjax.getLocalStorage('user'));
+    	  if (!user){
+
+       			 window.location.href = "login.html?backUrl=MasterWorker_order";
+       			  return;
+          }  
     	 var Master = JSON.parse(getAjax.getSessionStorage('Master'));
     	 var project = JSON.parse(getAjax.getSessionStorage('project'));
     	 var address = JSON.parse(getAjax.getSessionStorage('address'));

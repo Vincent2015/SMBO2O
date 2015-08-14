@@ -69,7 +69,7 @@
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			
 		</div>
@@ -149,6 +149,14 @@
   /*id为空代表添加；不为空则为修改*/
    function getvoucherlist(){ 
      var user = getAjax.getLocalStorage('user');
+      if (!user){
+
+        window.location.href = "login.html?backUrl=Address_new";
+         return;
+
+     }  
+
+
      var uid = (JSON.parse(user).id);
 
       server = "";    

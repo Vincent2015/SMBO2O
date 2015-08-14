@@ -15,28 +15,129 @@
     <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
     <script src="App_Themes/Script/getAjax.js"></script>
     <script type="text/javascript" src="App_Themes/Script/index.js"></script>
-    <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/swipe.js"></script>
     <style type="text/css">
 	nav{
 	     	position: absolute;
 	     	height: 35px;
 	     	width:100%;
 	     	background: #FFFFFF;
-	     	top:50px;
+	     	top:150px;
 	     	border-bottom: 1px solid #F0F0F0;
 	     	border-top: 1px solid #F0F0F0;
 	     }
+
+			.slider	{
+			  display: block;
+			  width:100%;
+			  height: 80px;
+			  position: relative;
+			  overflow: hidden;
+			  margin: 0px auto;
+			}
+	     .slider ul li a img{width: 100%;height: 80px;}
+
+	     		 /*轮播*/
+    .wrap{
+      overflow: hidden;
+      visibility: hidden;
+      position: relative;
+      width: 100%;
+      height: 150px;
+    }
+    .wrap .inline-float{
+      overflow: hidden;
+      position: relative;
+    }
+    .wrap .inline-float li {
+      float: left;
+      width: 100%;
+      height: 150px;
+      position: relative;
+      text-align: center;
+      background-repeat:no-repeat;
+      background-size: 100% 100%;
+      background-color:#f5f5f5;
+    }
+    .slide-bullet{
+      position: absolute;
+      z-index:99;
+      left: 0;
+      right: 15px;
+      bottom: 0;
+      text-align: right;
+    }
+    .slide-bullet .icon-bullet{
+      font-style:normal;
+      font-size:0;
+      background-color: #fff;
+      display: inline-block;
+      width:5px;
+      height:5px;
+      border-radius: 5px;
+     /* margin: 2px;*/
+    }
+    .slide-bullet .icon-bullet.active{
+      background-color: #999;
+    }
+      /*end 轮播*/ 
+		
+	#swipe{
+	 position: absolute;
+	 margin-top: 20px;
+	}	
+	.swipe {	
+		width: 100%;	
+        background-color: #fff;	
+        overflow: hidden;	
+        position: relative;	
+    }	
+    .swipe-wrap {	
+        overflow: hidden;	
+        position: relative;	
+    }	
+    .swipe-wrap .swipe-box {	
+    	padding-bottom: 10px;	
+        float: left;	
+        width: 100%;	
+        position: relative;	
+    }	/**/
     </style>
 </head>
 
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/gps.png"/>
 			<p><em>北京</em><img src="App_Themes/images/down.png"/></p>
 		</div>
 		<div class="head_center">上门帮</div>
+
+		
+	</header>
+	<!--section-->
+	<section>
+      <!-- <div class="slider" style="display:block;height:80px;">
+        <ul>
+        </ul>
+      </div> -->
+		<!--nav-->
+        <div class="wrap" id="swipeSlide">
+          <ul class="inline-float">
+               <!--  <li style="background-image:url(App_Themes/images/i_img01.png)"></li> -->
+                <li style="background-image:url(App_Themes/images/i_img02.png)"></li>
+                 <li style="background-image:url(App_Themes/images/i_img03.png)"></li>
+                <li style="background-image:url(App_Themes/images/i_img04.png)"></li>
+                
+          </ul>
+                  <p class="slide-bullet">
+                  <i class="icon-bullet active"></i>
+                  <i class="icon-bullet"></i>
+                  <i class="icon-bullet"></i>
+                  <i class="icon-bullet"></i>
+                  </p>
+        </div>         
 
 		<nav>
 			<ul>
@@ -48,15 +149,6 @@
 				<i></i>
 			</ul>
 		</nav>
-	</header>
-	<!--section-->
-	<section>
-      <div class="slider">
-        <ul>
-        </ul>
-      </div>
-		<!--nav-->
-		
 		<!--列表-->
 		<div class="aside_list">
 			<aside style="display:block" id="aside1">
@@ -74,7 +166,7 @@
 	<!--footer-->
 	<footer>
       <ul>
-          <li class="light" onclick="home()">
+          <li class="light" onclick="">
               <span class="footer01"></span>
               <p>首页</p>
           </li>
@@ -82,11 +174,11 @@
               <span class="footer02"></span>
               <p>师傅</p>
           </li>
-          <li>
+          <li onclick="order()">
               <span  class="footer03" id="dingdan"></span>
               <p>订单</p>
           </li>
-          <li>
+          <li onclick="user()">
               <span  class="footer04"></span>
               <p>我</p>
           </li>
@@ -111,27 +203,84 @@
    	</div>
    </div>
    <script type="text/javascript">
-     function loadmaster () {
-        // body...
-        $("#main").load( "MaseterWoker_list.html", function( response, status, xhr ) {
-          alert(response);
-          alert(status);
-        });
-    }
+
     $(document).ready(function() {
 
- // loadmaster();
 
-})
+
+	})
     function home(){
-
     	window.location.href = "index.html";
     }
   function shifu(){
-
-
   	window.location.href = "MasterWorker_list.html";
   }
-   </script>
+
+  function order(){
+   var user =getAjax.getLocalStorage('user'); 
+
+     if (!user){
+
+        window.location.href = "login.html?backUrl=orderlist";
+         return;
+
+     }  
+    // window.location.href = "orderlist.html";
+    window.location.href = "order_list.html";
+  }
+
+   function user(){
+    var user =getAjax.getLocalStorage('user'); 
+
+     if (!user){
+
+        window.location.href = "login.html?backUrl=User_index";
+         return;
+
+     }  
+    window.location.href = "User_index.html";
+  }
+
+  window.onload = function() {	
+		var mySwiper = Swipe(document.getElementById('swipe'),{	
+			continuous: true	
+		});	
+		
+		var $slide = document.getElementById('swipeSlide'),
+         aBullet = $slide.querySelectorAll('.icon-bullet');
+		var mySwipe1 = new Swipe($slide,{
+		    auto: 3000,
+		    callback: function(i){
+		        len = aBullet.length;  
+		      while(len--) {
+		        aBullet[len].classList.remove('active');
+		        // }
+		      }
+		      aBullet[i].classList.add('active');
+		    }
+		  });
+	}
+
+	function getScrollTop() {
+		var scrollPos;
+		if (window.pageYOffset) {
+		scrollPos = window.pageYOffset; }
+		else if (document.compatMode && document.compatMode != 'BackCompat')
+		{ scrollPos = document.documentElement.scrollTop; }
+		else if (document.body) { scrollPos = document.body.scrollTop; } 
+		return scrollPos; 
+   }
+
+   $(window).scroll(function(e) {
+		var yheight1=window.pageYOffset; //滚动条距顶端的距离
+		var yheight=getScrollTop(); //滚动条距顶端的距离
+		var height =document.documentElement.clientHeight//浏览器可视化窗口的大小
+		var top=parseInt(yheight)+parseInt(height)-217;		
+		if (yheight>=150){
+			window.scrollTo(0,150);		
+		}
+		
+	})
+	   </script>
 </body>
 </html>

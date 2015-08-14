@@ -16,11 +16,12 @@
   <script src="App_Themes/Script/getAjax.js"></script>
  
   <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/iscroll.js"></script>
   <style type="text/css">
    .head_center{color: #FFFFFF;background:rgb(24,203,109);}
 
    header{height: 90px;}
-  nav{
+   nav{
         position: absolute;
         height: 40px;
         width:100%;
@@ -33,7 +34,7 @@
     nav ul li{
       line-height: 16px;font-size: 1.4em;
     }
-       #ping-list{overflow: hidden;background: #FFFFFF;top: 110px;position: absolute;}
+       #ping-list{/*overflow: hidden;*/background: #FFFFFF;top: 60px;position: absolute;}
        
         #ping-list li{padding-top: 10px; padding-bottom: 5px; border-bottom: 1px solid #F0F0F0;}
         #ping-list .title{overflow: hidden;font-size: 1.3em;color: #666666;}
@@ -42,13 +43,119 @@
         #ping-list .content {position: relative;padding-top:20px;color: #666666;}
         #ping-list .content h2{ font-style: normal;font-weight: normal;font-size: 1.4em;padding-left: 10px;line-height: 1.5em;color: #333333;}
          #ping-list .content p{font-size: 1.3em;line-height: 1.5em;position: relative;width: 95%;margin: 0 auto;padding-top: 10px;}
+
+
+               #wrapper {
+  position:absolute; z-index:1;
+  top:85px; bottom:50px; left:-9999px;
+  width:100%;
+  background:rgb(233,236,241);
+  overflow:auto;
+  margin-top: 0px;
+}
+
+#scroller {
+  position:absolute; z-index:1;
+/*  -webkit-touch-callout:none;*/
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  background-color: #e9ecf1;
+  width:100%;
+  padding:0;
+}
+
+#scroller ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+  width:100%;
+  text-align:left;
+  background-color: #e9ecf1;
+}
+
+#scroller li {
+  padding:0px;
+  height:auto;
+  line-height:40px;
+  border-bottom:1px solid #ccc;
+  border-top:1px solid #fff;
+  background-color:#fafafa;
+  font-size:14px;
+}
+
+#myFrame {
+  position:absolute;
+  top:0; left:0;
+}
+/**
+ *
+ * Pull down styles
+ *
+ */
+#pullDown, #pullUp {
+  background:#fff;
+  height:40px;
+  line-height:40px;
+  padding:0px 10px;
+  border-bottom:1px solid #ccc;
+  font-weight:bold;
+  font-size:14px;
+  color:#888;
+  z-index: 1499;
+}
+
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+  display:block; /*float:left;*/
+  position: relative;
+    margin:0 auto;
+  width:40px; height:40px;
+  background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
+  -webkit-background-size:40px 80px; background-size:40px 80px;
+  -webkit-transition-property:-webkit-transform;
+  -webkit-transition-duration:250ms;  
+}
+#pullDown .pullDownIcon {
+  -webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+  -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+  -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+  -webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+  background-position:0 100%;
+  -webkit-transform:rotate(0deg) translateZ(0);
+  -webkit-transition-duration:0ms;
+
+  -webkit-animation-name:loading;
+  -webkit-animation-duration:2s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+  from { -webkit-transform:rotate(0deg) translateZ(0); }
+  to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
+.pullDownLabel,.pullUpLabel{
+  position: relative;
+    margin:0 auto;
+  width:60px; height:30px;
+}
     </style>
 </head>
 
 <body style="background:rgb(239,239,239)">
   <!--header-->
   <header>
-    <div class="head_left">
+    <div class="head_left" onclick="goback()" >
       <img src="App_Themes/images/back01.png"/>
       
     </div>
@@ -56,17 +163,22 @@
 
     <nav>
       <ul>
-        <li id="all" onclick="loaddata()">全部</li>
-        <li id="well" onclick="loaddata(0)">好评</li>
-        <li id="good" onclick="loaddata(1)">中疗</li>
-        <li id="bad" onclick="loaddata(2)">差评</li>
+        <li id="all" onclick="loaddata(0)">全部</li>
+        <li id="well" onclick="loaddata(1)">好评</li>
+        <li id="good" onclick="loaddata(2)">中疗</li>
+        <li id="bad" onclick="loaddata(3)">差评</li>
         
         <i></i>
       </ul>
     </nav>
   </header>
+  <div id="wrapper">
+  <div id="scroller">
+      <div id="pullDown" class="none">
+        <p class="pullDownIcon"></p><p class="pullDownLabel"></p>
+      </div>
   <!--section-->
-  <section id="ping-list">
+  <section id="ping-list" >
        <ul>
            <!--   <li>
                <div class="title">
@@ -137,16 +249,29 @@
          </ul>
    
   </section>
+   <section id="ping-list" >
+       <ul>
 
-  
+        </ul>
+   
+  </section>
+    <div id="pullUp" class="none">
+        <p class="pullUpIcon"></p><p class="pullUpLabel"></p>
+      </div>
+    </div>
+  </div>
  
    
    <script type="text/javascript">
 
-
+var myScroll,
+  pullDownEl, pullDownOffset,
+  pullUpEl, pullUpOffset,
+  generatedCount = 0;
    //项目类别切换
   $("nav ul li").click(function(){
-    var index = $(this).index();
+    var index = $(this).index();    
+    curindex = index;    
     $("nav ul li").css('color','#777777')
     $(this).css('color','#18cb6d');
     var aside = $(".aside_list aside");
@@ -169,35 +294,61 @@
     window.location.href = "MasterWoker_list.html";
   }
 
-var curpage = 0;
+var curpage1 = curpage2=curpage3=curpage4=curpage=0;
+
 var pagenum = 10;
 var  totcount=goodcount=wellcount=badcount=0;
+var curindex = 0;
 var first = true;
-  loaddata();
+  loaddata(0);
 function loaddata(index){
   // alert(index);
-     var cmid = getAjax.getLocalStorage('cmid');
+    
+    var Master = JSON.parse(getAjax.getSessionStorage('Master'));
+    var cmid = Master.id;
     server = "";
+
+    
+
     if (index){
-       params = {
+
+        switch(index)
+          {
+            case 1:
+               curpage = curpage2;
+              break;
+            case 2:
+                curpage = curpage3;
+              break;
+            case 3:
+                curpage = curpage4;
+              break;            
+            default:
+            
+          }
+
+        params = {
         url: "evaluate/getEvaluateListsNew",
-         workerId:'b3b630a763b349699ccac094818804b1',
+         workerId:cmid,
          evaluateGrade:index,
          page:curpage,
          rows:pagenum
       };
+           
     }
     else{
-
+           
+         
            params = {
             url: "evaluate/getEvaluateListsNew",
-            workerId:'b3b630a763b349699ccac094818804b1',
-            page:curpage,
+            workerId:cmid,
+            page:curpage1,
             rows:pagenum
-      };
+           };
 
 
     }
+    return;
     getAjax.getAction(server,params,function(res){
       console.log('加载师傅全部评价',res);
      
@@ -238,13 +389,219 @@ function loaddata(index){
 
              html = html + '<li><div class="title"><span class="title-l">'+phonenum+'</span><span class="title-r">'+getAjax.getTime(pjList[i]['evaluateTime'])+'</div><div class="content"><h2>'+pjList[i]['projectName']+'</h2><p>'+con+'</p></div></li>';
           }
-          $('#ping-list ul').empty().append(html);
 
 
+          
+            
+              switch(index)
+                  {
+                  case 0:
+                      if (curpage1==0){
+                           $('#ping-list ul').empty().append(html);
+
+                      }else{
+
+                          $('#ping-list ul').append(html);
+                      }
+                      curpage1 = curpage1 + 1;
+                    break;
+                  case 1:
+                     if (curpage2==0){
+                           $('#ping-list ul').empty().append(html);
+
+                      }else{
+
+                          $('#ping-list ul').append(html);
+                      }
+                      curpage2= curpage2 + 1;
+
+                    break;
+
+                  case 2:
+                     if (curpage3==0){
+                           $('#ping-list ul').empty().append(html);
+
+                      }else{
+
+                          $('#ping-list ul').append(html);
+                      }
+                      curpage3 = curpage3 + 1;
+                    
+                    break;
+                  case 3:
+                     if (curpage4==0){
+                     $('#ping-list ul').empty().append(html);
+
+                      }else{
+
+                          $('#ping-list ul').append(html);
+                      }
+                      curpage4 = curpage4 + 1;
+                    
+                    break;
+
+                  default:
+                    
+                  }           
+          
+
+
+          // myScroll.refresh(); 
+          pullDownEl = document.getElementById('pullDown');
+          pullDownEl.style.display = "none";
       }
       
     },function(error){});
   }
+
+
+
+
+  function pullDownAction () {
+  // setTimeout(function () { 
+  //  var el, li, i;
+  //  el = document.getElementById('thelist');
+
+  //  for (i=0; i<3; i++) {
+  //    li = document.createElement('li');
+  //      li.innerHTML = '<li><div class="up_div">'
+  //          +'<img class="headphoto" src="App_Themes/images/shif.png">'
+  //          +'<div class="left_div">'
+  //            +'<div class="name">玉堂</div>'
+  //            +'<div class="projectNameGrade">上品足浴(初级)</div>'
+  //            +'<div class="projectNameGrade">2015-06-18 15:00-16:00</div>'
+  //          +'</div>'
+  //          +'<div class="right_div">'
+  //            +'<div class="orderPrice">￥129</div>'
+  //            +'<div class="projectNameGrade">已支付</div>'
+  //          +'</div>'
+  //        +'</div>'
+  //        +'<div class="bottom_div">'
+  //          +'<div class="bottom_left_div">订单只保留30分钟</div>'
+  //          +'<div class="bottom_right_div">加钟</div>'
+  //          +'<div class="bottom_right_div">催单</div>'
+  //        +'</div>'
+  //        +'<div class="orderBr"></div>'
+
+  //    +'</li>';
+
+  //    el.appendChild(li, el.childNodes[0]);
+  //  }
+    
+  //  myScroll.refresh();   
+  //  pullDownEl = document.getElementById('pullDown');
+  //  pullDownEl.style.display = "none";
+  // }, 1000);  
+     setTimeout(function (){
+           loaddata(curindex);
+        myScroll.refresh(); 
+          pullDownEl = document.getElementById('pullDown');
+            pullDownEl.style.display = "none";
+
+    }, 1000);
+}
+
+function pullUpAction () {
+  // setTimeout(function () { 
+  //  var el, li, i;
+  //  el = document.getElementById('thelist');
+
+  //  for (i=0; i<3; i++) {
+  //    li = document.createElement('li');
+  //      li.innerHTML = '<li><div class="up_div">'
+  //          +'<img class="headphoto" src="App_Themes/images/shif.png">'
+  //          +'<div class="left_div">'
+  //            +'<div class="name">玉堂</div>'
+  //            +'<div class="projectNameGrade">上品足浴(初级)</div>'
+  //            +'<div class="projectNameGrade">2015-06-18 15:00-16:00</div>'
+  //          +'</div>'
+  //          +'<div class="right_div">'
+  //            +'<div class="orderPrice">￥129</div>'
+  //            +'<div class="projectNameGrade">已支付</div>'
+  //          +'</div>'
+  //        +'</div>'
+  //        +'<div class="bottom_div">'
+  //          +'<div class="bottom_left_div">订单只保留30分钟</div>'
+  //          +'<div class="bottom_right_div">加钟</div>'
+  //          +'<div class="bottom_right_div">催单</div>'
+  //        +'</div>'
+  //        +'<div class="orderBr"></div>'
+
+  //    +'</li>';
+
+  //    el.appendChild(li, el.childNodes[0]);
+  //  }
+    
+  //  myScroll.refresh();   
+  //  pullUpEl = document.getElementById('pullUp');
+  //  pullUpEl.style.display = "none";
+  // }, 1000);  
+    setTimeout(function (){
+                // initUnfinished();
+        loaddata(curindex);                
+        myScroll.refresh(); 
+          pullUpEl = document.getElementById('pullUp');
+            pullUpEl.style.display = "none";
+
+    }, 1000);
+}
+
+function loaded() {
+  pullDownEl = document.getElementById('pullDown');
+  pullDownOffset = pullDownEl.offsetHeight;
+  pullUpEl = document.getElementById('pullUp'); 
+  pullUpOffset = pullUpEl.offsetHeight;
+  
+  myScroll = new iScroll('wrapper', {
+    useTransition: true,
+    topOffset: pullDownOffset,
+    onRefresh: function () {
+      if (pullDownEl.className.match('loading')) {
+        pullDownEl.className = '';
+        // pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+      } else if (pullUpEl.className.match('loading')) {
+        pullUpEl.className = '';
+        // pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+      }
+    },
+    onScrollMove: function () {
+      if (this.y > 5 && !pullDownEl.className.match('flip')) {
+        pullDownEl.className = 'flip';
+        // pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh...';
+        this.minScrollY = 0;
+      } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+        pullDownEl.className = '';
+        // pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+        this.minScrollY = -pullDownOffset;
+      } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+        pullUpEl.className = 'flip';
+        // pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Release to refresh...';
+        this.maxScrollY = this.maxScrollY;
+      } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+        pullUpEl.className = '';
+        // pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+        this.maxScrollY = pullUpOffset;
+      }
+    },
+    onScrollEnd: function () {
+      if (pullDownEl.className.match('flip')) {
+        pullDownEl.className = 'loading';
+        // pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';       
+        pullDownAction(); // Execute custom function (ajax call?)
+      } else if (pullUpEl.className.match('flip')) {
+        pullUpEl.className = 'loading';
+        // pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';       
+        pullUpAction(); // Execute custom function (ajax call?)
+      }
+    }
+  });
+  
+  setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
    </script>
 </body>
 </html>

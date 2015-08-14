@@ -121,7 +121,7 @@
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			<!-- <p><em>北京</em><img src="App_Themes/images/down.png"/></p> -->
 		</div>
@@ -167,7 +167,7 @@
          <div class="servicedesc">
 	     	<!-- <img src="App_Themes/images/pingjia.png"> -->
 	   			   <span style="width:100px"> 全部评价<i>(16条评论)</i></span>
-	   	     <span class="ping"><img src="App_Themes/images/y_next.png"></span>
+	   	     <span class="ping"><img src="App_Themes/images/y_next.png" onclick="goping()"></span>
 	     </div>
 
 	     <div class="servicedesc">
@@ -359,6 +359,11 @@ function loaddata(id){
       var cur_id = $(item).attr('data-id');     
 
 	}
+
+	function goping(){
+
+	   	  window.location.href = "MasterWorker_ping.html";
+	   }
 
 	function swit(item){
 

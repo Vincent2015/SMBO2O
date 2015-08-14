@@ -14,7 +14,7 @@ window.orderlist = (function() {
 		server = "";
 		params = {
 			url: "order/getMyOrdersToUserToNew",
-			userid: '31a4a60eea5149c3ad4aeb35f967dd02',//测试北京
+			userid: JSON.parse(getAjax.getLocalStorage("user"))['id'],
 			type: 1,
 			page: 1,
 			rows: 99
@@ -78,7 +78,7 @@ window.orderlist = (function() {
 		server = "";
 		params = {
 			url: "order/getMyOrdersToUserToNew",
-			userid: '31a4a60eea5149c3ad4aeb35f967dd02',//测试用户
+			userid: JSON.parse(getAjax.getLocalStorage("user"))['id'],
 			type: 2,
 			page: cur_page,
 			rows: 10

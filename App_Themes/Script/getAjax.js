@@ -191,6 +191,7 @@ window.getAjax = (function() {
 		history.go(-1);
 	});
 
+	
 	return {
 		projectimg: projectimg,
 		activityimg: activityimg,
@@ -220,3 +221,9 @@ window.getAjax = (function() {
 	};
 })();
 window.getAjax.aload();
+
+function goback(){
+
+
+	history.go(-1);
+}

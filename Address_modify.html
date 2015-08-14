@@ -14,6 +14,7 @@
     <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
     <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
     <script src="App_Themes/Script/getAjax.js"></script>  
+    <script src="App_Themes/Script/toast.js"></script> 
     
     <style type="text/css">
      body{background: rgb(233,236,241);}
@@ -47,7 +48,7 @@
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left">
+		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			
 		</div>
@@ -120,7 +121,7 @@
   function addrlocation(){
 
 
-  	window.location.href = "Address_location.html";
+  	window.location.href = "Address_location.html?backUrl=Address_modify";
   }
    function modaddress(){
 
@@ -131,17 +132,35 @@
    /*id为空代表添加；不为空则为修改*/
    function address(id){ 
 
-   	 var user = JSON.parse(getAjax.getLocalStorage('user'));  
+   	 var user = JSON.parse(getAjax.getLocalStorage('user'));
+
+       if (!user){
+
+        window.location.href = "login.html?backUrl=Address_modify";
+         return;
+
+     }  
 
       var placeName = document.getElementById('addr1').value; 
    	 var communityName = document.getElementById('addr2').value; 
    	 var userName = document.getElementById('cname').value; 
    	 var phoneNum = document.getElementById('cphone').value;
+
+     if(!userName||!phoneNum||!communityName||placeName){
+      
+      new Toast({context:$('body'),message:'地址信息不完整'}).show(); 
+      return;
+
+     }
+
      var isDefault = 0;
    	 if($('#default img').attr('data-id')){
 
    	 		isDefault = 1;
    	 }
+
+    
+     var location =  JSON.parse(getAjax.getLocalStorage('location'));
 
        server = "";    
        if(id){
@@ -149,10 +168,10 @@
 			         url: "address/modifyMyAddress_extend",
 			         id:id,
 			         userId:user.id,
-			         placeName:placeName,
-			         detailAddress:placeName,
-			         addressLongitude:getAjax.getLocalStorage('curLng'),
-			         addressLatitude:getAjax.getLocalStorage('curLat'),
+			         placeName:location.district,
+			         detailAddress:location.address,
+			         addressLongitude:location.lng,
+			         addressLatitude:location.lat,
 			         communityName:communityName,
 			         userName:userName,
 			         userPhone:phoneNum,
@@ -164,10 +183,10 @@
        			params = {
 			         url: "address/modifyMyAddress_extend",
 			         userId:user.id,
-			         placeName:placeName,
-			         detailAddress:placeName,
-			         addressLongitude:getAjax.getLocalStorage('curLng'),
-			         addressLatitude:getAjax.getLocalStorage('curLat'),
+			         placeName:location.district,
+			         detailAddress:location.address,
+			         addressLongitude:location.lng,
+			         addressLatitude:location.lng,
 			         communityName:communityName,
 			         userName:userName,
 			         userPhone:phoneNum,

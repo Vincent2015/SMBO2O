@@ -2,7 +2,7 @@
     $.fn.yxMobileSlider = function(settings){
         var defaultSettings = {
             width: 640, //容器宽度
-            height: 320, //容器高度
+            height: 150, //容器高度
             during: 5000, //间隔时间
             speed:30 //滑动速度
         }
@@ -34,7 +34,7 @@
             });
             $("img", oLi).css({
                 width: '100%',
-                height: '100%'
+                height: '150px'
             });
             //初始化焦点容器及按钮
             _this.append('<div class="focus"><div></div></div>');

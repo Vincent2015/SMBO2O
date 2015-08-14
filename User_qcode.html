@@ -18,7 +18,7 @@
     <style type="text/css">
     body{/*background:url(App_Themes/images/ucenter.png) no-repeat;background-size:100%;*/}
     #aload{width: 100%;height: 100%;background: rgba(110,111,113,0.7);position: absolute;z-index: 2;}    
-    
+     #aload span{position: absolute;right: 15px;top:15px;}
     #aload .aloads{width: 130px;margin: 0 auto;position: relative;margin-top: 60%; border:15px solid #FFFFFF;border-radius: 10px;}
 
    #aload .aloads span{position: absolute;top:50px;left:38%;}
@@ -32,7 +32,9 @@
 
 <body>
 <!-- <div id="aload">
+ <span onclick="goback()"></span>
      <div class="aloads">
+
        <img src="App_Themes/images/qcode.png" width="160px">
         <span><img src="App_Themes/images/xjy.png"  width="32px" height="32px"></span>
      </div>
@@ -47,7 +49,7 @@
 function loadqcode() {
 
     if ($("#aload").attr("id") == undefined) {
-      var ht = '<div id="aload">'; 
+      var ht = '<div id="aload"><span onclick="goback()">关闭</span>'; 
       ht += '<div class="aloads" id=qrcode><span><img src="App_Themes/images/xjy.png"  width="32px" height="32px"></span></div>';
       ht += '</div>';    
 
