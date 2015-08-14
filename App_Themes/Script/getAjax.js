@@ -1,15 +1,15 @@
 window.getAjax = (function() {
 	// var sus = "http://www.shangmb.com/shangmb/",//正式www
-	// 	wx_sus = "http://www.shangmb.com/shangmbwx/",//正式www
+	// 	wx_sus = "http://www.shangmb.com/webs/",//正式www
 	// 	appid="wxe035939361cc0472";//正式www APPID	
 
 	// var sus = "http://wx.shangmb.com:8888/shangmb/",//正式
-	// 	wx_sus = "http://wx.shangmb.com:8888/shangmbwx/",//正式
+	// 	wx_sus = "http://wx.shangmb.com:8888/webs/",//正式
 	// 	appid="wxe035939361cc0472";//正式 APPID	
 
 	var sus = "http://anyhow.tunnel.mobi/shangmb/",//测试
 		wx_sus = "http://anyhow.tunnel.mobi/webs/",//测试
-		appid="wxb2b64784fd11b2b7",//测试 APPID
+		appid="wxb2b64784fd11b2b7",//测试 APPID anyhow1234
 
 
 	urls=sus+"smb/web/interface",
@@ -53,7 +53,11 @@ window.getAjax = (function() {
 	}
 
 	function getIsUser() {
-		return true;
+		if(getLocalStorage("user")!=""){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -208,6 +212,7 @@ window.getAjax = (function() {
 		couponurl: couponurl,
 		getIsUser: getIsUser,
 		getAction: getAction,
+		getTime: getTime,
 		getQueryString: getQueryString,
 		getLocalStorage: getLocalStorage,
 		setLocalStorage: setLocalStorage,
@@ -217,7 +222,8 @@ window.getAjax = (function() {
 		setSessionStorage: setSessionStorage,
 		removeSessionStorage: removeSessionStorage,
 		clearSessionStorage: clearSessionStorage,
-		aload: aload,getTime	
+		aload: aload,
+		getTime:getTime
 	};
 })();
 window.getAjax.aload();

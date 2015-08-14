@@ -13,6 +13,7 @@ window.index = (function() {
 	} else {
 		var l_city=JSON.parse(getAjax.getLocalStorage('city'));
 		cur_city_code = l_city['code'];
+		$(".head_left p > em").html(l_city['name']);
 	}
 	//banner广告页
 	$(function(){
@@ -87,21 +88,24 @@ window.index = (function() {
 		aside.eq(index).fadeIn().siblings("aside").fadeOut();
 	});
 	//预约按钮
+	var jump_flag = 0;
 	function appointment(projectId,url){
-		//遍历所有项目，将选择的项目、订单存到sessionStorage
-		for(var i=0;i<projectListForStorage.length;i++){
-			if(projectId==projectListForStorage[i]['id']){
-				getAjax.removeSessionStorage('project');
-				getAjax.setSessionStorage("project",JSON.stringify(projectListForStorage[i]));
-				var s_order={};
-				s_order['projectId']=projectListForStorage[i]['id'];
-				s_order['projectName']=projectListForStorage[i]['projectName'];
-				getAjax.setSessionStorage("order",JSON.stringify(s_order));
+		if(jump_flag==0){
+			jump_flag = 1;
+			//遍历所有项目，将选择的项目、订单存到sessionStorage
+			for(var i=0;i<projectListForStorage.length;i++){
+				if(projectId==projectListForStorage[i]['id']){
+					getAjax.removeSessionStorage('project');
+					getAjax.setSessionStorage("project",JSON.stringify(projectListForStorage[i]));
+					var s_order={};
+					s_order['projectId']=projectListForStorage[i]['id'];
+					s_order['projectName']=projectListForStorage[i]['projectName'];
+					getAjax.setSessionStorage("order",JSON.stringify(s_order));
+				}
 			}
+			window.location.href=url+'.html';
 		}
-		window.location.href=url+'.html';
-		console.log(projectId);
-		console.log(projectName);
+		
 	}
 	//默认加载全部项目  当前测试加载足疗
 	function initPage(){
@@ -133,7 +137,7 @@ window.index = (function() {
 										   '<span>销量：'+ projectList[i]['projectSale'] +'</span>'+
 										   '<span><img src="App_Themes/images/time.png"/>'+ projectList[i]['projectTime'] +'分钟</span>'+
 										'</i>'+
-										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'placeorder\')">预约</button>'+
+										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'Goods_order\')">预约</button>'+
 									'</p>'+
 								'</div>'+
 							'</div>';
@@ -169,7 +173,7 @@ window.index = (function() {
 										   '<span>销量：'+ projectList[i]['projectSale'] +'</span>'+
 										   '<span><img src="App_Themes/images/time.png"/>'+ projectList[i]['projectTime'] +'分钟</span>'+
 										'</i>'+
-										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'placeorder\')">预约</button>'+
+										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'Goods_order\')">预约</button>'+
 									'</p>'+
 								'</div>'+
 							'</div>';
@@ -205,7 +209,7 @@ window.index = (function() {
 										   '<span>销量：'+ projectList[i]['projectSale'] +'</span>'+
 										   '<span><img src="App_Themes/images/time.png"/>'+ projectList[i]['projectTime'] +'分钟</span>'+
 										'</i>'+
-										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'placeorder\')">预约</button>'+
+										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'Goods_order\')">预约</button>'+
 									'</p>'+
 								'</div>'+
 							'</div>';
@@ -240,7 +244,7 @@ window.index = (function() {
 										   '<span>销量：'+ projectList[i]['projectSale'] +'</span>'+
 										   '<span><img src="App_Themes/images/time.png"/>'+ projectList[i]['projectTime'] +'分钟</span>'+
 										'</i>'+
-										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'placeorder\')">预约</button>'+
+										'<button onclick="window.index.appointment(\''+projectList[i]['id']+'\',\'Goods_order\')">预约</button>'+
 									'</p>'+
 								'</div>'+
 							'</div>';

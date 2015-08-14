@@ -90,7 +90,7 @@
 	<script type="text/javascript">
     function order(){
 
-    	 var user = JSON.parse(getAjax.getLocalStorage('user'));
+    	 var user =getAjax.getLocalStorage('user');
 
     	   if (!user){
 
@@ -98,6 +98,7 @@
        			 return;
 
           }  
+         var user = JSON.parse(getAjax.getLocalStorage('user'));
     	 var Master = JSON.parse(getAjax.getSessionStorage('Master'));
     	 var project = JSON.parse(getAjax.getSessionStorage('project'));
     	 var address = JSON.parse(getAjax.getSessionStorage('address'));
@@ -116,8 +117,29 @@
          orderLatitude:address.addressLatitude,
          contact:user.nickName,
          contactPhone:user.phonenum,
-         count:parseInt($('#num').val())
+         projectGrade:project.projectGrade,
+         count:parseInt($('#num').val()),
+         channel:2
       };
+
+
+      /*
+       orderPrice:transPrice+parseInt($('#num').val()) * projectPrice,
+			         userId:user['id'],
+			         workerId:JSON.parse(getAjax.getSessionStorage("Worker"))['id'],
+			         projectId:project['id'],
+			         stime:_datetime,
+			         orderAddress:address['communityName']+address['placeName'],
+			         orderLongitude:address['addressLongitude'],
+			         orderLatitude:address['addressLatitude'],
+			         contact:user['nickName'],
+			         contactPhone:user['phonenum'],
+			         count:parseInt($('#num').val()),
+			         orderGrade:"100000002"+projectGrade,
+			         projectPrice:projectPrice,
+			         channel: 2
+
+      */
 
       console.log(params);
        
@@ -131,7 +153,7 @@
 	          getAjax.setSessionStorage('order',JSON.stringify(ordinfo));
 
 
-	            window.location.href = "payment.html";
+	            window.location.href = "payment.html?orderId="+res['info']['id'];
 	      }
 	      
 	    },function(error){});

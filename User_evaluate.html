@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/User_evaluate.css" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/User_evaluate.js"></script>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left">
+			<img src="App_Themes/images/back.png"/>
+		</div>
+		<div class="head_center">评价</div>
+	</header>
+	<!--section-->
+	<section>
+		<ul class="box-ul">
+			<li class="box-li-1">
+				<ul>
+					<li class="full-li-1">
+						<div class="star-text">总体评价</div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,0,1)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,0,2)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,0,3)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,0,4)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,0,5)"></div>
+					</li>
+					<li>
+						<textarea rows="3" placeholder="还想说点啥，补充在这里吧..."></textarea>
+					</li>
+				</ul>
+			</li>
+			<li class="box-li-2">
+				<ul>
+					<li class="other-li-1" style="margin-top:15px;">
+						<div class="star-text" style="clear:both;font-size:1.4em;color:#666666">上门准时</div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,1,1)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,1,2)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,1,3)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,1,4)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,1,5)"></div>
+					</li>
+					<li class="other-li-1">
+						<div class="star-text" style="clear:both;font-size:1.4em;color:#666666">服务态度</div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,2,1)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,2,2)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,2,3)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,2,4)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,2,5)"></div>
+					</li>
+					<li class="other-li-1" style="margin-bottom:15px;">
+						<div class="star-text" style="clear:both;font-size:1.4em;color:#666666">专业技能</div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,3,1)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,3,2)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,3,3)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,3,4)"></div>
+						<div class="star-div"><img src="App_Themes/images/star_an.png" onclick="window.userEvaluate.tapstar(this,3,5)"></div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<!--footer-->
+	<footer>
+		<div id="goPay" onclick="window.userEvaluate.evaluate()">
+			提交评价
+		</div>
+   </footer>
+</body>
+</html>

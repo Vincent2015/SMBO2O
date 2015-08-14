@@ -1,0 +1,489 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="App_Themes/Style/api.css"/>
+     <link rel="stylesheet" type="text/css" href="App_Themes/Style/common.css"/>
+
+
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #wrap {
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            flex-flow: column;
+        }
+         header{
+         font-family: sans-serif;
+          color: #323237;
+          font-size:1.2em;
+
+         }
+        #cloud .h-left, #client .h-left{
+         position: absolute;
+         left:10px;
+         top:1px;
+         padding-right:10px;
+         font-family: "微软雅黑";
+         font-size: 0.8em;
+         /*color:#71D8A2;*/
+         color: #FFFFFF !important;
+         
+        
+        }
+         #cloud .h-left > img{
+          position: relative;
+          padding-left:5px;
+          top:5px;
+         }
+        #cloud .h-right {
+         position: absolute;
+         right:10px;
+         top:5px;
+        
+        }
+        #cloud label{
+          color: #FFFFFF !important;
+        }
+        #client,#cloud,#dev,#doc{
+
+            background-color: rgb(24,203,109);
+            color: #FFFFFF !important;
+        }
+         #client .h-left img{
+          left:10px;
+         }
+
+       #client .h-right {
+         position: absolute;
+         right:10px;
+         top:0px;
+          color:#71D8A2;
+        
+        }
+        #main {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        #footer {
+            width: 100%;
+            text-align: center;
+            height: 56px;
+            line-height: 55px;
+            background-color: #f2f2f2;
+        }
+
+        ul {
+
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        .cloud {
+            background-image: url(App_Themes/images/footer_01.png);
+        }
+
+        .client {
+            background-image: url(App_Themes/images/footer_02.png);
+        }
+
+        .dev {
+            background-image: url(App_Themes/images/footer_03.png);
+        }
+
+        .doc {
+            background-image: url(App_Themes/images/footer_04.png);
+        }
+
+        #footer li {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            height: 55px;
+        }
+
+        .bottom_btn {
+            background-position-y: 4px;
+            padding-top: 16px;
+            font-size: 12px;
+            color: #323237;
+            width: 99%;
+            height: 39px;
+            background-repeat: no-repeat no-repeat;
+            background-position-x: center;
+            background-size: 30px;
+        }
+
+        .active .cloud {
+            background-image: url(App_Themes/images/footer_light01.png);
+        }
+
+        .active .client {
+            background-image: url(App_Themes/images/footer_light02.png);
+        }
+
+        .active .dev {
+            background-image: url(App_Themes/images/footer_light03.png);
+        }
+
+        .active .doc {
+            background-image: url(App_Themes/images/footer_light04.png);
+        }
+
+        .active .bottom_btn {
+            color: #6ab494;
+            background-size: 30px;
+        }
+
+        .topbar {
+            background: #f2f2f2;
+            height: 50px;
+            border-bottom: 1px solid #DDDFE3;
+            line-height: 50px;
+            text-align: center;
+            display: none;
+            color: #323237;
+        }
+
+        .activebar {
+            display: block;
+        }
+
+       section{
+        width:100%;
+       /* height:100%;*/
+      /* height:36px;*/
+        background:#e9ecf1;
+
+        position:absolute;
+        top:51px;
+        left:0;
+        bottom:50px;
+    }
+
+            nav{
+            width:100%;
+            height:36px;
+            background:#fff;
+            border-bottom:1px solid #dcdcdc;
+        }
+
+        nav ul{
+            width:92%;
+            height:36px;
+            margin:0 auto;
+
+            position:relative;
+        }
+
+        nav ul li{
+            float:left;
+            line-height:34px;
+            width:25%;
+            text-align:center;
+            border-bottom:2px solid #fff;
+            color:#333333;
+        }
+        nav ul i{
+            width:25%;
+            border-bottom:2px solid #18cb6d;
+            position:absolute;
+            bottom:0;
+            left:0;
+            z-index: 1001;
+        }
+
+        /*nav ul li.light{
+            border-bottom:2px solid #18cb6d;
+        }*/
+
+        /*==list==*/
+        .aside_list{
+            width:100%;
+            /*position:relative;*/
+        }
+        aside{
+            width:100%;
+            padding-bottom:50px;
+
+            /*position:absolute;
+            left:0;*/
+        }
+        aside .list{
+            width:100%;
+            min-height:186px;
+            height:auto;
+            background:#fff;
+            border-top:1px solid #dcdcdc;
+            border-bottom:1px solid #dcdcdc;
+            margin-top:9px;
+        }
+        aside .list > img{
+            display:block;
+            width:100%;
+            height:auto;
+        }
+        .none{display: none;}
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <header>
+        <div id="cloud" class="topbar activebar ">
+          <span class="h-left" id="city" tapmode onclick="selectcity()">
+             <img src="App_Themes/images/gps1.png" width="13px" />
+               北京 <span><img src="App_Themes/images/down.png"/></span>
+         </span>
+            <label>上门帮</label> 
+         <span class="h-right">
+          <!--  <img src="res/image/phoneicon.png" width="16px" height="16px"/> -->
+         </span>
+                               
+        </div>
+        <div id="client" class="topbar">
+          <!-- <span class="h-left"> <img src="image/back.png" width="12px" height="16px"/>  -->
+         </span>
+                               浏览师傅
+        <span class="h-right">
+                          <!--     历史订单 -->
+                        <!--   <img src="image/search.png" width="16px" height="16px"/> -->
+         </span>
+        </div>
+        <div id="dev" class="topbar ">
+                            订单
+        </div>
+        <div id="doc" class="topbar ">
+                            我
+        </div>
+    </header>
+    <div id="main">
+         <section>
+          <!--nav-->
+            <nav id="cloud-nav" class="">
+                <ul>
+                    <li id="all">全部</li>
+                    <li id="zuliao">足疗</li>
+                    <li id="liliao">理疗</li>
+                    <li id="other">舒缓</li>
+                    <i></i>
+                </ul>
+            </nav>
+             <!--  <nav id="client-nav" class="none">
+                    
+              </nav>
+              <nav id="dev-nav" class="none">
+
+              </nav>
+              <nav id="doc-nav" class="none">
+
+              </nav> -->
+            <!--列表-->
+           <!--  <div class="aside_list">
+                <aside style="display:block" id="aside1">
+                </aside>
+                <aside style="display:none">
+                </aside>
+                <aside style="display:none">
+                </aside>
+                <aside style="display:none">
+                </aside>
+            </div> -->
+        </section>
+
+    </div>
+    <div id="footer">
+        <ul>
+            <li tapmode="active" class="active" onclick="randomSwitchBtn(this,'cloud',0)">
+                <a class="bottom_btn cloud">首页</a>
+            </li>
+
+            <li tapmode="active" onclick="randomSwitchBtn(this,'client',1)">
+                <a class="bottom_btn client ">师傅</a>
+            </li>
+
+            <li tapmode="active" onclick="randomSwitchBtn(this,'dev',2)">
+                <a class="bottom_btn dev ">订单 </a>
+            </li>
+
+            <li tapmode="active" onclick="randomSwitchBtn(this,'doc',3)">
+                <a class="bottom_btn doc ">我</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<!-- <script type="text/javascript" src="script/api.js"></script> -->
+<script type="text/javascript" src="App_Themes/Script/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="App_Themes/Script/api.js"></script>
+ <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
+
+<script type="text/javascript">
+    apiready = function () {
+        var $header = $api.dom('header');
+        $api.fixIos7Bar($header);
+        var $body = $api.dom('body');
+        var $footer = $api.byId('footer');
+        var header_h = $api.offset($header).h;
+        var body_h = $api.offset($body).h;
+        var footer_h = $api.offset($footer).h;
+        var rect_h = body_h - header_h - footer_h;
+        setcity();
+        addListener();
+        
+         var showGuide = $api.getStorage('showGuide');
+        //打开引导页
+        if(!showGuide){
+            openGuide();
+        }
+        
+        
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {x: 0, y: header_h, w: 'auto', h: rect_h},
+            index: 0,
+            frames: [
+                {
+                    name: 'home',
+                    url: 'html/home.html'
+                },
+                {
+                    name: 'order',
+                    url: 'html/orderlist-frame.html'
+                },
+                {
+                    name: 'life',
+                    url: 'html/life.html'
+                },
+                {
+                    name: 'me',
+                    url: 'html/me.html'
+                }
+            ]
+        }, function (ret, err) {
+        });
+     
+     //移除启动页
+        setTimeout(function(){
+            api.removeLaunchView();
+        }, 300);
+    }
+    
+    function openGuide(){
+   
+        setTimeout(function(){
+            api.openWin({
+                name: 'welcome',
+                url: 'html/welcome.html',
+                bounces: false
+            });
+        },100);
+    }
+    // 随意切换按钮
+    function randomSwitchBtn(obj, name, index) {
+        alert(name+'-nav');
+        var $header = $api.dom('header');
+        var $titleBar = $api.domAll($header, '.topbar');
+        for (var i = 0; i < $titleBar.length; i++) {
+            $api.removeCls($titleBar[i], 'activebar');
+        }
+        $api.addCls($api.byId(name), 'activebar');
+
+      
+        var $navbar= $api.domAll('nav');
+         for (var i = 0; i < $navbar.length; i++) {
+            
+            $api.addCls($navbar[i], 'none');
+        }
+        $api.removeCls($api.byId(name+'-nav'), 'none');
+
+        var $footer = $api.byId('footer');
+        var $footerBar = $api.domAll($footer, 'li');
+        for (var j = 0; j < $footerBar.length; j++) {
+            $api.removeCls($footerBar[j], 'active');
+        }
+        $api.addCls(obj, 'active');
+
+        if(name=="client"){
+             alert(1);
+            loadmaster();
+        }
+        
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+
+    }
+    function loadmaster () {
+        // body...
+        $("#main").load( "MaseterWoker_list.html", function( response, status, xhr ) {
+          alert(response);
+          alert(status);
+        });
+    }
+
+    function selectcity(){
+	  api.openWin({
+	        name: 'citylist',
+	        url: 'html/citylist.html'
+        });
+	}
+	
+	function setcity(){
+		var value =  $api.getStorage('city'); 
+		if(!value){
+		  value = '北京';
+		}                   
+//		alert('addEventListener:'+value);
+		var el =  $api.byId('city');
+//		 $api.text(el,value);
+	    $api.html(el,value+''+'<img src="res/image/navigation_expand.png" width="16px" height="16px"/>');
+	}
+	var first = null;
+	function addListener(){
+	    api.addEventListener({name: 'offline'}, function(ret, err){
+			api.toast({msg: '网络开小差了！', duration: 3000, location: 'middle'});
+		});
+	    api.addEventListener({
+	        name: 'keyback'
+	    }, function(ret, err){
+	        if (!first) {
+	            first = new Date().getTime();
+	            api.toast({
+	                msg: '再按一次,退出阿姨帮!',
+	                duration:1500,
+	                location: 'bottom'
+	            });
+	            setTimeout(function() {
+	                first = null;
+	            }, 1000);
+	        } else {
+	            if (new Date().getTime() - first < 1000) {
+	                api.closeWidget({
+	                    silent:true
+	                });
+	            }
+	        }
+	    });
+	}	
+$(document).ready(function() {
+
+ //loadmaster();
+
+})
+</script>
+</html>

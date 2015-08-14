@@ -1,0 +1,155 @@
+/*==header==*/
+header{
+	width:100%;
+	height:50px;
+	background:#fff;
+	border-bottom:1px solid #dcdcdc;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 1300;
+}
+
+.head_left{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 999;
+}
+.head_left > img{
+	display:block;
+	float:left;
+	padding: 16px 4px 0 13px;
+  	width: 13px;
+}
+
+.head_center{
+	width:100%;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	position:absolute;
+	top:0;
+	font-size:1.7em;
+	/*font-weight:bold;*/
+}
+
+.head_right{
+	min-width:100px;
+	width:auto;
+	max-width:127px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	color:#666666;
+	font-size:1.4em;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index: 999;
+}
+
+section{
+	width:100%;
+	height:auto;
+	background:#e9ecf1;
+
+	position:absolute;
+	top:51px;
+	left:0px;
+	bottom:0px;
+}
+
+.box-ul{
+
+}
+
+.box-li-1{
+	margin-top: 10px;
+	background-color: white;
+	border-top: 1px solid #DCDCDC;
+	border-bottom: 1px solid #DCDCDC;
+}
+
+.full-li-1{
+	height:40px;
+	line-height: 40px;
+	border-bottom: 1px solid #DCDCDC;
+}
+
+.star-text{
+	margin-left: 3%;
+	font-size: 1.5em;
+	float: left;
+}
+
+.star-div{
+	width: 30px;
+	float: left;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+.star-div img{
+	width: 25px;
+}
+
+textarea{
+	border: none;
+	width: 94%;
+	margin-left: 3%;
+	height: 100px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 1.6em;
+}
+
+.box-li-2{
+	margin-top: 10px;
+	background-color: white;
+	border-top: 1px solid #DCDCDC;
+	border-bottom: 1px solid #DCDCDC;
+}
+
+.other-li-1{
+	height:40px;
+	line-height: 40px;
+}
+
+/*==footer==*/
+footer{
+	width:100%;
+	height:50px;
+	background:#ffffff;
+	border-top:1px solid #dcdcdc;
+
+	position:fixed;
+	bottom:0;
+	left:0;
+}
+footer div:first-child{
+	float: right;
+	height: 30px;
+	background-color: #F0722D;
+	margin-top: 10px;
+	line-height: 30px;
+	margin-right: 5%;
+	width: 94%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.5em;
+	color: white;
+}
+footer div:last-child{
+	float: right;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 1.5em;
+}

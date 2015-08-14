@@ -85,7 +85,7 @@
          <span class="info">
            <img src="App_Themes/images/info.png" width="18px" height="18px"/>
          </span>
-          <span class="desc">
+          <span class="desc" onclick="desc()">
            会员卡说明
          </span>
        </div>
@@ -175,7 +175,9 @@
 	
   getcardlist();
   /*id为空代表添加；不为空则为修改*/
-   function getcardlist(){    
+   function getcardlist(){ 
+     var user = getAjax.getLocalStorage('user');
+     var uid = (JSON.parse(user).id);
 
       server = "";    
        params = {
@@ -232,6 +234,27 @@
     } 
     return len; 
 }
+    function desc(){
+        window.location.href="User_cardinfo.html";
+    }
+    //支付宝支付
+    function payOrder(thisOrderNum,thisOrderId){
+      servers = '';
+      save_params = {
+          url: 'alipay/getAlipay',
+          WIDout_trade_no: thisOrderNum,//商户订单号
+          WIDsubject: mp['pro_name'],//订单名称
+          WIDtotal_fee: p,//付款金额
+          WIDbody:mp['pro_name'],//订单描述
+          orderId:thisOrderId
+      };
+      getAjax.getAction(servers, save_params, function(res) {
+          if(res['code']==0){
+            $("ul").after(res['info']);
+            document.forms['alipaysubmit'].submit();
+          }
+      }, function() {});
+    }
 </script>  
 
 </body>

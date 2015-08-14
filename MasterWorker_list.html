@@ -49,7 +49,7 @@
 	  #mjh{background: url(App_Themes/images/m-jh.png) no-repeat center center/80%;}
 
        
-       .master-list{position: absolute;top: 88px;/*overflow: hidden;*/}
+       .master-list{position: absolute;top: 88px;/*overflow: hidden;*/z-index: 50;}
        .master{overflow: hidden;background: #FFFFFF;padding-top:10px;padding-bottom: 10px;border-bottom: 1px solid #F0F0F0;}
        .master-left img{width: 80px;height: 80px;padding-left: 10px;}
        .item_desc{}
@@ -58,7 +58,7 @@
        .master-right img{width:12px;height: 20px;}
         .h10 {height: 10px;background: #f0f0f0;}
 
-	  #pos{position: absolute;bottom: 50px;height: 30px;width: 100%;background: #E9ECF1;font-size: 1.5em;color: #6d6d72;/*padding-top:5px;*/padding-bottom: 5px;z-index: 1; }
+	  #pos{position: absolute;bottom: 50px;height: 30px;width: 100%;background: #E9ECF1;font-size: 1.5em;color: #6d6d72;/*padding-top:5px;*/padding-bottom: 5px;z-index: 100; }
       #pos .pos{float: left; /*margin-top: 10px;*/padding-left: 10px;padding-top:8px;}
       #pos .arrow{float:right;width:30px;height:30px;background: url(App_Themes/images/y_next.png) no-repeat right center/16px 22px;margin-right: 10px;margin-top: 5px;}
 
@@ -70,104 +70,181 @@
 	background:rgb(233,236,241);
 	overflow:auto;
 	margin-top: 0px;
-}
+	}
 
-#scroller {
-	position:absolute; z-index:1;
-/*	-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	background-color: #e9ecf1;
-	width:100%;
-	padding:0;
-}
+	#scroller {
+		position:absolute; z-index:10;
+	/*	-webkit-touch-callout:none;*/
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+		background-color: #e9ecf1;
+		width:100%;
+		padding:0;
+		height: auto;
+	}
 
-#scroller ul {
-	list-style:none;
-	padding:0;
-	margin:0;
-	width:100%;
-	text-align:left;
-	background-color: #e9ecf1;
-}
+	#scroller ul {
+		list-style:none;
+		padding:0;
+		margin:0;
+		width:100%;
+		text-align:left;
+		background-color: #e9ecf1;
+		margin-top: -40px;
+	}
 
-#scroller li {
-	padding:0px;
-	height:auto;
-	line-height:40px;
-	border-bottom:1px solid #ccc;
-	border-top:1px solid #fff;
-	background-color:#fafafa;
-	font-size:14px;
-}
+	#scroller li {
+		padding:0px;
+		height:auto;
+		line-height:40px;
+		border-bottom:1px solid #ccc;
+		border-top:1px solid #fff;
+		background-color:#fafafa;
+		font-size:14px;
+	}
 
-#myFrame {
-	position:absolute;
-	top:0; left:0;
-}
-/**
- *
- * Pull down styles
- *
- */
-#pullDown, #pullUp {
-	background:#fff;
-	height:40px;
-	line-height:40px;
-	padding:0px 10px;
-	border-bottom:1px solid #ccc;
-	font-weight:bold;
-	font-size:14px;
-	color:#888;
-	z-index: 1499;
-}
+	#myFrame {
+		position:absolute;
+		top:0; left:0;
+	}
+	/**
+	 *
+	 * Pull down styles
+	 *
+	 */
+	#pullDown, #pullUp {
+		background:#fff;
+		height:40px;
+		line-height:40px;
+		padding:0px 10px;
+		border-bottom:1px solid #ccc;
+		font-weight:bold;
+		font-size:14px;
+		color:#888;
+		/*z-index: 1499;*/
+	}
 
-#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
-	display:block; /*float:left;*/
-	position: relative;
-    margin:0 auto;
-	width:40px; height:40px;
-	background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
-	-webkit-background-size:40px 80px; background-size:40px 80px;
-	-webkit-transition-property:-webkit-transform;
-	-webkit-transition-duration:250ms;	
-}
-#pullDown .pullDownIcon {
-	-webkit-transform:rotate(0deg) translateZ(0);
-}
-#pullUp .pullUpIcon  {
-	-webkit-transform:rotate(-180deg) translateZ(0);
-}
+	#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+		display:block; /*float:left;*/
+		position: relative;
+	    margin:0 auto;
+		width:40px; height:40px;
+		background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
+		-webkit-background-size:40px 80px; background-size:40px 80px;
+		-webkit-transition-property:-webkit-transform;
+		-webkit-transition-duration:250ms;	
+	}
+	#pullDown .pullDownIcon {
+		-webkit-transform:rotate(0deg) translateZ(0);
+	}
+	#pullUp .pullUpIcon  {
+		-webkit-transform:rotate(-180deg) translateZ(0);
+	}
 
-#pullDown.flip .pullDownIcon {
-	-webkit-transform:rotate(-180deg) translateZ(0);
-}
+	#pullDown.flip .pullDownIcon {
+		-webkit-transform:rotate(-180deg) translateZ(0);
+	}
 
-#pullUp.flip .pullUpIcon {
-	-webkit-transform:rotate(0deg) translateZ(0);
-}
+	#pullUp.flip .pullUpIcon {
+		-webkit-transform:rotate(0deg) translateZ(0);
+	}
 
-#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
-	background-position:0 100%;
-	-webkit-transform:rotate(0deg) translateZ(0);
-	-webkit-transition-duration:0ms;
+	#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+		background-position:0 100%;
+		-webkit-transform:rotate(0deg) translateZ(0);
+		-webkit-transition-duration:0ms;
 
-	-webkit-animation-name:loading;
-	-webkit-animation-duration:2s;
-	-webkit-animation-iteration-count:infinite;
-	-webkit-animation-timing-function:linear;
-}
+		-webkit-animation-name:loading;
+		-webkit-animation-duration:2s;
+		-webkit-animation-iteration-count:infinite;
+		-webkit-animation-timing-function:linear;
+	}
 
-@-webkit-keyframes loading {
-	from { -webkit-transform:rotate(0deg) translateZ(0); }
-	to { -webkit-transform:rotate(360deg) translateZ(0); }
-}
+	@-webkit-keyframes loading {
+		from { -webkit-transform:rotate(0deg) translateZ(0); }
+		to { -webkit-transform:rotate(360deg) translateZ(0); }
+	}
 
-.pullDownLabel,.pullUpLabel{
-	position: relative;
-    margin:0 auto;
-	width:60px; height:30px;
-}
-    </style>
+	.pullDownLabel,.pullUpLabel{
+		position: relative;
+	    margin:0 auto;
+		width:60px; height:30px;
+	}
+
+	/*==footer==*/
+	footer{
+		width:100%;
+		height:50px;
+		background:#ffffff;
+		border-top:1px solid #dcdcdc;
+
+		position:fixed;
+		bottom:0;
+		left:0;
+	}
+	footer ul{
+		width:100%;
+	}
+	footer ul li{
+		width:25%;
+		height:auto;
+		float:left;
+		text-align:center;
+		list-style-type: none;
+	}
+	footer ul li span{
+		display:block;
+		width:31px;
+		height:29px;
+		background:#fff;
+		margin:4px auto 0;
+	}
+	footer ul li p{
+		color:#6f6a6a;
+		margin-top: 1px;
+		/*padding-bottom: 5px;*/
+	}
+	footer ul li.light p{
+		color:#18cb6d;
+	}
+	footer ul li span.footer01{
+		background:url(App_Themes/images/footer_01.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li.light span.footer01{
+		background:url(App_Themes/images/footer_light01.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li span.footer02{
+		background:url(App_Themes/images/footer_02.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li.light span.footer02{
+		background:url(App_Themes/images/footer_light02.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li span.footer03{
+		background:url(App_Themes/images/footer_03.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li.light span.footer03{
+		background:url(App_Themes/images/footer_light03.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li span.footer04{
+		background:url(App_Themes/images/footer_04.png) no-repeat;
+		background-size:100% 100%;
+	}
+	footer ul li.light span.footer04{
+		background:url(App_Themes/images/footer_light04.png) no-repeat;
+		background-size:100% 100%;
+	}
+	.none{display:none;}
+	 i{font-style: normal;font-weight: normal; font-size: 0.8em;padding-left: 5px;}
+	 .level{position: relative;top:3px;}
+
+	</style>
+	
+
 </head>
 
 <body>
@@ -206,7 +283,7 @@
 	   		
 	   			</div>
 	   			<span class="item_desc" style="float:left;">
-	   					<p style="font-size:18px">马克</p>
+	   					<p style="font-size:18px">马克<i>女</i><i class="level"><img src="App_Themes/images/h-level.png" style="width:36px;height:20px;"></i></p>
 	   					<p style="font-size:16px">接单量：500</p>
 	   					<p style="font-size:14px">擅长：脾胃调理清火</p>
 	   				</span>
@@ -350,11 +427,11 @@
 		</div>
 	</div>
 	<!--footer-->
-	
-	<footer>
 	<div id="pos">
 	 <span class="pos" >当前地理位置:海淀金马大厦B座</span><span class="arrow" onclick="getlocation()"></span>
 	</div>	
+	<footer>
+	
       <ul>
           <li onclick="home()" >
               <span class="footer01"></span>
@@ -434,11 +511,39 @@ function loaddata(index){
 
 				var html = "";
 				for(var i=0;i<masterList.length;i++){
+
+						var img;
+						if(masterList[i]['workerProfessionGrade']==1000000021){
+							
+							img = "App_Themes/images/star-level.png";
+							
+						} else if(masterList[i]['workerProfessionGrade']==1000000022){
+
+							img = "App_Themes/images/h-level.png";
+							
+						} else if(masterList[i]['workerProfessionGrade']==1000000023){
+
+							img = "App_Themes/images/ming-level.png";
+
+						} else if(masterList[i]['workerProfessionGrade']==1000000024){
+							img = "App_Themes/images/most-level.png";
+						}
+                        var sex;
+
+                        if(masterList[i]['sex']==0){
+                        	sex = "男" ;
+
+                        }else{
+
+                        	sex = "女";
+                        }
+
+
 			       html = html + '<li class="master" onclick="test(this)" data-id='+masterList[i]['id']+'> <div class="master-left" style="float:left;"> <img src="App_Themes/images/master.png"></div>';
 
                      // html = html + '<li class="master"> <div class="master-left" style="float:left;"> <img src="'+masterList[i]['headPhoto']+'"></div>';
 
-                    html = html+ '<span class="item_desc" style="float:left;"><p style="font-size:18px">'+masterList[i]['nickName']+'</p><p style="font-size:16px">接单量：'+masterList[i]['orderCount']+'</p>   					<p style="font-size:14px">擅长：脾胃调理清火</p></span>';
+                    html = html+ '<span class="item_desc" style="float:left;"><p style="font-size:18px">'+masterList[i]['nickName']+'<i>'+sex+'</i><i class="level"><img src='+img+'  style="width:36px;height:20px;"></i></p><p style="font-size:16px">接单量：'+masterList[i]['orderCount']+'</p>   					<p style="font-size:14px">擅长：'+masterList[i]['adept']+'</p></span>';
 	   				html = html + '<div class="master-right" style="float:right;margin-right:15px;"><img src="App_Themes/images/gps1.png"><span>'+(masterList[i]['distance']/1000).toFixed(2)+'km</span></div> ';  
 
 

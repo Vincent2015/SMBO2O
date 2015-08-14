@@ -1,0 +1,238 @@
+<!DOCTYPE html>	
+<html>	
+<head>	
+	<meta charset="utf-8">	
+	<title>frame</title>	
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>	
+    <link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/appointment.css" rel="stylesheet"/> 
+	
+	<style>	
+		html, body {width: 100%;min-height: 100%;background: #E9ECF1;}	
+		body{	
+			overflow: hidden;	
+		}	
+	
+		.swipe {	
+			width: 100%;	
+	        background-color: #fff;	
+	        overflow: hidden;	
+	        position: relative;	
+	        border-bottom: 1px solid #e0e0e0;
+	    }	
+	    .swipe-wrap {	
+	        overflow: hidden;	
+	        position: relative;	
+	    }	
+	    .swipe-wrap .swipe-box {	
+	    	padding-bottom: 10px;	
+	        float: left;	
+	        width: 100%;	
+	        position: relative;	
+	    }	/**/
+       
+       	.hightitem {background-color: #fff;}		
+			
+		.row {display: -webkit-box;}	
+		.col {-webkit-box-flex:1; -webkit-flex:1; flex:1;position: relative;}	
+
+		.col img {position: absolute; right: 0; width: 80px; top: 0;}	
+	
+	    .section01 .row {margin-top: 10px;}	
+		.section01 .col {text-align: center;}	
+		.section01 .col .service{font-size: 1.5em;}
+		.section01 .col img {position: relative;width: 100%; }	
+		.section01 .col div {font-size: 13px;margin-top: 5px; }	
+		
+	    .master-list {margin-top: 10px;}
+		.master-list .item {position: relative; display: block; padding-left: 10px;border-bottom: 1px solid #c8c8c8; }	
+		.master-list .cnt {padding: 7px 10px 10px 0; display: box; display: -webkit-box; display: -webkit-flex;display: flex;min-height: 78px;  background-size: auto 1px; }	
+		.master-list .pic {margin-right: 10px; background: center; }	
+		.master-list img {width: 85px; height: 85px; margin-top: 7px; margin-bottom: 5px; border-radius: 3px; }	
+		.master-list .wrap {-webkit-box-flex: 1; -webkit-flex: 1;flex: 1;}	
+		.master-list .wrap2 {display: table; height: 88px; width: 100%; }	
+		.master-list .content {-webkit-box-flex: 1; -webkit-flex: 1;flex: 1; display: table-cell; vertical-align: middle;font-size: 1.5em; line-height: .8em; }	
+		.master-list .mastername {color: #333;font-size: 18px; max-width: 11em; /*white-space: nowrap;*/ word-wrap: normal; /*text-overflow: ellipsis;*//* overflow: hidden;*/ min-height: 10px; padding-bottom: 2px; padding-top: 3px; display: inline-block;}
+		.master-list .mastername img{width: 30%;height: 15%; position: relative; top:5px;margin-left: .5em;}	
+              
+		.master-list .title {color: #666; line-height: 16px; font-size: 1em; max-height: 30px; overflow: hidden; padding-top: 10px; display: -webkit-box;display: -webkit-flex;display: flex; -webkit-line-clamp: 2; -webkit-box-orient: vertical; -webkit-flex-flow: column;flex-flow: column;}	
+
+		.master-list .distance {-webkit-box-flex: 1; box-flex: 1;-webkit-flex: 1;flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 18px;}	
+		
+		.distance{background: url(App_Themes/images/gps1.png) no-repeat left center /12px 20px;height: 22px;padding-left: 20px;padding-top: 10px;position: relative;
+
+		}
+		.distance i{font-style: normal;padding-top: 15px;}
+		.Fix:after {display: block; content: ''; height: 0; clear: both; }	
+		
+	
+		.presshover {background-color: #FAFAFA;}	
+		.brb {border-bottom: 1px solid #e0e0e0;border-right: 1px solid #e0e0e0;}	
+		.bb {border-bottom: 1px solid #e0e0e0;}	
+		.br {border-right: 1px solid #e0e0e0;}	
+        #pos{position: absolute;bottom: 0px;height: 40px;width: 100%;background: #E9ECF1;font-size: 1.5em;color: #6d6d72;padding-top:5px;padding-bottom: 5px; }
+        #pos .pos{float: left; margin-top: 10px;padding-left: 10px;}
+        #pos .arrow{float:right;width:30px;height:30px;background: url(App_Themes/images/y_next.png) no-repeat right center/16px 22px;margin-right: 10px;margin-top: 5px;}
+	</style>	
+</head>	
+<body>	
+	<div id="swipe" class="swipe section01">	
+		<div class="swipe-wrap">	
+			<div class="swipe-box"> 	
+				<div class="row">	
+					<div class="col" tapmode onclick="">	
+						<img src="App_Themes/images/m-all.png" alt="">	
+						<div class="service">	
+							全部	
+						</div>	
+					</div>	
+					<div class="col" tapmode onclick="">	
+						<img src="App_Themes/images/m-z.png" alt="">	
+						<div class="service">	
+							足疗	
+						</div>	
+					</div>	
+					<div class="col" tapmode onclick="">	
+						<img src="App_Themes/images/m-l.png" alt="">	
+						<div class="service">	
+						   理疗	
+						</div>	
+					</div>	
+					<div class="col" tapmode onclick="">	
+						<img src="App_Themes/images/m-jh.png" alt="">	
+						<div class="service">	
+							脚护	
+						</div>	
+					</div>	
+		           
+
+				</div>	
+				
+			</div>	
+			
+		</div>	
+	</div>	
+		
+	
+	<div class="master-list">	
+	
+        <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance"><i>8.9km</i></span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+         <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance">8.9km</span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+         <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance">8.9km</span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			            	
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+         <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance">8.9km</span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+         <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance">8.9km</span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+         <a href="" class="item Fix hightitem" onclick="" tapmode="presshover">	
+            <div class="cnt">	
+            	<img class="pic" src="App_Themes/images/master.png">	
+	            <div class="wrap">	
+		            <div class="wrap2">	
+			            <div class="content">	
+			                <div class="mastername">马克
+                                     <img src="App_Themes/images/h-level.png">
+			                </div><span class="distance">8.9km</span>	
+			                <div class="title">接单量：500</div>
+			                	<div class="title">擅长：脾胃调理清火</div>
+
+			               
+			            </div>	
+		            </div>           	
+	            </div>	
+            </div>	
+        </a>	
+	</div>
+
+	<div id="pos">
+	 <span class="pos">当前地理位置:海淀金马大厦B座</span><span class="arrow"></span>
+	</div>	
+</body>	
+<script type="text/javascript" src="../script/api.js"></script>	
+<script type="text/javascript" src="../script/swipe.js"></script>	
+<script>	
+	window.onload = function() {	
+		var mySwiper = Swipe($api.byId('swipe'),{	
+			continuous: true	
+		});	
+	}	
+</script>	
+</html>	

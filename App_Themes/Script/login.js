@@ -121,13 +121,9 @@ window.index = (function() {
 				window.location.href = backUrl + ".html";
 			}else{
 				alert(res['message']);
-				// getAjax.MyAlert(res['message'],function(){
-				// 	// $("#aload").fadeOut(10);
-				// });
 			}
 		}, function() {
 			getAjax.MyAlert("连接服务器失败,请检查网络或稍后重试");
-			// $("#aload").fadeOut(10);
 		});
 	}
 

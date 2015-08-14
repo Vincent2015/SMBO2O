@@ -17,10 +17,12 @@
  
   <script type="text/javascript" src="App_Themes/Script/yxMobileSlider.js"></script>
     <script type="text/javascript" src="App_Themes/Script/iscroll.js"></script>
+    <script src="App_Themes/Script/toast.js"></script> 
   <style type="text/css">
    .head_center{color: #FFFFFF;background:rgb(24,203,109);}
 
    header{height: 90px;}
+   /*body{overflow: scroll;}*/
    nav{
         position: absolute;
         height: 40px;
@@ -34,121 +36,123 @@
     nav ul li{
       line-height: 16px;font-size: 1.4em;
     }
-       #ping-list{/*overflow: hidden;*/background: #FFFFFF;top: 60px;position: absolute;}
+      section{height: auto;}
+       #ping-list{/*overflow: hidden;*/background: #FFFFFF;/*top: 60px;*/position: absolute;height: auto;}
        
         #ping-list li{padding-top: 10px; padding-bottom: 5px; border-bottom: 1px solid #F0F0F0;}
         #ping-list .title{overflow: hidden;font-size: 1.3em;color: #666666;}
         #ping-list .title .title-l{position: absolute;left: 10px;}
         #ping-list .title .title-r{position: absolute;right: 10px;}
         #ping-list .content {position: relative;padding-top:20px;color: #666666;}
-        #ping-list .content h2{ font-style: normal;font-weight: normal;font-size: 1.4em;padding-left: 10px;line-height: 1.5em;color: #333333;}
+        #ping-list .content h2{ font-style: normal;font-weight: normal;font-size: 1.4em;padding-left: 10px;line-height: 1.5em;color: #333333;padding-top: 5px;}
          #ping-list .content p{font-size: 1.3em;line-height: 1.5em;position: relative;width: 95%;margin: 0 auto;padding-top: 10px;}
 
 
-               #wrapper {
-  position:absolute; z-index:1;
-  top:85px; bottom:50px; left:-9999px;
-  width:100%;
-  background:rgb(233,236,241);
-  overflow:auto;
-  margin-top: 0px;
-}
+    #wrapper {
+      position:absolute; z-index:1;
+      top:85px; bottom:0px; left:-9999px;
+      width:100%;
+      background:rgb(233,236,241);
+      overflow:auto;
+      margin-top: 0px;
+    }
 
-#scroller {
-  position:absolute; z-index:1;
-/*  -webkit-touch-callout:none;*/
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
-  background-color: #e9ecf1;
-  width:100%;
-  padding:0;
-}
+    #scroller {
+      position:absolute; z-index:1;
+    /*  -webkit-touch-callout:none;*/
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      background-color: #e9ecf1;
+      width:100%;
+      padding:0;
+      height: 100%;
+    }
 
-#scroller ul {
-  list-style:none;
-  padding:0;
-  margin:0;
-  width:100%;
-  text-align:left;
-  background-color: #e9ecf1;
-}
+    #scroller ul {
+      list-style:none;
+      padding:0;
+      margin:0;
+      width:100%;
+      text-align:left;
+      background-color: #e9ecf1;
+    }
 
-#scroller li {
-  padding:0px;
-  height:auto;
-  line-height:40px;
-  border-bottom:1px solid #ccc;
-  border-top:1px solid #fff;
-  background-color:#fafafa;
-  font-size:14px;
-}
+    #scroller li {
+      padding:0px;
+      height:auto;
+      line-height:40px;
+      border-bottom:1px solid #ccc;
+      border-top:1px solid #fff;
+      background-color:#fafafa;
+      font-size:14px;
+    }
 
-#myFrame {
-  position:absolute;
-  top:0; left:0;
-}
-/**
- *
- * Pull down styles
- *
- */
-#pullDown, #pullUp {
-  background:#fff;
-  height:40px;
-  line-height:40px;
-  padding:0px 10px;
-  border-bottom:1px solid #ccc;
-  font-weight:bold;
-  font-size:14px;
-  color:#888;
-  z-index: 1499;
-}
+    #myFrame {
+      position:absolute;
+      top:0; left:0;
+    }
+    /**
+     *
+     * Pull down styles
+     *
+     */
+    #pullDown, #pullUp {
+      background:#fff;
+      height:40px;
+      line-height:40px;
+      padding:0px 10px;
+      border-bottom:1px solid #ccc;
+      font-weight:bold;
+      font-size:14px;
+      color:#888;
+      z-index: 1499;
+    }
 
-#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
-  display:block; /*float:left;*/
-  position: relative;
-    margin:0 auto;
-  width:40px; height:40px;
-  background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
-  -webkit-background-size:40px 80px; background-size:40px 80px;
-  -webkit-transition-property:-webkit-transform;
-  -webkit-transition-duration:250ms;  
-}
-#pullDown .pullDownIcon {
-  -webkit-transform:rotate(0deg) translateZ(0);
-}
-#pullUp .pullUpIcon  {
-  -webkit-transform:rotate(-180deg) translateZ(0);
-}
+    #pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+      display:block; /*float:left;*/
+      position: relative;
+        margin:0 auto;
+      width:40px; height:40px;
+      background:url(App_Themes/images/pull-icon@2x.png) no-repeat center;
+      -webkit-background-size:40px 80px; background-size:40px 80px;
+      -webkit-transition-property:-webkit-transform;
+      -webkit-transition-duration:250ms;  
+    }
+    #pullDown .pullDownIcon {
+      -webkit-transform:rotate(0deg) translateZ(0);
+    }
+    #pullUp .pullUpIcon  {
+      -webkit-transform:rotate(-180deg) translateZ(0);
+    }
 
-#pullDown.flip .pullDownIcon {
-  -webkit-transform:rotate(-180deg) translateZ(0);
-}
+    #pullDown.flip .pullDownIcon {
+      -webkit-transform:rotate(-180deg) translateZ(0);
+    }
 
-#pullUp.flip .pullUpIcon {
-  -webkit-transform:rotate(0deg) translateZ(0);
-}
+    #pullUp.flip .pullUpIcon {
+      -webkit-transform:rotate(0deg) translateZ(0);
+    }
 
-#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
-  background-position:0 100%;
-  -webkit-transform:rotate(0deg) translateZ(0);
-  -webkit-transition-duration:0ms;
+    #pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+      background-position:0 100%;
+      -webkit-transform:rotate(0deg) translateZ(0);
+      -webkit-transition-duration:0ms;
 
-  -webkit-animation-name:loading;
-  -webkit-animation-duration:2s;
-  -webkit-animation-iteration-count:infinite;
-  -webkit-animation-timing-function:linear;
-}
+      -webkit-animation-name:loading;
+      -webkit-animation-duration:2s;
+      -webkit-animation-iteration-count:infinite;
+      -webkit-animation-timing-function:linear;
+    }
 
-@-webkit-keyframes loading {
-  from { -webkit-transform:rotate(0deg) translateZ(0); }
-  to { -webkit-transform:rotate(360deg) translateZ(0); }
-}
+    @-webkit-keyframes loading {
+      from { -webkit-transform:rotate(0deg) translateZ(0); }
+      to { -webkit-transform:rotate(360deg) translateZ(0); }
+    }
 
-.pullDownLabel,.pullUpLabel{
-  position: relative;
-    margin:0 auto;
-  width:60px; height:30px;
-}
+    .pullDownLabel,.pullUpLabel{
+      position: relative;
+        margin:0 auto;
+      width:60px; height:30px;
+    }
     </style>
 </head>
 
@@ -178,8 +182,8 @@
         <p class="pullDownIcon"></p><p class="pullDownLabel"></p>
       </div>
   <!--section-->
-  <section id="ping-list" >
-       <ul>
+  <section >
+       <ul  id="ping-list">
            <!--   <li>
                <div class="title">
                 <span class="title-l">*******554</span>
@@ -249,12 +253,12 @@
          </ul>
    
   </section>
-   <section id="ping-list" >
+  <!--  <section id="ping-list" >
        <ul>
 
         </ul>
    
-  </section>
+  </section> -->
     <div id="pullUp" class="none">
         <p class="pullUpIcon"></p><p class="pullUpLabel"></p>
       </div>
@@ -294,7 +298,7 @@ var myScroll,
     window.location.href = "MasterWoker_list.html";
   }
 
-var curpage1 = curpage2=curpage3=curpage4=curpage=0;
+var curpage1 = curpage2=curpage3=curpage4=curpage=1;
 
 var pagenum = 10;
 var  totcount=goodcount=wellcount=badcount=0;
@@ -327,10 +331,12 @@ function loaddata(index){
             
           }
 
+       
+
         params = {
         url: "evaluate/getEvaluateListsNew",
          workerId:cmid,
-         evaluateGrade:index,
+         evaluateGrade:index-1,
          page:curpage,
          rows:pagenum
       };
@@ -342,13 +348,15 @@ function loaddata(index){
            params = {
             url: "evaluate/getEvaluateListsNew",
             workerId:cmid,
-            page:curpage1,
+            page:curpage,
             rows:pagenum
            };
 
 
     }
-    return;
+     console.log('params',params);
+     // alert('index:'+index+'----curpage'+curpage);
+    
     getAjax.getAction(server,params,function(res){
       console.log('加载师傅全部评价',res);
      
@@ -373,6 +381,19 @@ function loaddata(index){
           console.log(pjList);
 
           // curpage = curpage + 1;
+
+
+        }
+          if(pjList.length==0){
+            if (curpage>1){
+              new Toast({context:$('body'),message:'已经没有更多了'}).show();
+            }else{
+                 $('#scroller section #ping-list').empty();
+
+            }
+            
+           return;
+          }
       
           var html = "";
       
@@ -396,48 +417,57 @@ function loaddata(index){
               switch(index)
                   {
                   case 0:
-                      if (curpage1==0){
-                           $('#ping-list ul').empty().append(html);
+                      if (curpage1==1){
+                           $('#scroller section #ping-list').empty().append(html);
+                           // alert(0);
+                         
 
                       }else{
 
-                          $('#ping-list ul').append(html);
+
+                           $('#scroller section #ping-list').append(html);
+                           // alert(1);
+                          
                       }
                       curpage1 = curpage1 + 1;
+                      curpage = curpage1;
                     break;
                   case 1:
-                     if (curpage2==0){
-                           $('#ping-list ul').empty().append(html);
+                     if (curpage2==1){
+                             // alert('----');
+                           $('#scroller section #ping-list').empty().append(html);
 
                       }else{
 
-                          $('#ping-list ul').append(html);
+                          $('#scroller section #ping-list').append(html);
+                          // alert('!!!!!!');
                       }
                       curpage2= curpage2 + 1;
-
+                      curpage = curpage2;
                     break;
 
                   case 2:
-                     if (curpage3==0){
-                           $('#ping-list ul').empty().append(html);
+                     if (curpage3==1){
+                           $('#scroller section #ping-list').empty().append(html);
 
                       }else{
 
-                          $('#ping-list ul').append(html);
+                          $('#scroller section #ping-list').append(html);
                       }
                       curpage3 = curpage3 + 1;
+                       curpage = curpage3;
                     
                     break;
                   case 3:
-                     if (curpage4==0){
-                     $('#ping-list ul').empty().append(html);
+                     if (curpage4==1){
+                     $('#scroller section #ping-list').empty().append(html);
 
                       }else{
 
-                          $('#ping-list ul').append(html);
+                          $('#scroller section #ping-list').append(html);
                       }
                       curpage4 = curpage4 + 1;
-                    
+                      curpage = curpage4;
                     break;
 
                   default:
@@ -445,11 +475,13 @@ function loaddata(index){
                   }           
           
 
+         
+         
 
-          // myScroll.refresh(); 
+          myScroll.refresh(); 
           pullDownEl = document.getElementById('pullDown');
           pullDownEl.style.display = "none";
-      }
+     
       
     },function(error){});
   }

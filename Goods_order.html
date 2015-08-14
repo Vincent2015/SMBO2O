@@ -11,6 +11,8 @@
     <link href="App_Themes/Style/appointment.css" rel="stylesheet"/> 
 
     <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/getAjax.js"></script>
     <script type="text/javascript" src="App_Themes/Script/appointment.js"></script>
     <style type="text/css">
   	.a_03{
@@ -30,19 +32,19 @@
 	<section class="appointment">
 		<div class="a_01">
 			<div class="a_name">
-				<span>上品足浴</span>
+				<span id="projectName">上品足浴</span>
 				<p>
-					<i><img src="App_Themes/images/y_jian.png"/></i>
-					<i><input type="text" placeholder="2"/></i>
-					<i><img src="App_Themes/images/y_jia.png"/></i>
+					<i><img src="App_Themes/images/y_jian.png" onclick="minus(this)"/></i>
+					<i><input type="text" id="num"/></i>
+					<i><img src="App_Themes/images/y_jia.png" onclick="plus(this)"/></i>
 				</p>
 			</div>
 		</div>
 		<div class="a_02">
 			<p><span>选择师傅等级</span></p>
 			<div class="dengji">
-				<ul>
-					<li class="dj_bg01">
+				<ul id="jibie">
+					<!-- <li class="dj_bg01">
 						<span>59</span>
 						<i>星级</i>
 					</li>
@@ -57,42 +59,287 @@
 					<li class="dj_bg04">
 						<span>239</span>
 						<i>明星</i>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
-		<div class="a_03">
+		<div class="a_03" style="height:80px;">
 			<ul>
-			    <li>
-					<p><img src="App_Themes/images/user.png"/>王小明 18552225554</p>
-					<span><img src="App_Themes/images/y_next.png"/></span>
+			    <li style="height: 40px;" onclick="seladdr()">
+					<p style="height: 40px;line-height: 40px;" id="address">
+					<img style="padding: 5px 0 0 9px;" src="App_Themes/images/address.png"/>请选择服务地址</p>
+					<span><img src="App_Themes/images/y_next.png" style="padding: 0px 11px;margin-top: 10px;"/></span>
 				</li>
-				<li>
-					<p><img src="App_Themes/images/address.png"/>请填写服务地址</p>
-					<span><img src="App_Themes/images/y_next.png" onclick="seladdr()" /></span>
-				</li>
-				<li style="border:0">
-					<p><img src="App_Themes/images/time01.png"/>请选择师傅时间</p>
+
+				<li style="border:0" onclick="seltime()">
+					<p id="time"><img src="App_Themes/images/time01.png" />请选择服务时间</p>
 					<span><img src="App_Themes/images/y_next.png"/></span>
 				</li>
 			</ul>
 		</div>
+		<div class="a_03" style="height:40px;">
+			<ul>
+				<li style="border:0" onclick="selWorker()">
+					<p id="worker"><img src="App_Themes/images/best.png" />推荐最优师傅</p>
+					<span style="float:right;">
+						<img id="worker_box" src="App_Themes/images/y_next.png" style="float:right;"/>
+						<!-- <p style="float:right;margin-right:20px;">马克</p>
+						<img src="App_Themes/images/shif.png" style="float:right;width:34px;padding:0px;margin-top:3px;margin-right:10px;"/> -->
+					</span>
+				</li>
+			</ul>
+		</div>
 		<div class="a_04">
-			<p>项目总计：<span>59元</span></p>
+			<p>项目总计：<span id="orderPrice">0元</span></p>
 		</div>
 	</section>
 	<!--footer-->
 	<footer>
-		<p>确认下单</p>
+		<p>确认并下单</p>
 	</footer>
 	<script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
 	<script src="App_Themes/Script/getAjax.js"></script>
 	<script type="text/javascript">
+	if(getAjax.getSessionStorage("project")==""||getAjax.getLocalStorage("city")==""){
+		alert("请先选择项目");
+		window.location.href="index.html";
+	}
+	var city = JSON.parse(getAjax.getLocalStorage("city"));
+	var user = JSON.parse(getAjax.getLocalStorage("user"));
+	var project = JSON.parse(getAjax.getSessionStorage("project"));
+	var address = "";
+	var transPrice = 0;
+	if(getAjax.getSessionStorage("address")!=""){
+		address = JSON.parse(getAjax.getSessionStorage("address"));
+	}
+	var _datetime = getAjax.getSessionStorage("datetime");
+	var projectPrice = 0;
+	var projectGrade = 0;
+	$('#num').val(project['lowDemand']);
+	$("#projectName").html(project['projectName']);
+	var htm = "";
+	for(var i=0;i<project['projectPrices'].length;i++){
+		if(i==0){
+			htm = htm + '<li class="dj_bg01" onclick="changeGrade(1)">'+
+							'<span>'+project['projectPrices'][0]['projectPrice']+'</span>'+
+							'<i>星级</i>'+
+						'</li>';
+		}
+		if(i==1){
+			projectPrice = project['projectPrices'][1]['projectPrice'];
+			projectGrade = 2;
+			$("#orderPrice").empty().html(project['lowDemand'] * projectPrice+"元");
+			htm = htm + '<li class="dj_bg02 light" onclick="changeGrade(2)">'+
+							'<span>'+project['projectPrices'][1]['projectPrice']+'</span>'+
+							'<i>高级</i>'+
+						'</li>';
+		}
+		if(i==2){
+			htm = htm + '<li class="dj_bg03" onclick="changeGrade(3)">'+
+							'<span>'+project['projectPrices'][2]['projectPrice']+'</span>'+
+							'<i>特级</i>'+
+						'</li>';
+		}
+		if(i==3){
+			htm = htm + '<li class="dj_bg04" onclick="changeGrade(4)">'+
+							'<span>'+project['projectPrices'][3]['projectPrice']+'</span>'+
+							'<i>明星</i>'+
+						'</li>';
+		}
+	}
+	function changeGrade(grade){
+		_datetime = "";
+		getAjax.removeSessionStorage('datetime');
+		$("#worker_box").next().next().remove();
+		$("#worker_box").next().remove();
+		$("#time").html('<img src="App_Themes/images/time01.png" />请选择服务时间');
+		$(".dj_bg0"+grade).attr("class","dj_bg0"+grade+" light");
+		$(".dj_bg0"+projectGrade).attr("class","dj_bg0"+projectGrade);
+		projectGrade = grade;
+		projectPrice = project['projectPrices'][grade-1]['projectPrice'];
+		$("#orderPrice").empty().html(parseInt($('#num').val()) * projectPrice+"元");
+	}
+	$("#jibie").html(htm);
+	if(address!=""){
+		$("#time").parent().prev().remove();
+		var address_text = "";
+		if((address['communityName']+address['placeName']).length>16){
+			address_text = (address['communityName']+address['placeName']).substring(0,16)+'...';
+		} else {
+			address_text = address['communityName']+address['placeName'];
+		}
+		$(".a_03").eq(0).css("height","100px");
+		$("#time").before('<li style="border-bottom: none;height: 30px;" onclick="seladdr()" >'+
+								'<p style="height: 30px;line-height: 30px;" id="user_phone">'+
+								'<img style="padding: 0px 0 0 9px;" src="App_Themes/images/user.png"/>'+address['userName']+"&nbsp;"+address['userPhone']+'</p>'+
+							'</li>'+
+							'<li style="height: 30px;" onclick="seladdr()">'+
+								'<p style="height: 30px;line-height: 30px;" id="address">'+
+								'<img style="padding: 0px 0 0 9px;" src="App_Themes/images/address.png"/>'+address_text+'</p>'+
+								'<span><img src="App_Themes/images/y_next.png" style="padding: 0px 11px;margin-top: -10px;"/></span>'+
+							'</li>');
+	}
+	if(_datetime!=""){
+		$("#time").html('<img src="App_Themes/images/time01.png" />'+_datetime);
+	}
+	if(_datetime!=""&&address!=""){
+		getWorker();
+	}
+	function getWorker(){
+		var worker = getAjax.getSessionStorage("Worker");
+
+		if(worker!=""){
+			$("#worker_box").after('<p style="float:right;margin-right:20px;">'+JSON.parse(worker).nickName+'</p>'+
+						'<img src="'+getAjax.workimg+JSON.parse(worker).headPhoto+'" style="float:right;width:34px;padding:0px;margin-top:3px;margin-right:10px;"/>');
+		} else {
+			server = "";
+			params = {
+				url: "worker/getWorkerListByrules",
+				projectid: project['id'],
+				longitude: address['addressLongitude'],
+				latitude: address['addressLatitude'],
+				date: _datetime,
+				workerGrade: "100000002"+projectGrade,
+				cityId: city['code'],
+				number: $('#num').val()
+			};
+			getAjax.getAction(server,params,function(res){
+				console.log('获取最优师傅',res);
+				if(res['code']==0){
+					getAjax.setSessionStorage("Worker",JSON.stringify(res['info'][0]));
+					getAjax.setSessionStorage("WorkerForProject",JSON.stringify(res['info']));
+					$("#worker_box").after('<p style="float:right;margin-right:20px;">'+res['info'][0]['nickName']+'</p>'+
+							'<img src="'+getAjax.workimg+res['info'][0]['headPhoto']+'" style="float:right;width:34px;padding:0px;margin-top:3px;margin-right:10px;"/>');
+				} else {
+					alert(res['message']);
+				}
+			},function(error){
+				alert("与服务器连接断开");
+			});
+		}
+	}
 	function seladdr(){
 		// body...
-		window.location.href = "Address_list.html";
+		_datetime = "";
+		getAjax.removeSessionStorage('datetime');
+		$("#worker_box").next().next().remove();
+		$("#worker_box").next().remove();
+		$("#time").html('<img src="App_Themes/images/time01.png" />请选择服务时间');
+		window.location.href = "Address_list.html?backUrl=Goods_order";
 	}
+	function seltime(){
+		if(address==""){
+			alert("请先选择地址");
+			return;
+		}
+		window.location.href = "Time-list.html?backUrl=Goods_order";
+	}
+	function plus(item){
+		if(parseInt($('#num').val())<project['highDemand']){
+			$('#num').val(parseInt($('#num').val()) + 1);
+			_datetime = "";
+			getAjax.removeSessionStorage('datetime');
+			$("#worker_box").next().next().remove();
+			$("#worker_box").next().remove();
+			$("#time").html('<img src="App_Themes/images/time01.png" />请选择服务时间');
+			$("#orderPrice").empty().html(parseInt($('#num').val()) * projectPrice+"元");
+		} else {
+			alert("此项目最多"+project['highDemand']+"份");
+		}
+    	
 
+	}
+	function minus(item){
+		if(parseInt($('#num').val())>project['lowDemand']){
+           $('#num').val(parseInt($('#num').val()) - 1); 
+           _datetime = "";
+			getAjax.removeSessionStorage('datetime');
+			$("#time").html('<img src="App_Themes/images/time01.png" />请选择服务时间');
+			$("#worker_box").next().next().remove();
+			$("#worker_box").next().remove();
+			$("#orderPrice").empty().html(parseInt($('#num').val()) * projectPrice+"元");
+		} else {
+			alert("此项目最少"+project['lowDemand']+"份");
+		}
+ 	}
+ 	$("footer").bind("click",function(){
+ 		if(address==""){
+ 			alert("请选择服务地址");
+ 			return;
+ 		}
+ 		if(_datetime==""){
+			alert("请选择服务时间");
+			return;
+ 		}
+ 		
+ 		var hh = _datetime.substr(11,2);
+ 		var mm = _datetime.substr(14,2);
+ 		if(hh>21||(hh==21&&mm==30)){
+ 			if(confirm("超过21:30将收取50元夜间服务费，是否继续？")){
+ 				transPrice = 50;
+ 				makeOrder();
+ 			}
+ 		} else {
+ 			makeOrder();
+ 		}
+ 	});
+ 	function makeOrder(){
+ 		server = "";
+		params = {
+			url: "order/checkWorker",
+			time: _datetime,
+			workerId: JSON.parse(getAjax.getSessionStorage("Worker"))['id'],
+			lat: address['addressLatitude'],
+			lng: address['addressLongitude']
+		};
+		getAjax.getAction(server,params,function(res){
+			console.log('获取师傅是否能够到达',res);
+			
+			if(res['code']==0){
+				params = {
+					url: "order/makeOrderNew",
+			         orderPrice:transPrice+parseInt($('#num').val()) * projectPrice,
+			         userId:user['id'],
+			         workerId:JSON.parse(getAjax.getSessionStorage("Worker"))['id'],
+			         projectId:project['id'],
+			         stime:_datetime,
+			         orderAddress:address['communityName']+address['placeName'],
+			         orderLongitude:address['addressLongitude'],
+			         orderLatitude:address['addressLatitude'],
+			         contact:user['nickName'],
+			         contactPhone:user['phonenum'],
+			         count:parseInt($('#num').val()),
+			         orderGrade:"100000002"+projectGrade,
+			         projectPrice:projectPrice,
+			         channel: 2
+				};
+				getAjax.getAction(server,params,function(res){
+					console.log('保存订单信息',res);
+					if(res['code']==0){
+						alert("下单成功");
+						getAjax.removeSessionStorage("Worker");
+						getAjax.removeSessionStorage("WorkerForProject");
+						window.location.href="payment.html?orderId="+res['info']['id'];
+					} else {
+						alert(res['message']);
+					}
+				},function(error){
+					alert("与服务器连接断开");
+				});
+			} else {
+				alert(res['message']);
+			}
+		},function(error){
+			alert("与服务器连接断开");
+		});
+ 	}
+ 	function selWorker(){
+ 		if(getAjax.getSessionStorage("WorkerForProject")==""){
+ 			alert("请先选择服务地址和服务时间");
+ 			return;
+ 		}
+ 		window.location.href='add_worker_list.html'
+ 	}
 	</script>
 </body>
 </html>
