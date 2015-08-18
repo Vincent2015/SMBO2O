@@ -61,20 +61,26 @@ window.userEvaluate = (function() {
 		} else if(full_star==1){
 			score = 2;
 		}
+		var order = JSON.parse(getAjax.getSessionStorage("order"));
+
+		var project = JSON.parse(getAjax.getSessionStorage("project"));
+
+		var work = JSON.parse(getAjax.getSessionStorage("Master"));
+
 		var evaluateDetail = ($("textarea").val()==""?"好评！": $("textarea").val());
 		server = "";
 		params = {
 			url: "evaluate/userEvaluate",
 			userId: JSON.parse(getAjax.getLocalStorage("user"))['id'],//用户ID
-			workerId: workerId,//师傅ID
-			orderId: orderId,//订单ID
+			workerId:  work['id'],//师傅ID
+			orderId:  order['id'],//订单ID
 			evaluateGrade: score,//总体评价，1差评 23中评 45好评
 			punctuality: star_1,//守时
 			amiable: star_2,//态度
 			skill: star_3,//技能
 			evaluatePersonName: JSON.parse(getAjax.getLocalStorage("user"))['nickName'],//用户ID
 			projectId: order['projectId'],
-			projectName: order['projectName'],
+			projectName: project['projectName'],
 			// evaluateTime: getAjax.getTime('',true),//评价时间
 			evaluateDetail: evaluateDetail,//评价内容
 			// extraEvaluateDetail: ''//追加评价内容
@@ -83,6 +89,8 @@ window.userEvaluate = (function() {
 			// evaluateStatus: 'YES',//是否已评价
 			isAnonymous: 0//0不匿名
 		};
+ 			console.log('params',params);
+		// return;
 		getAjax.getAction(server,params,function(res){
 			console.log('加载订单详情',res);
 			if(res['code']==0){

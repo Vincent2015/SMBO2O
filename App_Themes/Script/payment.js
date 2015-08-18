@@ -17,7 +17,7 @@ window.payment = (function() {
 		$("#contact").html(order['contact']);
 		$("#contactPhone").html(order['contactPhone']);
 		$("#orderAddress").html(order['orderAddress']);
-		$("#startOrderTime").html(order['startOrderTime']);
+		$("#startOrderTime").html(getAjax.getTime(order['startOrderTime'],true));
 		$("#headPhoto").attr("src",getAjax.workimg+order['headPhoto']);
 		$("#nickName").html(order['nickName']);
 		$("#count").html("数量:"+order['count']+"份");

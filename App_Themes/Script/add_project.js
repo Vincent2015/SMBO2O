@@ -1,10 +1,13 @@
+var workerId =getAjax.getQueryString("workerId");
 $(document).ready(function(){
 window.addproject = (function() {
-	var orderId = "";//getAjax.getQueryString("workerId");
-	var workerId = "16bb537a70724e75986bba4ba3f1b89a";//getAjax.getQueryString("workerId");
-	var fun_flag = "add";//"zaici";//getAjax.getQueryString("flag");
+	var orderId = getAjax.getQueryString("orderId");
+	var workerId =getAjax.getQueryString("workerId");
+	var fun_flag = getAjax.getQueryString("flag");
+
+	// alert(orderId+'---'+workerId+'---'+fun_flag);
 	function initPage(){
-		server = "";
+		server = "";		
 		params = {
 			url: "worker/getMyProjects",
 			workerId: workerId

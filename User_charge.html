@@ -29,7 +29,7 @@
      .head_right img{width: 32px;height: 32px;}
 
 
-     nav{height: 160px;position: absolute;top:50px;background:rgb(24,203,109); }
+     nav{height: 160px;position: absolute;top:0px;background:rgb(24,203,109); }
 
      nav .info{display:inline-block;width:18px;height:18px;/*border: 2px solid #FFFFFF;border-radius:10px;*/color:#FFFFFF;text-align: center;font-size: 1.3em;}
      nav .info img{display: block;margin-top: 3px;}
@@ -65,14 +65,7 @@
 <body>
 	<!--header-->
 	<header>
-		<div class="head_left" onclick="goback()" >
-			<img src="App_Themes/images/back01.png"/>
-			
-		</div>
-		<div class="head_center">会员卡</div>
-		<div class="head_right" onclick="newaddr()">
-			<!-- 账单 -->
-		</div>
+		
 
     <nav>
       <span class="ubg">
@@ -93,11 +86,11 @@
     </nav>
 	     
 	</header>
-	<section>
+	<section style="top:0px;">
 		 <div id="addrlist" class="">
 		 	
          <ul>
-         <!-- 	<li>
+         	<li>
          		<span class="info">
          			<h2>充5000元&nbsp;送100</h2>
          			
@@ -156,7 +149,7 @@
               充值
             </span>
           
-          </li> -->
+          </li>
 
          </ul>
 
@@ -215,11 +208,11 @@
 
              html= html + '<li class="" data-id='+cardList[i].id+' ><span class="info"><h2>'+ cardList[i].cardName+'</h2></span><span class="edit" onclick="">充值</span></li>';   
          
-          }//end for
+          }
           $('#addrlist ul').empty().append(html);
 
 
-      }//end 
+      }
       
     },function(error){});
   }

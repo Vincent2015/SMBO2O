@@ -876,7 +876,7 @@ footer ul li.light span.footer04{
 														'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">删除</div>'+
 														'<div class="bottom_right_div"  onclick="window.location.href=\'payment.html?orderId='+unfinishedOrderList[i]['id']+'\'">支付</div>';
 										} else {
-											htm = htm + '<div class="bottom_right_div" onclick="window.location.href=\'add_clock.html?orderId='+unfinishedOrderList[i]['id']+'\'">加钟</div>'+
+											htm = htm + '<div class="bottom_right_div" onclick="window.location.href=\'add_project.html?orderId='+unfinishedOrderList[i]['id']+'&flag=add'+'&workerId='+unfinishedOrderList[i]['workerId']+ '\'">加钟</div>'+
 														'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">取消</div>';
 										}
 							htm =  htm +'</div>'+
@@ -948,9 +948,9 @@ footer ul li.light span.footer04{
 									'</div>'+
 									'<div class="bottom_div">';
 									if(unfinishedOrderList[i]['userEvaluateStatus']==0){
-							htm =  htm + '<div class="bottom_right_evaluate_div" onclick="window.location.href=\'order_evaluate.html?orderId='+unfinishedOrderList[i]['id']+'\'">评价</div>';
+							htm =  htm + '<div class="bottom_right_evaluate_div" onclick="window.location.href=\'User_evaluate.html?orderId='+unfinishedOrderList[i]['id']+'\'">评价</div>';
 									}
-							htm =  htm + '<div class="bottom_right_div" onclick="window.location.href=\'index.html?orderId='+unfinishedOrderList[i]['id']+'\'">再次预约</div>'+
+							htm =  htm + '<div class="bottom_right_div" onclick="window.location.href=\'add_project.html?orderId='+unfinishedOrderList[i]['id']+'&flag=again'+'&workerId='+unfinishedOrderList[i]['workerId']+'\'">再次预约</div>'+
 										'<div class="bottom_right_div" onclick="popCancelOrder(\''+unfinishedOrderList[i]['id']+'\')">删除</div>'+
 									'</div>'+
 								'<div class="orderBr"></div>';

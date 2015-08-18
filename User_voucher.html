@@ -17,7 +17,7 @@
     
     <style type="text/css">
      body{background: rgb(233,236,241);overflow: hidden;}
-     section{background: rgb(255,255,255);overflow: hidden;top:95px;position: absolute;}
+     section{background: rgb(255,255,255);overflow: hidden;top:50px;position: absolute;}
      header{height: 100px;}
      .head_center{color: #FFFFFF;background:rgb(24,203,109);}
      .head_right{
@@ -32,7 +32,7 @@
      .in{height: 30px;position: absolute;top:40px;width: 100%;margin-top: 5px;background: rgb(239,239,239);height: auto;padding-top:5px;padding-bottom:5px;}
 
      .in input {display: block;width: 70%;position: relative;line-height: 2.5em;outline: none;border: 1px solid #FFFFFF;border-radius: 5px;background:#FFFFFF;padding-top: 5px;padding-left:5px;padding-bottom: 5px;margin-left: 10px;margin-top: 5px;margin-bottom: 5px;font-size: 1.3em;}
-     .in button{position: absolute;right: 10px;width: 64px;line-height: 1.5em;font-size: 1.5em;background: transparent; border:1px solid rgb(24,203,109);border-radius: 5px;color:rgb(24,203,109); top:5px;height:45px; }
+     .in button{position: absolute;right: 10px;width: 64px;line-height: 1.5em;font-size: 1.5em;background: transparent; border:1px solid rgb(24,203,109);border-radius: 5px;color:rgb(24,203,109); top:5px;height:45px;margin-top: 5px; }
 
      #addrlist{}
 
@@ -68,16 +68,16 @@
 
 <body>
 	<!--header-->
-	<header>
+	<header style="height:auto;">
 		<div class="head_left" onclick="goback()" >
 			<img src="App_Themes/images/back01.png"/>
 			
 		</div>
 		<div class="head_center">优惠券</div>
-		<div class="head_right" onclick="newaddr()">
+		<div class="head_right" onclick="newcoupon()">
 			兑换
 		</div>
-    <div class="in">
+    <div class="in" style="opacity:0;">
      <input type="text" id="kwd" placeholder="请输入优惠码"/>      
        <button>确认</button>
     </div>
@@ -85,8 +85,8 @@
 	<section>
 		 <div id="addrlist" class="">
 		 	
-         <ul>
-         	<li class="nouse">
+         <ul id="box" style="height: auto;position: absolute;width: 100%;overflow: scroll;top: 50px;bottom: 0px;">
+         	<!-- <li class="nouse">
          		<span class="info">
          			<h2><i class="rmb">¥</i><i class="num">10</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限北京使用)</i></h2>
          			<h3>满30元使用 有效期至2015年8月12日</h3>
@@ -128,7 +128,7 @@
               已使用
             </span>
           
-          </li>
+          </li> -->
 	       
          </ul>
 
@@ -144,69 +144,79 @@
 	 $(document).ready(function(){
 
 	});
-	
-  getvoucherlist();
-  /*id为空代表添加；不为空则为修改*/
-   function getvoucherlist(){ 
-     var user = getAjax.getLocalStorage('user');
-      if (!user){
-
-        window.location.href = "login.html?backUrl=Address_new";
-         return;
-
-     }  
-
-
-     var uid = (JSON.parse(user).id);
-
-      server = "";    
-       params = {
-         url: "coupon/findUseDiscountCoupon1",
-         userId:uid,
-         money:'169',
-         cityId:"60abe656675a44dfb160cd159938e0b1",
-         startOrderTime:'2015-08-11 15:00'
-
+   var backUrl = getAjax.getQueryString("backUrl");
+   var startOrdertime = getAjax.getQueryString("startOrdertime");
+   var money = getAjax.getQueryString("money");
+	var user = getAjax.getLocalStorage('user');
+  var city = JSON.parse(getAjax.getLocalStorage('city'));
+  var uid = (JSON.parse(user).id);
+  var show_flag=false;
+  if(backUrl=="User_index"){
+    getMyVoucherList();
+  } else {
+    getvoucherlist();
+  }
+   function getvoucherlist(){
+     server = "";
+      params = {
+        url: "coupon/findUseDiscountCoupon1",
+        userId:uid,
+        startOrdertime:getAjax.getTime(parseInt(startOrdertime),true),
+        money:money,
+        cityId:city['id']
       };
-    
+      getAjax.getAction(server,params,function(res){
+        console.log('我的可用优惠券列表',res);
+        if(res['code']==0){
+          var htm = "";
+          for(var i=0;i<res['info'].length;i++){
+            htm = htm + '<li onclick="jump(\''+res['info'][i]['id']+'\',\''+res['info'][i]['discountMoney']+'\')" class="'+(res['info'][i]['isUsed']==0?'nouse':'use')+'">'+
+              '<span class="info">'+
+                '<h2><i class="rmb">¥</i><i class="num">'+res['info'][i]['discountMoney']+'</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限'+res['info'][i]['cityName']+'使用)</i></h2>'+
+                '<h3>满'+res['info'][i]['useMoneyDemand']+'元使用 有效期至'+getAjax.getTime(res['info'][i]['useEndTime'],false)+'</h3>'+
+              '</span>'+
+              '<span class="edit">'+
+                (res['info'][i]['isUsed']==0?'可使用':'已使用')+
+              '</span>'+
+            '</li>';
+          }
+          $("#box").html(htm);
+        }else{
+          alert(res['message']);
+        }
+      },function(error){
+        alert("与服务器连接断开");
+      });
+  }
+
+  function getMyVoucherList (){ 
+    server = "";    
+    params = {
+      url: "coupon/myDiscountCoupon1",
+      userId:uid
+    };
     getAjax.getAction(server,params,function(res){
-      console.log('加载地址列表',res);
-     
-      // if(res['code']==0){
-      
-
-      //     var cardList = res['info'];
-      //     console.log(cardList);
-
-       
-      
-      //     var html = "";
-      
-      //     for(var i=0;i<cardList.length;i++){
-           
-      //       var cardMoney =  cardList[i].cardMoney;
-
-
-      //       cardMoney = cardMoney.toString()+"元";
-
-      //       if (strlen(cardMoney)<6){
-             
-      //           cardMoney = cardMoney +" ";
-
-      //       }
-
-           
-           
-
-      //        html= html + '<li class="" data-id='+cardList[i].id+' ><span class="info"><h2>充'+ cardMoney+'&nbsp;送'+cardList[i].cardExtendMoney+'</h2></span><span class="edit" onclick="">充值</span></li>';   
-         
-      //     }
-      //     $('#addrlist ul').empty().append(html);
-
-
-      // }
-      
-    },function(error){});
+      console.log('我的优惠券列表',res);
+      if(res['code']==0){
+        var htm = "";
+        for(var i=0;i<res['info'].length;i++){
+          htm = htm + '<li class="'+(res['info'][i]['isUsed']==0?'nouse':'use')+'">'+
+            '<span class="info">'+
+              '<h2><i class="rmb">¥</i><i class="num">'+res['info'][i]['discountMoney']+'</i><i class="sym">YUAN</i><i class="text">优惠券</i><i class="sym">(仅限'+res['info'][i]['cityName']+'使用)</i></h2>'+
+              '<h3>满'+res['info'][i]['useMoneyDemand']+'元使用 有效期至'+getAjax.getTime(res['info'][i]['useEndTime'],false)+'</h3>'+
+            '</span>'+
+            '<span class="edit">'+
+              (res['info'][i]['isUsed']==0?'可使用':'已使用')+
+            '</span>'+
+          '</li>';
+        }
+        $("#box").html(htm);
+      }else{
+        alert(res['message']);
+      }
+    },function(error){
+      alert("与服务器连接断开");
+    });
   }
 
   function strlen(str) { 
@@ -218,6 +228,21 @@
         else len++; 
     } 
     return len; 
+}
+function newcoupon(){
+  if(show_flag){
+    show_flag = false;
+    $(".in").animate({opacity:0});
+    $("#box").animate({top:"0px"});
+  } else {
+    show_flag = true;
+    $("#box").animate({top:"50px"});
+    $(".in").animate({opacity:1});
+  }
+  
+}
+function jump(couponId,couponMoney){
+  window.location.href = backUrl+".html?couponId="+couponId+"&couponMoney="+couponMoney;
 }
 </script>  
 

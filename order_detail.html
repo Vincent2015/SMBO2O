@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>上门帮</title>
+	<link href="App_Themes/Style/public/public.css" rel="stylesheet" />
+    <link href="App_Themes/Style/order_detail.css" rel="stylesheet"/> 
+
+    <link rel="stylesheet" href="App_Themes/Style/public/styles.css" type="text/css">
+    <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
+    <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
+    <script src="App_Themes/Script/getAjax.js"></script>
+    <script type="text/javascript" src="App_Themes/Script/order_detail.js"></script>
+</head>
+
+<body>
+	<!--header-->
+	<header>
+		<div class="head_left" onclick="goback()">
+			<img src="App_Themes/images/back.png"/>
+		</div>
+		<div class="head_center">订单详情</div>
+		<div class="head_right"><a href="tel:4006191717"><img src="App_Themes/images/telme.png"/></a></div>
+	</header>
+	<!--section-->
+	<section>
+		<ul id="box_ul">
+			<li class="text_box">
+				<ul>
+					<li class="text_box_li_user">
+						<div id="orderId"></div>
+					</li>
+					<li>
+						<div><img id="status_1" src="App_Themes/images/orderdetail_11.png"><br><span>已出发</span></div>
+						<div><img id="status_2" src="App_Themes/images/orderdetail_22.png"><b></b><br><span>已到达</span></div>
+						<div><img id="status_3" src="App_Themes/images/orderdetail_33.png"><b></b><br><span>已完成</span></div>
+						<div><img id="status_4" src="App_Themes/images/orderdetail_44.png"><b></b><br><span>已评价</span></div>
+					</li>
+				</ul>
+			</li>
+
+			<li class="text_box">
+				<ul id="work_info">
+					<img id="workhead" src="App_Themes/images/shif.png">
+					<li>
+						<div id="worker"></div>
+						<div id="workerNum"></div>
+					</li>
+					<li>
+						<div id="projectName"></div>
+					</li>
+					<li>
+						<div id="orderTime"></div>
+					</li>
+				</ul>
+				<div id="project"></div>
+				<div id="price"></div>
+			</li>
+
+			<li class="text_box" style="height:75px;" id="price_info_li">
+				<ul id="price_info">
+					<li>
+						<div id="title_div"></div>
+						<div id="orderPrice" class="right_money"></div>
+					</li>
+					<li id="carMoney_info_li">
+						<div class="text_left" style="margin-top:0px;width:auto;">交通费</div>
+						<div class="right_money" id="carMoney" style="margin-top:0px;width:auto;float:right;"></div>
+					</li>
+				</ul>
+			</li>
+
+			<li class="text_box" style="height:200px;">
+				<ul id="price_info" style="height:200px;">
+					<li>
+						<div id="title_div">订单详情</div>
+					</li>
+					<li>
+						<div class="text_left" style="width:22%;">联系人:</div>
+						<div class="userinfo_left" id="contact"></div>
+					</li>
+					<li>
+						<div class="text_left" style="width:22%;">联系电话:</div>
+						<div class="userinfo_left" id="contactPhone"></div>
+					</li>
+					<li>
+						<div class="text_left" style="width:22%;">联系地址:</div>
+						<div class="userinfo_left" id="orderAddress"></div>
+					</li>
+					<li>
+						<div class="text_left" style="width:22%;">支付方式:</div>
+						<div class="userinfo_left" id="payOrderType"></div>
+					</li>
+					<li>
+						<div class="text_left" style="width:22%;">下单时间:</div>
+						<div class="userinfo_left" id="initiateOrederTime"></div>
+					</li>
+					<li></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<!--footer-->
+	<footer style="display:none;">
+		<div id="goPay">
+			
+		</div>
+   </footer>
+   <!--选择城市-->
+	<div class="city" style="display:none">
+		<div class="p"><div id="_no">取消</div><div>请选择取消原因</div><div id="_yes">确定</div></div>
+		<div class="city_list">
+			<ul>
+				<li class="lis">临时有事，不做了</li>
+				<li class="lis">师傅规定时间无法到达</li>
+				<li class="lis">更换别的项目</li>
+				<li class="lis">不同意更换别的师傅</li>
+				<li class="lis">价格太高了</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

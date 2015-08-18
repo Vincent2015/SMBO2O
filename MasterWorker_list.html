@@ -39,14 +39,28 @@
         width:23.5%;
         height: 100%;
         display: inline-block;  
+        padding-top: 60px;
+        text-align: center;
+
 
       }
+       .subhead li span{
 
+       	  position: absolute;
+       	  bottom: 5px;
+       	  left:25px;
+       	  /*color: rgb(254,154,66);*/
+       }
+       .cl{
 
-      #mall{background: url(App_Themes/images/m-all.png) no-repeat center center/80% ;}
-      #mzl{background: url(App_Themes/images/m-z.png) no-repeat center center/80%;}
-	  #mll{background: url(App_Themes/images/m-l.png) no-repeat center center/80%;}
-	  #mjh{background: url(App_Themes/images/m-jh.png) no-repeat center center/80%;}
+ 				color: rgb(254,154,66);
+
+       }
+
+      #mall{background: url(App_Themes/images/m-all.png) no-repeat top center/80% ;}
+      #mzl{background: url(App_Themes/images/m-z.png) no-repeat top center/80%;}
+	  #mll{background: url(App_Themes/images/m-l.png) no-repeat top center/80%;}
+	  #mjh{background: url(App_Themes/images/m-jh.png) no-repeat top center/80%;}
 
        
        .master-list{position: absolute;top: 88px;/*overflow: hidden;*/z-index: 50;}
@@ -101,6 +115,7 @@
 		background-color:#fafafa;
 		font-size:14px;
 	}
+
 
 	#myFrame {
 		position:absolute;
@@ -240,7 +255,7 @@
 	}
 	.none{display:none;}
 	 i{font-style: normal;font-weight: normal; font-size: 0.8em;padding-left: 5px;}
-	 .level{position: relative;top:3px;}
+	.level{position: relative;top:3px;}
 
 	</style>
 	
@@ -261,10 +276,10 @@
 		</div>
 	     <div class="subhead">
 	     	<ul>
-	     		<li id="mall"></li>
-	     		<li id="mzl"></li>
-	     		<li id="mll"></li>
-	     		<li id="mjh"></li>
+	     		<li id="mall">全部</li>
+	     		<li id="mzl">足疗</li>
+	     		<li id="mll">理疗</li>
+	     		<li id="mjh">脚护</li>
 	     	</ul>
 	     </div>
 	</header>
@@ -459,18 +474,34 @@ var myScroll,
 	pullUpEl, pullUpOffset,
 	generatedCount = 0;
 var curpage0 = curpage1=curpage2=curpage3= 0;
+
+
+$(".subhead ul li:first-child").css("color","rgb(24,203,109)");
+$(".subhead ul li").live("click",function(){	
+		
+		$(".subhead ul li").css("color","#333333");
+		$(this).css("color","rgb(24,203,109)");
+
+})
+
+
 $(window).load(function() {
 	$("#mall").click(function(){   //比如说：
+	  
+	    
 	    loaddata();
 	});
 
 	$("#mzl").click(function(){   //比如说：
+		
 	    loaddata(1);
 	});
 	$("#mll").click(function(){   //比如说：
+		
 	    loaddata(2);
 	});
 	$("#mjh").click(function(){   //比如说：
+		
 	    loaddata(3);
 	});
 });
@@ -516,7 +547,7 @@ function loaddata(index){
 						if(masterList[i]['workerProfessionGrade']==1000000021){
 							
 							img = "App_Themes/images/star-level.png";
-							
+
 						} else if(masterList[i]['workerProfessionGrade']==1000000022){
 
 							img = "App_Themes/images/h-level.png";

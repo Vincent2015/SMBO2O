@@ -13,13 +13,14 @@
     <script type="text/jscript" src="App_Themes/Script/public/jquery183.js"></script>
     <script type="text/jscript" src="App_Themes/Script/public/json.js"></script>
     <script src="App_Themes/Script/getAjax.js"></script>
+    <script src="App_Themes/Script/toast.js"></script>
     
      <style type="text/css">
        .head_center{
        	background:#18cb6d;
        	color: #FFFFFF !important;
        }
-       .a_01{background: #F0F0F0;color: #777777;font-size: 1.3em;}
+      .a_01{background: #F0F0F0;color: #777777;font-size: 1.3em;}
       .a_01,.a_name{height: 45px;padding-top: 5px;position: relative;}
       .a_name p{margin-top: 35px;right: 0px;position: absolute;}
       .a_name span{
@@ -27,13 +28,13 @@
          position: absolute;
       }
 
-       .a_name span input{display: block; position: relative;width: 99%;margin: 0 auto;line-height: 2.5em;border: none;}
-       .a_name span img{position: absolute;right:10px;top:1px;}      
+      .a_name span input{display: block; position: relative;width: 99%;margin: 0 auto;line-height: 2.5em;border: none;}
+      .a_name span img{position: absolute;right:10px;top:1px;}      
       .a_name img{float: left;}
       .a_name .frr{float: right;}
       .a_name .frr:after{clear:both;}
       .a_03{
-      	height: 120px;color: #666666;font-size: 1.5em;
+      	height: auto;color: #666666;font-size: 1.5em;
       }
        .a_03 ul li p img{padding-right: 5px;}
         #blank{position: absolute;top: 150px;width: 100%;}
@@ -66,18 +67,18 @@
 		
 		<div class="a_03">
 			<ul>
-			    <li>
+			    <!-- <li>
 					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
-					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
+					
 				</li>
 				<li>
 					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
-					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
+					
 				</li>
 				<li>
 					<p><img src="App_Themes/images/shif.png"/>小猫密(110110)</p>
-					<!-- <span><img src="App_Themes/images/y_next.png"/></span> -->
-				</li>
+					
+				</li> -->
 			</ul>
 		</div>
 		
@@ -94,42 +95,56 @@
       
     function searchmaster(){ 
 
+    var city = getAjax.getLocalStorage('city');
+    if (city){
+
+       var cityId = JSON.parse(city).code;
+    }else{
+
+    	return;
+    }
+
      var keyword = document.getElementById('keyword').value;
+
+     if(!keyword){
+
+		new Toast({context:$('body'),message:'请输入查询条件'}).show(); 
+		return;
+
+
+     }
 
      console.log('keyword',keyword);
       server = "";    
        params = {
          url: "worker/searchWorker",
-         condition:keyword
+         condition:keyword,
+         cityId:cityId
       };
     
-    getAjax.getAction(server,params,function(res){
+   	  getAjax.getAction(server,params,function(res){
       console.log('搜索师傅',res);
      
       if(res['code']==0){
-      
-
           var mList = res['info'];
           console.log(mList);
-
-       
-      
           var html = "";
       
           for(var i=0;i<mList.length;i++){
            
 
-             html = html + '<li><p><img src='+mList[i].headPhoto+'/>'+mList[i].nickName+mList[i].jobNum+'</p></li>';
+             html = html + '<li onclick="todetail(this)" data-id='+mList[i].id+'><p><img src='+mList[i].headPhoto+'/>'+mList[i].nickName+mList[i].jobNum+'</p></li>';
           }
           $('.a_03 ul').empty().append(html);
-
-
       }
       
     },function(error){});
   }
 
-
+  function todetail(item){
+   var mwid = $(item).attr('data-id'); 
+   window.location.href = "MasterWorker_details.html?id="+mwid; 
+  }
 	</script>
 </body>
 </html>

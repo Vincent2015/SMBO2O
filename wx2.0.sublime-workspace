@@ -4,196 +4,44 @@
 		"selected_items":
 		[
 			[
-				"di",
-				"display"
-			],
-			[
-				"in",
-				"innerHTML"
+				"fon",
+				"font-family"
 			],
 			[
 				"pa",
 				"padding-left"
 			],
 			[
-				"ma",
-				"margin-left"
-			],
-			[
-				"pla",
-				"placeName"
-			],
-			[
-				"co",
-				"console"
-			],
-			[
-				"fun",
-				"function"
-			],
-			[
-				"str",
-				"strlen"
-			],
-			[
-				"a",
-				"attr"
-			],
-			[
-				"gt",
-				"getAjax"
-			],
-			[
-				"bo",
-				"border-radius"
-			],
-			[
-				"ba",
-				"background-size"
-			],
-			[
-				"pad",
-				"padding-bottom"
-			],
-			[
-				"p",
-				"padding-top"
-			],
-			[
-				"inli",
-				"inline-block"
-			],
-			[
-				"bor",
-				"border"
-			],
-			[
-				"fon",
-				"font-size"
-			],
-			[
-				"wo",
-				"worker"
-			],
-			[
-				"sc",
-				"scroller"
-			],
-			[
-				"w",
-				"wrapper"
-			],
-			[
-				"m",
-				"margin-left"
-			],
-			[
-				"l",
-				"length"
-			],
-			[
-				"da",
-				"datemap"
-			],
-			[
-				"c",
-				"css"
-			],
-			[
-				"fo",
-				"font-size"
-			],
-			[
-				"s",
-				"script"
-			],
-			[
-				"is",
-				"isKeyword"
-			],
-			[
-				"get",
-				"getAjax"
-			],
-			[
-				"top",
-				"margin-top"
-			],
-			[
-				"key",
-				"keyword"
-			],
-			[
-				"va",
-				"value"
-			],
-			[
-				"res",
-				"result1"
-			],
-			[
-				"b",
-				"border"
-			],
-			[
 				"f",
-				"font-size"
+				"FAFAFA"
 			],
 			[
-				"te",
-				"text"
-			],
-			[
-				"font-s",
-				"font-size"
+				"ma",
+				"margin-right"
 			],
 			[
 				"margin",
-				"margin-bottom"
-			],
-			[
-				"bot",
-				"bottom"
-			],
-			[
-				"h",
-				"height"
-			],
-			[
-				"add",
-				"addrlist"
-			],
-			[
-				"fu",
-				"function"
-			],
-			[
-				"cl",
-				"clear"
-			],
-			[
-				"wid",
-				"width"
-			],
-			[
-				"pai",
-				"padding-top"
-			],
-			[
-				"o",
-				"overflow"
-			],
-			[
-				"wi",
-				"width"
+				"margin-left"
 			],
 			[
 				"font-",
 				"font-size"
 			],
 			[
+				"bo",
+				"bottom"
+			],
+			[
 				"inl",
 				"inline-block"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"p",
+				"padding-top"
 			],
 			[
 				"tet",
@@ -204,8 +52,16 @@
 				"margin-left"
 			],
 			[
+				"pad",
+				"padding-left"
+			],
+			[
 				"no",
 				"no-repeat"
+			],
+			[
+				"fo",
+				"font-size"
 			],
 			[
 				"font",
@@ -220,69 +76,25 @@
 				"line-height"
 			],
 			[
+				"font-s",
+				"font-style"
+			],
+			[
 				"text-",
 				"text-align"
 			],
 			[
 				"text",
 				"text-align"
+			],
+			[
+				"te",
+				"text-align"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "iscroll.html",
-			"settings":
-			{
-				"buffer_size": 11390,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 6650,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n	<meta charset=\"utf-8\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0\">\n	<meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\" />\n	<meta http-equiv=\"Pragma\" content=\"no-cache\" />\n	<meta http-equiv=\"Expires\" content=\"0\" />\n	<title>会员卡</title>\n	<link href=\"App_Themes/Style/public/public.css\" rel=\"stylesheet\" />\n    <link href=\"App_Themes/Style/index.css\" rel=\"stylesheet\"/> \n    <link rel=\"stylesheet\" href=\"App_Themes/Style/public/styles.css\" type=\"text/css\">\n    <script type=\"text/jscript\" src=\"App_Themes/Script/public/jquery183.js\"></script>\n    <script type=\"text/jscript\" src=\"App_Themes/Script/public/json.js\"></script>\n    <script src=\"App_Themes/Script/getAjax.js\"></script>\n    \n    \n    <style type=\"text/css\">\n     body{background: rgb(233,236,241);}\n     section{background: rgb(240,240,240);}\n     .head_center{color: #FFFFFF;background:rgb(24,203,109);}\n     .head_right{\n     	position: absolute;\n     	right: 15px;\n     	top:15px;\n      font-size: 1.5em;\n      color: #FFFFFF;\n     }\n     .head_right img{width: 32px;height: 32px;}\n\n\n     nav{height: 160px;position: absolute;top:50px;background:rgb(24,203,109); }\n\n     nav .info{display:inline-block;width:18px;height:18px;/*border: 2px solid #FFFFFF;border-radius:10px;*/color:#FFFFFF;text-align: center;font-size: 1.3em;}\n     nav .info img{display: block;margin-top: 3px;}\n     nav .desc{display:inline-block;width:5em;height:18px;color:#FFFFFF;text-align: center;margin-left:-3px;font-size: 1.3em;}\n     nav .ubg{display: block;width: 150px;position: relative;margin: 0 auto;}\n    nav .ubg p{position: absolute;top:50px;left: 40%;color: rgb(35,135,82);font-size: 1.5em;margin-left: -10px;}\n     nav .ubg span{position: absolute;top:65px;left: 48%;color: #FFFFFF;font-size: 1.5em;padding-top: 10px;}\n\n     #addrlist{margin-top:170px;}\n\n      #addrlist li{background:url(App_Themes/images/member.png) no-repeat left center/100% 100%; ;color: #FFFFFF;height:65px;padding-left: 10px;margin-top: 10px;}\n\n\n      #addrlist  .slide{margin-left: -75px;}\n      \n      #addrlist .info h2{font-style: normal;font-weight: normal;font-size: 1.5em;padding-top:25px;padding-bottom: 20px;padding-left: 30px;}\n      #addrlist .info h3{font-style: normal;font-weight: normal;font-size: 1.4em;padding-top:5px;padding-bottom: 5px;}\n    \n      #addrlist .edit{float: right;margin-top:-40px;margin-right:40px;font-size: 1.5em; border: 1px solid #FFFFFF;padding:5px 20px;border-radius: 5px;}\n      #addrlist .del{float: right;width: 60px; height: 60px;z-index:1;position: relative;margin-top: -65px;}\n      #addrlist .del button{background: rgb(255,102,51);height: 68px;border: none;width: 100%;color: #FFFFFF;font-size: 1.4em;}\n      \n      #nodata{position: relative;width: 200px;margin:20% auto;}\n       #nodata img{position: relative;width:90%;height: 80%;}\n       #nodata p{color: #666666;font-size: 1.2em;}\n\n      .none{display: none;}\n\n\n    </style>\n</head>\n\n<body>\n	<!--header-->\n	<header>\n		<div class=\"head_left\">\n			<img src=\"App_Themes/images/back01.png\"/>\n			\n		</div>\n		<div class=\"head_center\">会员卡</div>\n		<div class=\"head_right\" onclick=\"newaddr()\">\n			<!-- 账单 -->\n		</div>\n\n    <nav>\n      <span class=\"ubg\">\n          <img src=\"App_Themes/images/userbg.png\" style=\"width:150px;height:150px;\">\n          <p>余额(元)</p>\n          <span>¥0</span>\n       </span>\n\n      <div style=\"margin-top:-30px;margin-left:5px;\">\n         <span class=\"info\">\n           <img src=\"App_Themes/images/info.png\" width=\"18px\" height=\"18px\"/>\n         </span>\n          <span class=\"desc\">\n           会员卡说明\n         </span>\n       </div>\n       \n    </nav>\n	     \n	</header>\n	<section>\n		 <div id=\"addrlist\" class=\"\">\n		 	\n         <ul>\n         	<li>\n         		<span class=\"info\">\n         			<h2>充5000元&nbsp;送100</h2>\n         			\n         		</span>\n         		<span class=\"edit\">\n         			充值\n         		</span>\n         	\n         	</li>\n	        <li>\n         		<span class=\"info\">\n         			<h2>充5000元&nbsp;送100</h2>\n         		\n         		</span>\n         		<span class=\"edit\">\n         			充值\n         		</span>\n         	\n         	</li>\n            <li class=\"\" >\n            <span class=\"info\">\n              <h2>充5000元&nbsp;送100</h2>\n              \n            </span>\n            <span class=\"edit\">\n              充值\n            </span>\n          \n          </li>\n          <li>\n            <span class=\"info\">\n              <h2>充5000元&nbsp;送100</h2>\n            \n            </span>\n            <span class=\"edit\">\n              充值\n            </span>\n          \n          </li>\n            <li class=\"\" >\n            <span class=\"info\">\n              <h2>充5000元&nbsp;送100</h2>\n              \n            </span>\n            <span class=\"edit\">\n              充值\n            </span>\n          \n          </li>\n          <li>\n            <span class=\"info\">\n              <h2>充5000元&nbsp;送100</h2>\n            \n            </span>\n            <span class=\"edit\">\n              充值\n            </span>\n          \n          </li>\n\n         </ul>\n\n		 </div>\n         <div id=\"nodata\" class=\"none\">\n           <img src=\"App_Themes/images/footer.png\">\n           <p>亲~、你还没填地址、赶快添加吧！</p>\n         </div>\n\n	</section>\n  <script type=\"text/jscript\" src=\"App_Themes/Script/public/jquery183.js\"></script>\n<script type=\"text/javascript\">\n	 $(document).ready(function(){\n\n	});\n	\n  getcardlist();\n  /*id为空代表添加；不为空则为修改*/\n   function getcardlist(){ \n     var user = getAjax.getLocalStorage('user');\n     var uid = (JSON.parse(user).id);\n\n      server = \"\";    \n       params = {\n         url: \"card/getMemoryCards\"\n      };\n    \n    getAjax.getAction(server,params,function(res){\n      console.log('加载地址列表',res);\n     \n      if(res['code']==0){\n      \n\n          var cardList = res['info'];\n          console.log(cardList);\n\n       \n      \n          var html = \"\";\n      \n          for(var i=0;i<cardList.length;i++){\n           \n            var cardMoney =  cardList[i].cardMoney;\n\n\n            cardMoney = cardMoney.toString()+\"元\";\n\n            if (strlen(cardMoney)<6){\n             \n                cardMoney = cardMoney +\" \";\n\n            }\n\n           \n           \n\n             html= html + '<li class=\"\" data-id='+cardList[i].id+' ><span class=\"info\"><h2>充'+ cardMoney+'&nbsp;送'+cardList[i].cardExtendMoney+'</h2></span><span class=\"edit\" onclick=\"\">充值</span></li>';   \n         \n          }\n          $('#addrlist ul').empty().append(html);\n\n\n      }\n      \n    },function(error){});\n  }\n\n  function strlen(str) { \n    var len; \n    var i; \n    len = 0; \n    for (i=0;i<str.length;i++) { \n        if (str.charCodeAt(i)>255) len+=2; \n        else len++; \n    } \n    return len; \n}\n</script>  \n\n</body>\n</html>\n",
-			"file": "test.html",
-			"file_size": 7246,
-			"file_write_time": 130838394229168151,
-			"settings":
-			{
-				"buffer_size": 6833,
-				"line_ending": "Windows",
-				"name": "test.html"
-			}
-		},
-		{
-			"file": "App_Themes/Script/yxMobileSlider.js",
-			"settings":
-			{
-				"buffer_size": 7404,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "App_Themes/Script/index.js",
-			"settings":
-			{
-				"buffer_size": 8656,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "App_Themes/Style/index.css",
-			"settings":
-			{
-				"buffer_size": 4798,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -316,72 +128,16 @@
 	},
 	"expanded_folders":
 	[
-		"/D/tomcat/webapps/WebApp",
-		"/D/tomcat/webapps/WebApp/App_Themes",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style"
 	],
 	"file_history":
 	[
-		"/D/tomcat/webapps/WebApp/User_charge.html",
-		"/D/tomcat/webapps/WebApp/orderlist.html",
-		"/D/tomcat/webapps/WebApp/iscroll.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/orderlist.js",
-		"/D/tomcat/webapps/WebApp/MasterWorker_order.html",
-		"/D/tomcat/webapps/WebApp/MasterWorker_details.html",
-		"/D/tomcat/webapps/WebApp/MasterWorker_list.html",
-		"/D/tomcat/webapps/WebApp/Time-list.html",
-		"/D/tomcat/webapps/WebApp/Address_modify.html",
-		"/D/tomcat/webapps/WebApp/Address_list.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/payment.js",
-		"/C/Users/ADMINI~1.USE/AppData/Local/Temp/Rar$DRa0.294/src/net/sourceforge/simcpux/Util.java",
-		"/D/SVN_View/html5/WebApp/App_Themes/Script/getAjax.js",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/public/getAjax.js",
-		"/D/tomcat/webapps/WebApp/index.html",
-		"/D/SVN_View/html5/wx/index.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/getAjax.js",
-		"/D/tomcat/webapps/WebApp/User_share.html",
-		"/D/tomcat/webapps/WebApp/User_qcode.html",
-		"/D/tomcat/webapps/WebApp/User_cardinfo.html",
-		"/D/tomcat/webapps/WebApp/User_voucher.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style/public/public.css",
-		"/D/tomcat/webapps/WebApp/User_index.html",
-		"/D/tomcat/webapps/WebApp/Address_new.html",
-		"/D/tomcat/webapps/WebApp/MasterWorker_search.html",
-		"/D/tomcat/webapps/WebApp/login.html",
-		"/D/tomcat/webapps/WebApp/Address_location.html",
-		"/D/WX/backup/ayibang-master/html/cityarea.html",
-		"/D/WX/backup/ayibang-master/html/order-address.html",
-		"/D/WX/backup/ayibang-master/html/addresslist.html",
-		"/D/tomcat/webapps/WebApp/MasterWorker_ping.html",
-		"/D/SVN_View/html5/wx/seltime.html",
-		"/D/SVN_View/html5/wx/css/seltime.css",
-		"/D/SVN_View/html5/wx/js/seltime.js",
-		"/D/tomcat/webapps/WebApp/Time-list-1.html",
-		"/D/tomcat/webapps/WebApp/Time-list - 副本.html",
-		"/D/tomcat/webapps/WebApp/seltime.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/public/json.js",
-		"/D/tomcat/webapps/WebApp/MasterWoker_list.html",
-		"/D/tomcat/webapps/WebApp/Goods_order.html",
-		"/D/WX/backup/ayibang-master/html/search.html",
-		"/D/tomcat/webapps/WebApp/Goods_details.html",
-		"/D/tomcat/webapps/WebApp/MaseterWoker_list.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style/MasterWorker_list.css",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style/index.css",
-		"/D/tomcat/webapps/WebApp/aa.html",
-		"/D/tomcat/webapps/WebApp/bb.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style/appointment.css",
-		"/C/Users/Administrator.USER-20150720SG/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/D/tomcat/webapps/WebApp/App_Themes/Script/index.js",
-		"/D/SVN_View/html5/wx/person.html",
-		"/D/tomcat/webapps/WebApp/index-1.html",
-		"/D/tomcat/webapps/WebApp/App_Themes/Style/MasterWorker_details.css",
 		"/D/SVN_View/html5/WebApp/index-1.html",
 		"/D/tomcat/conf/web.xml",
 		"/D/tomcat/conf/server.xml",
 		"/D/tomcat/conf/tomcat-users.xml",
 		"/D/SVN_View/html5/WebApp/App_Themes/Script/api.js",
 		"/D/SVN_View/html5/WebApp/App_Themes/Script/index.js",
+		"/D/SVN_View/html5/WebApp/App_Themes/Script/getAjax.js",
 		"/C/Users/Administrator.USER-20150720SG/Desktop/home.html",
 		"/D/SVN_View/html5/WebApp/MasterWorker_details.html",
 		"/D/SVN_View/html5/WebApp/MasterWorker_order.html",
@@ -413,14 +169,13 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
-		"height": 105.0,
+		"height": 0.0,
 		"where_history":
 		[
-			"<open folders>,D:\\tomcat\\webapps\\WebApp"
 		]
 	},
 	"find_state":
@@ -428,64 +183,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"slider",
-			"orderBr",
-			"pullDownLabel",
-			"pullUpLabel",
-			"myFrame",
-			".list",
-			"list",
-			"<li>",
-			"cmdate",
-			"getTime",
-			"border",
-			"UserCard_info.html",
-			"UserCard_info",
-			"left",
-			"slide",
-			"left",
-			"substr",
-			"phonenum",
-			"lnglatXY",
-			"fadeOut",
-			"fade",
-			"seltime",
-			"addday",
-			"getime",
-			"clockmap",
-			"clockMap",
-			"tosercer",
-			"SumDateTime",
-			"keydown",
-			"result",
-			"index",
-			"AMap",
-			"selectResult",
-			"searchaddress",
-			"autoSearch",
-			"selectResult",
-			"margin-top",
-			"result1",
-			"keydown",
-			"selectResult",
-			"focus_callback",
-			"color",
-			"result",
-			"selectResult",
-			"search",
-			"alert",
-			"i",
-			"res['code']==0",
-			"setLocalStorage",
-			"master-service-list",
-			"cur_city_code",
-			"city",
-			"master-desc-detail",
-			"servicedesc",
-			"a_name",
-			"h5",
-			"z-index",
-			"$(document).ready(function() {\n\n //loadmaster();\n\n})",
 			"bottom_btn",
 			"Style",
 			"./image",
@@ -514,8 +211,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			"clockMap",
-			"clockmap",
 			"images",
 			"App_Themes/Style",
 			"App_Themes/Style/",
@@ -536,191 +231,14 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "iscroll.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11390,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8653,
-								8653
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 6049.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6650,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1618,
-								1618
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 530.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "test.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6833,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6664,
-								6664
-							]
-						],
-						"settings":
-						{
-							"auto_name": "test.html",
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1768.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "App_Themes/Script/yxMobileSlider.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7404,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								567,
-								567
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "App_Themes/Script/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8656,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1496,
-								1496
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5257.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "App_Themes/Style/index.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4798,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								448,
-								448
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -757,7 +275,7 @@
 	"project": "wx2.0.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
